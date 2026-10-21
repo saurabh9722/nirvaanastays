@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
             </a>
 
             <a
-              href="https://wa.me/917507066306"
+              href="https://wa.me/919096166306"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-full border border-[#E6E0D6] bg-[#F3EFE6] text-[#2C2623] hover:bg-[#FAF7F2] text-center text-sm font-medium tracking-wide transition-all flex items-center justify-center gap-2"

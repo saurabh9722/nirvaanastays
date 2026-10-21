@@ -35,7 +35,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     name: '',
     phone: '',
     stayType: 'Girls’ Accommodation',
-    roomType: 'Room Type 03 — Attached Washroom + Balcony (₹24,999)',
+    roomType: 'Nirvana Prime — Attached Washroom + Balcony (₹24,999)',
     property: 'Shubh Gateway (Opp. Symbiosis Law College)',
     moveInDate: '',
     message: '',
@@ -67,14 +67,14 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     const text = encodeURIComponent(
       `Hi NIRVANA Stays,\nName: ${formData.name}\nPhone: ${formData.phone}\nStay: ${formData.stayType}\nRoom: ${formData.roomType}\nProperty: ${formData.property}\nMove-in: ${formData.moveInDate || 'Immediate'}\nNote: ${formData.message || 'I would like to schedule a visit.'}`
     );
-    window.open(`https://wa.me/917507066306?text=${text}`, '_blank');
+    window.open(`https://wa.me/919096166306?text=${text}`, '_blank');
   };
 
   const handleWhatsAppDirect = (customText?: string) => {
     const text = encodeURIComponent(
       customText || 'Hi NIRVANA Stays, I would like to inquire about co-living rooms in Viman Nagar, Pune.'
     );
-    window.open(`https://wa.me/917507066306?text=${text}`, '_blank');
+    window.open(`https://wa.me/919096166306?text=${text}`, '_blank');
   };
 
   const scrollToContact = () => {
@@ -93,7 +93,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     { name: 'High-Speed Wi-Fi', icon: '📶' },
     { name: 'Housekeeping', icon: '🧹' },
     { name: 'Fully Furnished Rooms', icon: '🛋️' },
-    { name: 'Equipped Kitchen', icon: '🍳' },
+    { name: 'Chef Ready Kitchen', icon: '🍳' },
     { name: 'Refrigerator', icon: '🧊' },
     { name: 'Microwave', icon: '♨️' },
     { name: 'RO Water', icon: '💧' },
@@ -152,7 +152,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     },
     {
       q: 'Can I visit before booking?',
-      a: 'Absolutely! We encourage you to schedule an in-person or virtual walkthrough. Simply click "Book a Visit" or message us directly on WhatsApp at +91 75070 66306.',
+      a: 'Absolutely! We encourage you to schedule an in-person or virtual walkthrough. Simply click "Book a Visit" or message us directly on WhatsApp at +91 90961 66306.',
     },
     {
       q: 'How does the ₹3,000 Referral Program work?',
@@ -201,7 +201,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           {/* Price Highlight Badge */}
           <div className="pt-2">
             <span className="inline-block px-5 py-2.5 rounded-full bg-[#C87D65] text-[#FFFDF9] text-sm sm:text-base font-semibold shadow-lg tracking-wide border border-[#B56A52]">
-              Starting from ₹19,999 / bed
+              Starting from ₹18,999 / bed
             </span>
           </div>
 
@@ -216,7 +216,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             </button>
 
             <a
-              href="https://wa.me/917507066306"
+              href="https://wa.me/919096166306"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-full bg-[#FFFDF9]/10 hover:bg-[#FFFDF9]/20 backdrop-blur-md border border-[#FFFDF9]/30 text-[#FFFDF9] text-base font-medium tracking-wide transition-all hover:scale-105 flex items-center gap-2.5"
@@ -312,7 +312,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             {/* Bottom Bar */}
             <div className="relative z-10 p-8 pt-0 flex items-center justify-between border-t border-white/20 mt-auto backdrop-blur-[2px]">
               <span className="text-sm sm:text-base font-semibold text-[#E9C377] drop-shadow-sm">
-                Starting from ₹19,999 / bed
+                Starting from ₹18,999 / bed
               </span>
               <button
                 onClick={scrollToRooms}
@@ -485,13 +485,13 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           >
             <div className="space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6E655F]">
-                Room Type 01
+                Nirvana Lite
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#2C2623]">
                 Non-Attached Washroom
               </h3>
               <div className="text-2xl font-bold text-[#2C2623]">
-                ₹19,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
+                ₹18,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
               </div>
               <ul className="space-y-2.5 text-xs text-[#6E655F] pt-2">
                 {['Fully furnished room', 'Air conditioning', 'Study setup', 'Shared / non-attached washroom', 'Housekeeping'].map((bullet) => (
@@ -518,7 +518,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           >
             <div className="space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6E655F]">
-                Room Type 02
+                Nirvana Plus
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#2C2623]">
                 Attached Balcony + Non-Attached Washroom
@@ -555,7 +555,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
 
             <div className="space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#C9A45B]">
-                Room Type 03
+                Nirvana Prime
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#FFFDF9]">
                 Attached Washroom + Balcony
@@ -592,7 +592,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
 
             <div className="space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#C9A45B]">
-                Room Type 04
+                Nirvana Elite
               </span>
               <h3 className="font-editorial text-xl font-bold text-[#FFFDF9]">
                 Master Bedroom + Attached Washroom
@@ -616,57 +616,6 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             >
               Check Availability
             </button>
-          </PerspectiveCard>
-        </div>
-
-        {/* Gender Room Showcase (2 Visual Sub-Cards right below pricing) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          <PerspectiveCard
-            maxTilt={8}
-            className="p-6 rounded-3xl bg-[#F3EFE6] border border-[#E6E0D6] flex items-center gap-5 shadow-sm"
-          >
-            <div className="w-28 h-24 rounded-2xl overflow-hidden shrink-0">
-              <img referrerPolicy="no-referrer"
-                src={getAssetUrl('assets/girls-room.jpeg')}
-                alt="Girls Accommodation"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#7A8B7B]">
-                Girls’ Accommodation
-              </span>
-              <h4 className="font-editorial text-lg font-bold text-[#2C2623]">
-                Navy blue bedding rooms
-              </h4>
-              <p className="text-xs text-[#6E655F]">
-                Spacious layout, elegant finish & high-comfort aesthetic.
-              </p>
-            </div>
-          </PerspectiveCard>
-
-          <PerspectiveCard
-            maxTilt={8}
-            className="p-6 rounded-3xl bg-[#F3EFE6] border border-[#E6E0D6] flex items-center gap-5 shadow-sm"
-          >
-            <div className="w-28 h-24 rounded-2xl overflow-hidden shrink-0">
-              <img referrerPolicy="no-referrer"
-                src={getAssetUrl('assets/boys-room.jpeg')}
-                alt="Boys Accommodation"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#C87D65]">
-                Boys’ Accommodation
-              </span>
-              <h4 className="font-editorial text-lg font-bold text-[#2C2623]">
-                Grey bedding rooms
-              </h4>
-              <p className="text-xs text-[#6E655F]">
-                Minimalist tone, dedicated study setup & organized storage.
-              </p>
-            </div>
           </PerspectiveCard>
         </div>
       </section>
@@ -694,7 +643,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           </div>
 
           <a
-            href="https://wa.me/917507066306?text=Hi%20NIRVANA%20Stays%2C%20I%20would%20like%20to%20refer%20someone%20for%20a%20stay."
+            href="https://wa.me/919096166306?text=Hi%20NIRVANA%20Stays%2C%20I%20would%20like%20to%20refer%20someone%20for%20a%20stay."
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md hover:scale-105 shrink-0 flex items-center gap-2"
@@ -800,23 +749,24 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           </h2>
         </div>
 
-        {/* 5 Minimal Cards in a single row on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {/* 5 Minimal Cards in a single row on desktop - Equal Dimensions */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
           {whyNirvanaPoints.map((point) => (
             <PerspectiveCard
               key={point.num}
               maxTilt={12}
-              className="p-6 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all space-y-3 flex flex-col justify-between"
+              containerClassName="h-full flex flex-col"
+              className="p-6 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all flex flex-col justify-between h-full space-y-3"
             >
               <div className="space-y-2">
                 <span className="font-editorial text-2xl font-bold text-[#C87D65]">
                   {point.num}
                 </span>
-                <h3 className="font-editorial text-lg font-bold text-[#2C2623]">
+                <h3 className="font-editorial text-lg font-bold text-[#2C2623] min-h-[3rem] flex items-center">
                   {point.title}
                 </h3>
               </div>
-              <p className="text-xs text-[#6E655F] leading-relaxed">
+              <p className="text-xs text-[#6E655F] leading-relaxed mt-auto pt-2">
                 {point.desc}
               </p>
             </PerspectiveCard>
@@ -967,10 +917,10 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                         onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
                         className="w-full px-4 py-3 rounded-2xl bg-[#FAF7F2] border border-[#E6E0D6] text-sm text-[#2C2623] focus:outline-none focus:border-[#C87D65]"
                       >
-                        <option value="Room Type 01 — Non-Attached Washroom (₹19,999)">Room 01: Non-Attached (₹19,999)</option>
-                        <option value="Room Type 02 — Attached Balcony + Non-Attached Washroom (₹21,999)">Room 02: Balcony + Non-Attached (₹21,999)</option>
-                        <option value="Room Type 03 — Attached Washroom + Balcony (₹24,999)">Room 03: Attached Washroom + Balcony (₹24,999)</option>
-                        <option value="Room Type 04 — Master Bedroom + Attached Washroom (₹24,999)">Room 04: Master Bedroom (₹24,999)</option>
+                        <option value="Nirvana Lite — Non-Attached Washroom (₹18,999)">Nirvana Lite: Non-Attached (₹18,999)</option>
+                        <option value="Nirvana Plus — Attached Balcony + Non-Attached Washroom (₹21,999)">Nirvana Plus: Balcony + Non-Attached (₹21,999)</option>
+                        <option value="Nirvana Prime — Attached Washroom + Balcony (₹24,999)">Nirvana Prime: Attached Washroom + Balcony (₹24,999)</option>
+                        <option value="Nirvana Elite — Master Bedroom + Attached Washroom (₹24,999)">Nirvana Elite: Master Bedroom (₹24,999)</option>
                       </select>
                     </div>
                   </div>
@@ -1027,25 +977,25 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
 
               <div className="space-y-4 pt-2">
                 <a
-                  href="https://wa.me/917507066306"
+                  href="https://wa.me/919096166306"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3.5 px-6 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md flex items-center justify-between"
                 >
                   <span className="flex items-center gap-2">
                     <MessageCircle className="w-4 h-4" />
-                    <span>WhatsApp: +91 75070 66306</span>
+                    <span>WhatsApp: +91 90961 66306</span>
                   </span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
 
                 <a
-                  href="tel:+917507066306"
+                  href="tel:+919096166306"
                   className="w-full py-3.5 px-6 rounded-full bg-[#FFFDF9] hover:bg-[#FAF7F2] border border-[#E6E0D6] text-[#2C2623] text-sm font-semibold tracking-wide transition-all flex items-center justify-between"
                 >
                   <span className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#C87D65]" />
-                    <span>Phone: +91 75070 66306</span>
+                    <span>Phone: +91 90961 66306</span>
                   </span>
                   <ArrowRight className="w-4 h-4 text-[#6E655F]" />
                 </a>

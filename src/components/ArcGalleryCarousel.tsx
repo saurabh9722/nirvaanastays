@@ -430,7 +430,7 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = ({
             </button>
 
             <a
-              href={`https://wa.me/917507066306?text=Hi%20NIRVANA%20Stays%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(
+              href={`https://wa.me/919096166306?text=Hi%20NIRVANA%20Stays%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(
                 currentItem.title
               )}.`}
               target="_blank"

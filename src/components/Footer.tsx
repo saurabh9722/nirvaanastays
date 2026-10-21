@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://wa.me/917507066306"
+                href="https://wa.me/919096166306"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-semibold tracking-wide transition-all shadow-sm"
@@ -62,11 +62,11 @@ export const Footer: React.FC = () => {
               </a>
 
               <a
-                href="tel:+917507066306"
+                href="tel:+919096166306"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#FAF7F2]/20 hover:border-[#FAF7F2]/40 text-[#FAF7F2] text-xs font-medium tracking-wide transition-all"
               >
                 <Phone className="w-3.5 h-3.5 text-[#C9A45B]" />
-                <span>+91 75070 66306</span>
+                <span>+91 90961 66306</span>
               </a>
             </div>
           </div>
