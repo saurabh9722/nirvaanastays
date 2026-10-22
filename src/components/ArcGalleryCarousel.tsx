@@ -100,7 +100,7 @@ interface ArcGalleryCarouselProps {
   onBookVisit?: () => void;
 }
 
-export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = ({
+export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(({
   onOpenLightbox,
   onBookVisit,
 }) => {
@@ -467,4 +467,6 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = ({
       </div>
     </div>
   );
-};
+});
+
+ArcGalleryCarousel.displayName = 'ArcGalleryCarousel';

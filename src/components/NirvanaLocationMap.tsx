@@ -49,7 +49,7 @@ export interface NirvanaLocationMapProps {
   height?: string;
 }
 
-export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = ({
+export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(({
   defaultCenter = NIRVANA_LOCATION.position,
   defaultZoom = 17,
   height = '500px',
@@ -237,4 +237,6 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = ({
       </div>
     </div>
   );
-};
+});
+
+NirvanaLocationMap.displayName = 'NirvanaLocationMap';
