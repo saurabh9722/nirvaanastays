@@ -484,12 +484,14 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm flex flex-col justify-between space-y-6 hover:shadow-lg transition-all"
           >
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6E655F]">
-                Nirvana Lite
-              </span>
-              <h3 className="font-editorial text-xl font-bold text-[#2C2623]">
-                Non-Attached Washroom
-              </h3>
+              <div className="space-y-1.5">
+                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#2C2623] whitespace-nowrap tracking-tight">
+                  Nirvana Lite
+                </h3>
+                <p className="text-xs sm:text-sm font-medium text-[#6E655F] line-clamp-2 min-h-[2.5rem] leading-snug">
+                  Non-Attached Washroom
+                </p>
+              </div>
               <div className="text-2xl font-bold text-[#2C2623]">
                 ₹18,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
               </div>
@@ -517,12 +519,14 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm flex flex-col justify-between space-y-6 hover:shadow-lg transition-all"
           >
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6E655F]">
-                Nirvana Plus
-              </span>
-              <h3 className="font-editorial text-xl font-bold text-[#2C2623]">
-                Attached Balcony + Non-Attached Washroom
-              </h3>
+              <div className="space-y-1.5">
+                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#2C2623] whitespace-nowrap tracking-tight">
+                  Nirvana Plus
+                </h3>
+                <p className="text-xs sm:text-sm font-medium text-[#6E655F] line-clamp-2 min-h-[2.5rem] leading-snug">
+                  Attached Balcony + Non-Attached Washroom
+                </p>
+              </div>
               <div className="text-2xl font-bold text-[#2C2623]">
                 ₹21,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
               </div>
@@ -549,17 +553,20 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             maxTilt={12}
             className="p-7 rounded-3xl bg-[#2C2623] text-white border-2 border-[#C9A45B] shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden"
           >
-            <div className="absolute top-3 right-4 px-3 py-0.5 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-bold uppercase tracking-wider">
-              Popular
-            </div>
-
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#C9A45B]">
-                Nirvana Prime
-              </span>
-              <h3 className="font-editorial text-xl font-bold text-[#FFFDF9]">
-                Attached Washroom + Balcony
-              </h3>
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#FFFDF9] whitespace-nowrap tracking-tight">
+                    Nirvana Prime
+                  </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-bold uppercase tracking-wider shrink-0">
+                    Popular
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-medium text-[#FAF7F2]/80 line-clamp-2 min-h-[2.5rem] leading-snug">
+                  Attached Washroom + Balcony
+                </p>
+              </div>
               <div className="text-2xl font-bold text-[#FFFDF9]">
                 ₹24,999 <span className="text-xs font-normal text-[#FAF7F2]/75">/ bed / month</span>
               </div>
@@ -586,17 +593,20 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             maxTilt={12}
             className="p-7 rounded-3xl bg-[#2C2623] text-white border-2 border-[#C9A45B] shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden"
           >
-            <div className="absolute top-3 right-4 px-3 py-0.5 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-bold uppercase tracking-wider">
-              Executive
-            </div>
-
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#C9A45B]">
-                Nirvana Elite
-              </span>
-              <h3 className="font-editorial text-xl font-bold text-[#FFFDF9]">
-                Master Bedroom + Attached Washroom
-              </h3>
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#FFFDF9] whitespace-nowrap tracking-tight">
+                    Nirvana Elite
+                  </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-bold uppercase tracking-wider shrink-0">
+                    Executive
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-medium text-[#FAF7F2]/80 line-clamp-2 min-h-[2.5rem] leading-snug">
+                  Master Bedroom + Attached Washroom
+                </p>
+              </div>
               <div className="text-2xl font-bold text-[#FFFDF9]">
                 ₹24,999 <span className="text-xs font-normal text-[#FAF7F2]/75">/ bed / month</span>
               </div>
