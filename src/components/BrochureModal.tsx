@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Download, FileText, CheckCircle, Sparkles, BookOpen } from 'lucide-react';
 import { validatePhone } from '../utils/property-logic.ts';
+import { CustomSelect } from './CustomSelect.tsx';
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -38,22 +39,22 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
     setErrors({});
     setDownloadReady(true);
 
-    // Trigger synthetic download of the Nirvana Stays Brochure
+    // Trigger synthetic download of the Nirvaana Stays Brochure
     const brochureText = `
 ================================================================
-           NIRVANA STAYS — PUNE OFFICIAL BROCHURE
+           NIRVAANA STAYS — PUNE OFFICIAL BROCHURE
        Thoughtfully Crafted Co-Living Sanctuaries (2026–2027)
 ================================================================
 Location: Symbiosis Viman Nagar · Kalyani Nagar · Koregaon Park
-Contact: +91 90961 66306 | hello@nirvanastays.in
+Contact: +91 90961 66306 | hello@nirvaanastays.in
 Address: First floor, Shubh Gateway, Shop number 116, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Viman Nagar, Pune, Maharashtra 411032
 Plus Code: HWG5+62 Pune, Maharashtra
 
 1. OUR SPACES:
-- Nirvana Willow (NS-0901): 6 En-Suites | 2 Off-Suites | Symbiosis Viman Nagar
-- Nirvana Terra  (NS-0406): 4 En-Suites | 2 Off-Suites | Symbiosis Viman Nagar
-- Nirvana Sage   (NS-0303): 4 En-Suites | 4 Off-Suites | Behind Hyatt Regency
-- Nirvana Studios (NS-0304): Private Luxury Studios with Kitchenette & Spa Bath
+- Nirvaana Willow (NS-0901): 6 En-Suites | 2 Off-Suites | Symbiosis Viman Nagar
+- Nirvaana Terra  (NS-0406): 4 En-Suites | 2 Off-Suites | Symbiosis Viman Nagar
+- Nirvaana Sage   (NS-0303): 4 En-Suites | 4 Off-Suites | Behind Hyatt Regency
+- Nirvaana Studios (NS-0304): Private Luxury Studios with Kitchenette & Spa Bath
 
 2. ALL 18 AMENITIES INCLUDED IN YOUR MONTHLY PLAN:
 [✔] A/C in All Rooms
@@ -87,7 +88,7 @@ Welcome to peaceful living in Pune.
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `Nirvana-Stays-Pune-Brochure-2026.txt`;
+    link.download = `Nirvaana-Stays-Pune-Brochure-2026.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -160,28 +161,32 @@ Welcome to peaceful living in Pune.
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-[#2C2623] mb-1">Gender</label>
-                  <select
+                  <CustomSelect
+                    name="gender"
+                    size="sm"
                     value={formData.gender}
-                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                    className="w-full px-3 py-2 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                  >
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                    <option value="Other">Other</option>
-                  </select>
+                    onChange={(val) => setFormData({ ...formData, gender: val })}
+                    options={[
+                      { value: 'Female', label: 'Female' },
+                      { value: 'Male', label: 'Male' },
+                      { value: 'Other', label: 'Other' },
+                    ]}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-[#2C2623] mb-1">Profession</label>
-                  <select
+                  <CustomSelect
+                    name="profession"
+                    size="sm"
                     value={formData.profession}
-                    onChange={(e) => setFormData({ ...formData, profession: e.target.value })}
-                    className="w-full px-3 py-2 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                  >
-                    <option value="Student">Student</option>
-                    <option value="Intern">Intern</option>
-                    <option value="Working Professional">Working Professional</option>
-                  </select>
+                    onChange={(val) => setFormData({ ...formData, profession: val })}
+                    options={[
+                      { value: 'Student', label: 'Student' },
+                      { value: 'Intern', label: 'Intern' },
+                      { value: 'Working Professional', label: 'Working Professional' },
+                    ]}
+                  />
                 </div>
               </div>
 
@@ -210,7 +215,7 @@ Welcome to peaceful living in Pune.
             <div className="p-3 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs text-left max-w-sm mx-auto flex items-center gap-3">
               <FileText className="w-8 h-8 text-[#C87D65] shrink-0" />
               <div>
-                <p className="font-medium text-[#2C2623]">Nirvana-Stays-Lookbook-2026.pdf</p>
+                <p className="font-medium text-[#2C2623]">Nirvaana-Stays-Lookbook-2026.pdf</p>
                 <p className="text-[11px] text-[#6E655F]">18 Amenities · Rates · Floor Plans · Symbiosis Proximity</p>
               </div>
             </div>

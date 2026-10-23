@@ -89,7 +89,7 @@ export const PropertyOwnersView: React.FC<PropertyOwnersViewProps> = ({
           Turn Your Pune Property Into a Guaranteed High-Yield Asset.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-4 leading-relaxed">
-          Stop chasing erratic tenants, unpaid electricity bills, and costly vacant months. Nirvana Stays transforms residential buildings into boutique, high-occupancy co-living sanctuaries with guaranteed long-term leases.
+          Stop chasing erratic tenants, unpaid electricity bills, and costly vacant months. Nirvaana Stays transforms residential buildings into boutique, high-occupancy co-living sanctuaries with guaranteed long-term leases.
         </p>
       </section>
 
@@ -205,7 +205,7 @@ export const PropertyOwnersView: React.FC<PropertyOwnersViewProps> = ({
             Calculate Your Projected Annual Revenue Uplift
           </h3>
           <p className="text-xs sm:text-sm text-[#6E655F] mb-8">
-            Adjust the sliders below based on your Pune property capacity to compare Nirvana managed returns against conventional leasing.
+            Adjust the sliders below based on your Pune property capacity to compare Nirvaana managed returns against conventional leasing.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -267,7 +267,7 @@ export const PropertyOwnersView: React.FC<PropertyOwnersViewProps> = ({
               </div>
 
               <div className="pt-2 border-t border-[#E6E0D6] flex justify-between items-center text-xs">
-                <span className="text-[#6E655F]">Annual Nirvana Returns:</span>
+                <span className="text-[#6E655F]">Annual Nirvaana Returns:</span>
                 <span className="font-mono font-bold text-[#2C2623]">
                   ₹{yieldData.annualNirvanaRevenue.toLocaleString('en-IN')}
                 </span>

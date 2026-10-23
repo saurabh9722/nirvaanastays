@@ -101,7 +101,7 @@ export default function App() {
             </div>
             <div className="mt-4 text-center">
               <h3 className="font-editorial text-xl text-white font-semibold">{lightboxData.alt}</h3>
-              <p className="text-xs text-[#FAF7F2]/75 mt-0.5">NIRVANA Stays · Viman Nagar, Pune</p>
+              <p className="text-xs text-[#FAF7F2]/75 mt-0.5">NIRVAANA Stays · Viman Nagar, Pune</p>
             </div>
           </div>
         </div>

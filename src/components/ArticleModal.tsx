@@ -75,7 +75,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
         {/* Callout box */}
         <div className="my-8 p-6 rounded-2xl bg-[#F4E6DF]/60 border border-[#E6E0D6] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h4 className="font-editorial text-lg font-semibold text-[#2C2623]">Experience Nirvana in Person</h4>
+            <h4 className="font-editorial text-lg font-semibold text-[#2C2623]">Experience Nirvaana in Person</h4>
             <p className="text-xs text-[#6E655F] mt-1">
               Visit our residences in Viman Nagar, Kalyani Nagar, or Koregaon Park.
             </p>
@@ -93,7 +93,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
 
         {/* Footer */}
         <div className="pt-4 border-t border-[#E6E0D6] flex justify-between items-center text-xs text-[#6E655F]">
-          <span>Nirvana Stays Pune Editorial Collection</span>
+          <span>NIRVAANA Stays Pune Editorial Collection</span>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-xl bg-[#FAF7F2] hover:bg-[#F3EFE6] text-[#2C2623] font-medium border border-[#E6E0D6]"

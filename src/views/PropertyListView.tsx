@@ -242,7 +242,7 @@ export const PropertyListView: React.FC<PropertyListViewProps> = ({
               Looking for Complete Privacy?
             </span>
             <h3 className="font-editorial text-2xl sm:text-3xl font-semibold text-[#2C2623]">
-              Discover Nirvana Studio Apartments
+              Discover Nirvaana Studio Apartments
             </h3>
             <p className="text-xs sm:text-sm text-[#6E655F] max-w-xl">
               Private induction kitchenette, spa-inspired en-suite bathroom, high-speed personal router, and dedicated ergonomic workstation—with zero brokerage.
@@ -253,7 +253,7 @@ export const PropertyListView: React.FC<PropertyListViewProps> = ({
             onClick={() => onNavigate('studio')}
             className="px-6 py-3 rounded-full bg-[#2C2623] hover:bg-black text-white text-xs font-semibold shrink-0 transition-colors shadow-sm"
           >
-            Explore Nirvana Studio
+            Explore Nirvaana Studio
           </button>
         </div>
       </section>

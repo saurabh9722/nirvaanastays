@@ -11,8 +11,9 @@ export const Footer: React.FC = () => {
     { label: 'Properties', href: '#properties' },
     { label: 'Rooms & Pricing', href: '#rooms' },
     { label: 'Amenities', href: '#amenities' },
+    { label: 'Connectivity & Hubs', href: '#connectivity' },
     { label: 'Gallery', href: '#gallery' },
-    { label: 'Why NIRVANA', href: '#why' },
+    { label: 'Why NIRVAANA', href: '#why' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact & Visit', href: '#contact' },
   ];
@@ -28,17 +29,17 @@ export const Footer: React.FC = () => {
               <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-[#0C1520] p-2.5 border border-white/15 shadow-xl flex items-center justify-center shrink-0">
                 <img
                   src={getAssetUrl('assets/logo-dark.png')}
-                  alt="NIRVANA Stays Official Logo"
+                  alt="NIRVAANA Stays Official Logo"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="space-y-1">
                 <span className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#FFFDF9] block">
-                  NIRVANA Stays
+                  NIRVAANA Stays
                 </span>
                 <span className="text-xs uppercase tracking-widest text-[#C9A45B] block font-semibold">
-                  NIRVANA Urban Nest Pvt. Ltd.
+                  NIRVAANA Urban Nest Pvt. Ltd.
                 </span>
                 <p className="text-xs text-[#FAF7F2]/65 pt-1">
                   Co-Living in Viman Nagar, Pune
@@ -98,14 +99,17 @@ export const Footer: React.FC = () => {
             
             <div className="space-y-4 text-xs text-[#FAF7F2]/75">
               <div className="space-y-1">
-                <span className="font-semibold text-[#FFFDF9] block">1. Shubh Gateway (Sales & Campus Office)</span>
+                <span className="font-semibold text-[#FFFDF9] block">1. Shubh Gateway (Campus HQ & Office)</span>
                 <p className="leading-relaxed">
-                  Sr. No. 227, Plot No. 1, New Airport Rd, opposite Symbiosis Law College, Viman Nagar, Pune, Maharashtra 411032.
+                  First floor, Shubh Gateway, Shop number 116, society, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Pune, Maharashtra 411032.
+                </p>
+                <p className="text-[11px] font-mono text-[#C9A45B]">
+                  Plus Code: HWG5+62 Pune, Maharashtra · Lat/Lng: 18.5756, 73.9076
                 </p>
               </div>
 
               <div className="space-y-1">
-                <span className="font-semibold text-[#FFFDF9] block">2. Shubh Nirvana</span>
+                <span className="font-semibold text-[#FFFDF9] block">2. Shubh Nirvaana</span>
                 <p className="leading-relaxed">
                   Opposite 10Biz Park, Viman Nagar, Pune, Maharashtra 411014.
                 </p>
@@ -113,7 +117,7 @@ export const Footer: React.FC = () => {
 
               <div className="pt-2 text-xs text-[#FAF7F2]/60 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#7A8B7B]" />
-                <span>Verified Legal Entity: NIRVANA Urban Nest Pvt. Ltd.</span>
+                <span>Verified Legal Entity: NIRVAANA Urban Nest Pvt. Ltd.</span>
               </div>
             </div>
           </div>
@@ -121,7 +125,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#FAF7F2]/60">
-          <p>© {new Date().getFullYear()} NIRVANA Urban Nest Pvt. Ltd. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NIRVAANA Urban Nest Pvt. Ltd. All rights reserved.</p>
 
           <button
             onClick={scrollToTop}

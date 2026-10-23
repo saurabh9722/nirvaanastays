@@ -8,7 +8,7 @@ interface FloatingActionsProps {
 export const FloatingActions: React.FC<FloatingActionsProps> = ({ onBookVisitClick }) => {
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
-      'Hi NIRVANA Stays, I would like to inquire about co-living rooms in Viman Nagar, Pune.'
+      'Hi NIRVAANA Stays, I would like to inquire about co-living rooms in Viman Nagar, Pune.'
     );
     window.open(`https://wa.me/919096166306?text=${msg}`, '_blank');
   };
@@ -23,8 +23,8 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onBookVisitCli
       <button
         onClick={handleCall}
         className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-full bg-[#FFFDF9] text-[#2C2623] shadow-lg hover:bg-[#F3EFE6] transition-all border border-[#E6E0D6] hover:scale-105"
-        title="Call NIRVANA Stays"
-        aria-label="Call NIRVANA Stays"
+        title="Call NIRVAANA Stays"
+        aria-label="Call NIRVAANA Stays"
       >
         <Phone className="w-4 h-4 text-[#C87D65]" />
         <span className="text-xs font-semibold">Call Now</span>
@@ -35,7 +35,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onBookVisitCli
         onClick={handleWhatsApp}
         className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-medium border border-[#B56A52]"
         title="Chat on WhatsApp (+91 90961 66306)"
-        aria-label="WhatsApp NIRVANA Stays"
+        aria-label="WhatsApp NIRVAANA Stays"
       >
         <MessageCircle className="w-4 h-4 fill-current" />
         <span className="text-xs font-semibold tracking-wide">WhatsApp Us</span>

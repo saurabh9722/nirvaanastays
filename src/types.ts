@@ -92,7 +92,7 @@ export interface FaqItem {
 export interface GalleryImage {
   id: string;
   title: string;
-  category: 'Bedrooms & Suites' | 'Nirvana Studios' | 'Community Lounge' | 'Kitchen & Dining' | 'Fitness & Wellness';
+  category: 'Bedrooms & Suites' | 'Nirvaana Studios' | 'Community Lounge' | 'Kitchen & Dining' | 'Fitness & Wellness';
   url: string;
   property: string;
 }

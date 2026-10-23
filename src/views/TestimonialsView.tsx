@@ -22,7 +22,7 @@ export const TestimonialsView: React.FC<TestimonialsViewProps> = ({
           Sub-Page 8A · Verified Resident Voices
         </span>
         <h1 className="font-editorial text-4xl sm:text-5xl font-semibold text-[#2C2623] mt-2 leading-tight">
-          What Life Feels Like at Nirvana Stays.
+          What Life Feels Like at Nirvaana Stays.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-3">
           Honest stories from Symbiosis scholars, legal apprentices, tech associates, and creative interns who found peace and productivity in Pune.

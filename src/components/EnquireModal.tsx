@@ -3,6 +3,7 @@ import { X, CheckCircle, Calendar, Phone, Mail, User, ShieldCheck } from 'lucide
 import { EnquiryFormData, Property } from '../types.ts';
 import { validatePhone, validateEmail } from '../utils/property-logic.ts';
 import { PROPERTIES } from '../data/mockData.ts';
+import { CustomSelect } from './CustomSelect.tsx';
 
 interface EnquireModalProps {
   isOpen: boolean;
@@ -138,7 +139,7 @@ export const EnquireModal: React.FC<EnquireModalProps> = ({
                 Personalized Visit & Stay Inquiry
               </span>
               <h2 id="modal-title" className="font-editorial text-2xl sm:text-3xl text-[#2C2623] mt-1 font-semibold">
-                Begin Your Nirvana Journey
+                Begin Your NIRVAANA Journey
               </h2>
               <p className="text-sm text-[#6E655F] mt-1">
                 Schedule an in-person or virtual tour. Zero brokerage, honest inclusions, and instant confirmation.
@@ -257,23 +258,23 @@ export const EnquireModal: React.FC<EnquireModalProps> = ({
                   <label className="block text-xs font-medium text-[#2C2623] mb-1">
                     Profession <span className="text-[#C87D65]">*</span>
                   </label>
-                  <select
+                  <CustomSelect
+                    name="profession"
                     value={formData.profession}
-                    onChange={(e) =>
+                    placeholder="Select Profession"
+                    onChange={(val) =>
                       setFormData({
                         ...formData,
-                        profession: e.target.value as 'Student' | 'Working Professional' | 'Intern',
+                        profession: val as 'Student' | 'Working Professional' | 'Intern',
                       })
                     }
-                    className={`w-full px-3 py-2.5 bg-[#FAF7F2] border rounded-xl text-sm text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65] ${
-                      errors.profession ? 'border-red-400' : 'border-[#E6E0D6]'
-                    }`}
-                  >
-                    <option value="">Select Profession</option>
-                    <option value="Student">Student (Symbiosis / College)</option>
-                    <option value="Intern">Intern / Summer Associate</option>
-                    <option value="Working Professional">Working Professional / Tech</option>
-                  </select>
+                    options={[
+                      { value: 'Student', label: 'Student (Symbiosis / College)' },
+                      { value: 'Intern', label: 'Intern / Summer Associate' },
+                      { value: 'Working Professional', label: 'Working Professional / Tech' },
+                    ]}
+                    error={!!errors.profession}
+                  />
                   {errors.profession && <p className="text-xs text-red-600 mt-1">{errors.profession}</p>}
                 </div>
               </div>
@@ -307,18 +308,19 @@ export const EnquireModal: React.FC<EnquireModalProps> = ({
                 <label className="block text-xs font-medium text-[#2C2623] mb-1">
                   Preferred Property / Residence (Optional)
                 </label>
-                <select
-                  value={formData.preferredProperty}
-                  onChange={(e) => setFormData({ ...formData, preferredProperty: e.target.value })}
-                  className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-sm text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                >
-                  <option value="">Any Available Property in Viman Nagar / Pune</option>
-                  {PROPERTIES.map((prop) => (
-                    <option key={prop.id} value={prop.name}>
-                      {prop.name} — {prop.location} ({prop.propCode})
-                    </option>
-                  ))}
-                </select>
+                <CustomSelect
+                  name="preferredProperty"
+                  value={formData.preferredProperty || ''}
+                  placeholder="Any Available Property in Viman Nagar / Pune"
+                  onChange={(val) => setFormData({ ...formData, preferredProperty: val })}
+                  options={[
+                    { value: '', label: 'Any Available Property in Viman Nagar / Pune' },
+                    ...PROPERTIES.map((prop) => ({
+                      value: prop.name,
+                      label: `${prop.name} — ${prop.location} (${prop.propCode})`,
+                    })),
+                  ]}
+                />
               </div>
 
               {/* Note / Specific Questions */}
@@ -360,7 +362,7 @@ export const EnquireModal: React.FC<EnquireModalProps> = ({
                 Visit Inquiry Confirmed
               </span>
               <h3 className="font-editorial text-2xl text-[#2C2623] font-semibold mt-1">
-                Welcome to the Nirvana Family, {formData.fullName.split(' ')[0]}!
+                Welcome to the NIRVAANA Family, {formData.fullName.split(' ')[0]}!
               </h3>
               <p className="text-sm text-[#6E655F] mt-2 max-w-md mx-auto">
                 Your visit request has been logged. Our Viman Nagar community manager will reach out via WhatsApp & call on{' '}

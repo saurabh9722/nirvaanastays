@@ -18,7 +18,7 @@ export const PrivacyPolicyView: React.FC<PrivacyPolicyViewProps> = ({ onNavigate
           Privacy Policy & Resident Charter.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-3">
-          Last updated: October 2026. How Nirvana Stays protects your identity, digital contracts, and resident privacy.
+          Last updated: October 2026. How Nirvaana Stays protects your identity, digital contracts, and resident privacy.
         </p>
       </section>
 
@@ -32,7 +32,7 @@ export const PrivacyPolicyView: React.FC<PrivacyPolicyViewProps> = ({ onNavigate
               1. Information We Collect
             </h3>
             <p className="text-[#6E655F]">
-              Nirvana Stays Managed Residences LLP ("Nirvana Stays") collects personal data strictly necessary to fulfill legal tenant verification, digital lease agreements, emergency medical contact protocols, and secure biometric access.
+              Nirvaana Stays Managed Residences LLP ("Nirvaana Stays") collects personal data strictly necessary to fulfill legal tenant verification, digital lease agreements, emergency medical contact protocols, and secure biometric access.
             </p>
             <ul className="list-disc pl-5 text-[#6E655F] space-y-1.5">
               <li>

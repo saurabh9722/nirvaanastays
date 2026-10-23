@@ -30,7 +30,7 @@ export const StudioView: React.FC<StudioViewProps> = ({
             </div>
 
             <h1 className="font-editorial text-4xl sm:text-5xl font-semibold text-[#2C2623] leading-tight">
-              Nirvana Studio: The Luxury of Total Autonomy.
+              Nirvaana Studio: The Luxury of Total Autonomy.
             </h1>
 
             <p className="text-base text-[#6E655F] leading-relaxed">
@@ -76,7 +76,7 @@ export const StudioView: React.FC<StudioViewProps> = ({
               <div className="rounded-3xl overflow-hidden border border-[#E6E0D6] shadow-xl aspect-[4/3] bg-[#F3EFE6]">
                 <FallbackImage
                   src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
-                  alt="Nirvana Studio Interior View"
+                  alt="Nirvaana Studio Interior View"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -139,17 +139,17 @@ export const StudioView: React.FC<StudioViewProps> = ({
         </div>
       </section>
 
-      {/* COMPARISON TABLE: NIRVANA STUDIO VS TRADITIONAL 1BHK */}
+      {/* COMPARISON TABLE: NIRVAANA STUDIO VS TRADITIONAL 1BHK */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <span className="text-xs font-semibold uppercase tracking-wider text-[#C87D65]">
             Transparent Financial Comparison
           </span>
           <h2 className="font-editorial text-3xl sm:text-4xl font-semibold text-[#2C2623] mt-1">
-            Nirvana Studio vs. Traditional 1BHK Rental
+            Nirvaana Studio vs. Traditional 1BHK Rental
           </h2>
           <p className="text-xs sm:text-sm text-[#6E655F] mt-2">
-            See the honest real-world breakdown of renting a standalone 1BHK in Viman Nagar versus moving into Nirvana Studio.
+            See the honest real-world breakdown of renting a standalone 1BHK in Viman Nagar versus moving into Nirvaana Studio.
           </p>
         </div>
 
@@ -161,7 +161,7 @@ export const StudioView: React.FC<StudioViewProps> = ({
                   <tr>
                     <th className="py-4 px-6">Cost & Lifestyle Parameter</th>
                     <th className="py-4 px-6 text-[#C87D65] bg-[#F4E6DF]/50">
-                      Nirvana Studio (Viman Nagar)
+                      Nirvaana Studio (Viman Nagar)
                     </th>
                     <th className="py-4 px-6 text-[#6E655F]">
                       Traditional 1BHK Rental in Pune
@@ -250,7 +250,7 @@ export const StudioView: React.FC<StudioViewProps> = ({
         <div className="p-8 sm:p-12 rounded-3xl bg-[#2C2623] text-white flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
             <h3 className="font-editorial text-2xl sm:text-3xl font-semibold">
-              Ready to Claim Your Nirvana Studio?
+              Ready to Claim Your Nirvaana Studio?
             </h3>
             <p className="text-xs sm:text-sm text-white/80">
               Only 4 studio suites available for the upcoming academic and corporate intake in Symbiosis Viman Nagar.

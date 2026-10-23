@@ -129,7 +129,7 @@ export function calculateReferralDiscount(referralCount: number): {
 
   let rewardTier = 'Peace Ambassador';
   if (count >= 5) {
-    rewardTier = 'Nirvana Legend (1 Month Rent Waived + Exclusive Perk)';
+    rewardTier = 'Nirvaana Legend (1 Month Rent Waived + Exclusive Perk)';
   } else if (count >= 3) {
     rewardTier = 'Community Benefactor (₹15,000 Credit + Spa Day)';
   } else if (count >= 1) {

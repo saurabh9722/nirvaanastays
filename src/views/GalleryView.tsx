@@ -14,7 +14,7 @@ interface GalleryViewProps {
 const CATEGORIES = [
   'All',
   'Bedrooms & Suites',
-  'Nirvana Studios',
+  'Nirvaana Studios',
   'Community Lounge',
   'Kitchen & Dining',
   'Fitness & Wellness',

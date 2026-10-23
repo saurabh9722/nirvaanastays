@@ -32,7 +32,7 @@ export const FallbackImage: React.FC<FallbackImageProps> = ({
       </div>
       <p className="font-editorial text-[#2C2623] text-sm font-semibold max-w-xs">{alt}</p>
       <span className="text-[11px] text-[#6E655F] mt-1 flex items-center gap-1">
-        <Sparkles className="w-3 h-3 text-[#7A8B7B]" /> Nirvana Stays Sanctuary
+        <Sparkles className="w-3 h-3 text-[#7A8B7B]" /> Nirvaana Stays Sanctuary
       </span>
     </div>
   ) : (

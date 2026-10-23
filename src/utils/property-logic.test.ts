@@ -13,7 +13,7 @@ const mockProperties: Property[] = [
   {
     id: 'prop-1',
     propCode: 'NS-0901',
-    name: 'Nirvana Willow',
+    name: 'Nirvaana Willow',
     tagline: 'Sunlit Serenity in Viman Nagar',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -33,7 +33,7 @@ const mockProperties: Property[] = [
   {
     id: 'prop-2',
     propCode: 'NS-0304',
-    name: 'Nirvana Studios',
+    name: 'Nirvaana Studios',
     tagline: 'Private Luxury Studio Living',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -54,7 +54,7 @@ const mockProperties: Property[] = [
   {
     id: 'prop-3',
     propCode: 'NS-0708',
-    name: 'Nirvana Haven',
+    name: 'Nirvaana Haven',
     tagline: 'Tree-lined Bliss in Koregaon Park',
     location: 'Koregaon Park / North Main Rd, Pune',
     subLocation: 'Koregaon Park',
@@ -76,13 +76,13 @@ const mockProperties: Property[] = [
 test('filterProperties correctly filters by location', () => {
   const result = filterProperties(mockProperties, { location: 'Koregaon Park' });
   assert.equal(result.length, 1);
-  assert.equal(result[0].name, 'Nirvana Haven');
+  assert.equal(result[0].name, 'Nirvaana Haven');
 });
 
 test('filterProperties correctly filters by room type Studio', () => {
   const result = filterProperties(mockProperties, { roomType: 'Studio' });
   assert.equal(result.length, 1);
-  assert.equal(result[0].name, 'Nirvana Studios');
+  assert.equal(result[0].name, 'Nirvaana Studios');
 });
 
 test('filterProperties correctly filters by suiteType Off-Suite', () => {
@@ -116,7 +116,7 @@ test('calculateReferralDiscount computes correct tiers', () => {
 
   const five = calculateReferralDiscount(5);
   assert.equal(five.totalCredit, 25000);
-  assert.match(five.rewardTier, /Nirvana Legend/);
+  assert.match(five.rewardTier, /Nirvaana Legend/);
 });
 
 test('validatePhone and validateEmail check accurately', () => {
@@ -124,6 +124,6 @@ test('validatePhone and validateEmail check accurately', () => {
   assert.equal(validatePhone('+91 98765 43210'), true);
   assert.equal(validatePhone('12345'), false);
 
-  assert.equal(validateEmail('hello@nirvanastays.in'), true);
+  assert.equal(validateEmail('hello@nirvaanastays.in'), true);
   assert.equal(validateEmail('invalid-email'), false);
 });

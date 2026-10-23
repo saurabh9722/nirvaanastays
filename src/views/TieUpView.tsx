@@ -57,7 +57,7 @@ export const TieUpView: React.FC<TieUpViewProps> = ({ onNavigate, onOpenEnquire 
           <span>Sub-Page 4A · Institutional & Corporate Partnerships</span>
         </div>
         <h1 className="font-editorial text-4xl sm:text-5xl font-semibold text-[#2C2623] leading-tight">
-          Partner With Nirvana Stays: Elevated Housing for Your Talent.
+          Partner With Nirvaana Stays: Elevated Housing for Your Talent.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-4 leading-relaxed">
           We collaborate with universities, colleges, corporate HR teams, and lifestyle brands to offer turnkey, verified, and premium student and employee residences across Pune.
@@ -124,7 +124,7 @@ export const TieUpView: React.FC<TieUpViewProps> = ({ onNavigate, onOpenEnquire 
               Brand Perks & Event Collaborations
             </h3>
             <p className="text-xs sm:text-sm text-[#6E655F] leading-relaxed">
-              Partner with Nirvana Stays to reach an energetic demographic of 200+ affluent students and young professionals through sampling activations, wellness sessions, and co-branded campus events.
+              Partner with Nirvaana Stays to reach an energetic demographic of 200+ affluent students and young professionals through sampling activations, wellness sessions, and co-branded campus events.
             </p>
             <ul className="text-xs text-[#2C2623] space-y-2 pt-2 border-t border-[#E6E0D6]">
               <li className="flex items-center gap-2">

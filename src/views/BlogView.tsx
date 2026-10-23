@@ -39,7 +39,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
       {/* Editorial Header */}
       <section className="text-center max-w-3xl mx-auto px-4">
         <span className="text-xs font-semibold uppercase tracking-wider text-[#7A8B7B]">
-          The Nirvana Journal · Page 6
+          The Nirvaana Journal · Page 6
         </span>
         <h1 className="font-editorial text-4xl sm:text-5xl font-semibold text-[#2C2623] mt-2 leading-tight">
           Thoughts on Architecture, Student Life & Pune Living.

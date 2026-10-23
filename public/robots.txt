@@ -1,0 +1,6 @@
+# Robots.txt for Nirvaana Stays (https://nirvaanastays.com)
+User-agent: *
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://nirvaanastays.com/sitemap.xml

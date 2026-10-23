@@ -90,9 +90,11 @@ export const PerspectiveCard: React.FC<PerspectiveCardProps> = ({
     ? `perspective(${perspective}px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) translateZ(${tilt.depthZ}px) scale3d(${scale}, ${scale}, ${scale})`
     : `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)`;
 
+  const isFullHeight = className.includes('h-full') || containerClassName.includes('h-full');
+
   return (
     <div
-      className={`relative [perspective:1000px] ${containerClassName}`}
+      className={`relative [perspective:1000px] w-full ${isFullHeight ? 'h-full' : ''} ${containerClassName}`}
       style={{ isolation: 'isolate' }}
     >
       <div

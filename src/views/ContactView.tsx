@@ -4,6 +4,7 @@ import { PageRoute } from '../types.ts';
 import { validatePhone, validateEmail } from '../utils/property-logic.ts';
 import { NirvanaLocationMap } from '../components/NirvanaLocationMap.tsx';
 import { PerspectiveCard } from '../components/PerspectiveCard.tsx';
+import { CustomSelect } from '../components/CustomSelect.tsx';
 
 interface ContactViewProps {
   onNavigate: (route: PageRoute) => void;
@@ -240,30 +241,32 @@ export const ContactView: React.FC<ContactViewProps> = ({ onNavigate, onOpenEnqu
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-medium text-[#2C2623] mb-1">Inquiry Purpose</label>
-                      <select
+                      <CustomSelect
+                        name="purpose"
                         value={formData.purpose}
-                        onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs sm:text-sm text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                      >
-                        <option value="Schedule a Property Visit">Schedule a Property Visit</option>
-                        <option value="Studio Apartment Inquiries">Studio Apartment Inquiries</option>
-                        <option value="Long-term Stay Booking">Long-term Stay Booking</option>
-                        <option value="University / Corporate Tie-Up">University / Corporate Tie-Up</option>
-                        <option value="Property Owner Collaboration">Property Owner Collaboration</option>
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, purpose: val })}
+                        options={[
+                          { value: 'Schedule a Property Visit', label: 'Schedule a Property Visit' },
+                          { value: 'Studio Apartment Inquiries', label: 'Studio Apartment Inquiries' },
+                          { value: 'Long-term Stay Booking', label: 'Long-term Stay Booking' },
+                          { value: 'University / Corporate Tie-Up', label: 'University / Corporate Tie-Up' },
+                          { value: 'Property Owner Collaboration', label: 'Property Owner Collaboration' },
+                        ]}
+                      />
                     </div>
 
                     <div>
                       <label className="block text-xs font-medium text-[#2C2623] mb-1">Preferred Time Window</label>
-                      <select
+                      <CustomSelect
+                        name="preferredTime"
                         value={formData.preferredTime}
-                        onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs sm:text-sm text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                      >
-                        <option value="Morning (10:00 AM – 1:00 PM)">Morning (10:00 AM – 1:00 PM)</option>
-                        <option value="Afternoon (1:00 PM – 4:00 PM)">Afternoon (1:00 PM – 4:00 PM)</option>
-                        <option value="Evening (4:00 PM – 7:30 PM)">Evening (4:00 PM – 7:30 PM)</option>
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, preferredTime: val })}
+                        options={[
+                          { value: 'Morning (10:00 AM – 1:00 PM)', label: 'Morning (10:00 AM – 1:00 PM)' },
+                          { value: 'Afternoon (1:00 PM – 4:00 PM)', label: 'Afternoon (1:00 PM – 4:00 PM)' },
+                          { value: 'Evening (4:00 PM – 7:30 PM)', label: 'Evening (4:00 PM – 7:30 PM)' },
+                        ]}
+                      />
                     </div>
                   </div>
 

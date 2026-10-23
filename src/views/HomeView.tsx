@@ -34,6 +34,7 @@ import { PROPERTIES, AMENITIES_18 } from '../data/mockData.ts';
 import { PropertyCard } from '../components/PropertyCard.tsx';
 import { FallbackImage } from '../components/FallbackImage.tsx';
 import { PerspectiveCard } from '../components/PerspectiveCard.tsx';
+import { CustomSelect } from '../components/CustomSelect.tsx';
 
 interface HomeViewProps {
   onNavigate: (route: PageRoute) => void;
@@ -99,7 +100,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
               <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-[#2C2623] font-semibold leading-[1.12] tracking-tight text-balance">
                 Find Your Calm in the Heart of the City. Welcome to{' '}
-                <span className="text-[#C87D65] italic">Nirvana Stays.</span>
+                <span className="text-[#C87D65] italic">Nirvaana Stays.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-[#6E655F] leading-relaxed max-w-2xl">
@@ -163,7 +164,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="relative rounded-3xl overflow-hidden border border-[#E6E0D6] shadow-2xl bg-[#F3EFE6] aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
                   <FallbackImage
                     src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80"
-                    alt="Nirvana Willow Sunlit Suite"
+                    alt="Nirvaana Willow Sunlit Suite"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -175,7 +176,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                         <span className="text-[11px] font-mono tracking-wider uppercase text-[#F4E6DF]">
                           Featured Residence · NS-0901
                         </span>
-                        <h3 className="font-editorial text-2xl font-semibold mt-0.5">Nirvana Willow</h3>
+                        <h3 className="font-editorial text-2xl font-semibold mt-0.5">Nirvaana Willow</h3>
                         <p className="text-xs text-white/80">Symbiosis Viman Nagar, Pune</p>
                       </div>
                       <div className="text-right">
@@ -196,46 +197,49 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6E655F] mb-1">
                   Location in Pune
                 </label>
-                <select
+                <CustomSelect
+                  name="location"
                   value={searchLocation}
-                  onChange={(e) => setSearchLocation(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs sm:text-sm font-medium text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                >
-                  <option value="Viman Nagar">Viman Nagar (Symbiosis Campus)</option>
-                  <option value="Kalyani Nagar">Kalyani Nagar (Cerebrum IT)</option>
-                  <option value="Koregaon Park">Koregaon Park (North Main Rd)</option>
-                </select>
+                  onChange={(val) => setSearchLocation(val)}
+                  options={[
+                    { value: 'Viman Nagar', label: 'Viman Nagar (Symbiosis Campus)' },
+                    { value: 'Kalyani Nagar', label: 'Kalyani Nagar (Cerebrum IT)' },
+                    { value: 'Koregaon Park', label: 'Koregaon Park (North Main Rd)' },
+                  ]}
+                />
               </div>
 
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6E655F] mb-1">
                   Room Configuration
                 </label>
-                <select
+                <CustomSelect
+                  name="roomType"
                   value={searchRoomType}
-                  onChange={(e) => setSearchRoomType(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs sm:text-sm font-medium text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                >
-                  <option value="All">All Room Types</option>
-                  <option value="Single En-Suite">Single En-Suite (Private Bath)</option>
-                  <option value="Double Sharing">Double Sharing (Cost Saver)</option>
-                  <option value="Studio">Nirvana Studio (Full Private)</option>
-                </select>
+                  onChange={(val) => setSearchRoomType(val)}
+                  options={[
+                    { value: 'All', label: 'All Room Types' },
+                    { value: 'Single En-Suite', label: 'Single En-Suite (Private Bath)' },
+                    { value: 'Double Sharing', label: 'Double Sharing (Cost Saver)' },
+                    { value: 'Studio', label: 'Nirvaana Studio (Full Private)' },
+                  ]}
+                />
               </div>
 
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6E655F] mb-1">
                   Stay Preference
                 </label>
-                <select
+                <CustomSelect
+                  name="gender"
                   value={searchGender}
-                  onChange={(e) => setSearchGender(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#E6E0D6] rounded-xl text-xs sm:text-sm font-medium text-[#2C2623] focus:outline-none focus:ring-1 focus:ring-[#C87D65]"
-                >
-                  <option value="All">All Residents (Co-ed & Reserved)</option>
-                  <option value="Girls Only">Girls Only Residences</option>
-                  <option value="Co-ed">Co-ed Community Spaces</option>
-                </select>
+                  onChange={(val) => setSearchGender(val)}
+                  options={[
+                    { value: 'All', label: 'All Residents (Co-ed & Reserved)' },
+                    { value: 'Girls Only', label: 'Girls Only Residences' },
+                    { value: 'Co-ed', label: 'Co-ed Community Spaces' },
+                  ]}
+                />
               </div>
 
               <div className="pt-2 sm:pt-4 lg:pt-0">
@@ -261,16 +265,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
             Not a Cramped Hostel. Not a Lonely Apartment.
           </h2>
           <p className="text-sm sm:text-base text-[#6E655F] leading-relaxed max-w-2xl mx-auto">
-            Nirvana Stays bridges the gap between five-star hospitality and authentic community living. We furnish every room with Scandinavian oak, memory-foam sleep systems, 300 Mbps fiber Wi-Fi, loaded chef kitchens, and 3-tier biometric security—so your energy stays focused on academic breakthroughs and career goals.
+            Nirvaana Stays bridges the gap between five-star hospitality and authentic community living. We furnish every room with Scandinavian oak, memory-foam sleep systems, 300 Mbps fiber Wi-Fi, loaded chef kitchens, and 3-tier biometric security—so your energy stays focused on academic breakthroughs and career goals.
           </p>
         </div>
       </section>
 
-      {/* 3. NIRVANA PUTS YOU(TH) FIRST — 3 CORE VALUE PILLARS */}
+      {/* 3. NIRVAANA PUTS YOU(TH) FIRST — 3 CORE VALUE PILLARS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-semibold uppercase tracking-wider text-[#C87D65]">
-            Nirvana Puts You(th) First
+            Nirvaana Puts You(th) First
           </span>
           <h2 className="font-editorial text-3xl sm:text-4xl font-semibold text-[#2C2623] mt-1">
             Three Foundations of Mindful Living
@@ -322,7 +326,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 4. THE NIRVANA 3-POINT PERSPECTIVE */}
+      {/* 4. THE NIRVAANA 3-POINT PERSPECTIVE */}
       <section className="bg-[#F3EFE6] py-20 border-y border-[#E6E0D6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -330,7 +334,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               Our Guiding Manifesto
             </span>
             <h2 className="font-editorial text-3xl sm:text-4xl font-semibold text-[#2C2623] mt-1">
-              The Nirvana 3-Point Perspective
+              The Nirvaana 3-Point Perspective
             </h2>
           </div>
 
@@ -426,7 +430,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             The Complete 18-Point Amenities Grid
           </h2>
           <p className="text-xs sm:text-sm text-[#6E655F] mt-2">
-            Every single Nirvana residence includes all 18 of these signature hospitality amenities under one monthly billing.
+            Every single Nirvaana residence includes all 18 of these signature hospitality amenities under one monthly billing.
           </p>
         </div>
 

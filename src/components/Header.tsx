@@ -13,8 +13,9 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
     { label: 'Properties', href: '#properties' },
     { label: 'Rooms', href: '#rooms' },
     { label: 'Amenities', href: '#amenities' },
+    { label: 'Connectivity', href: '#connectivity' },
     { label: 'Gallery', href: '#gallery' },
-    { label: 'Why NIRVANA', href: '#why' },
+    { label: 'Why NIRVAANA', href: '#why' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -37,13 +38,13 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
             handleLinkClick('#home');
           }}
           className="flex items-center gap-3.5 shrink-0 group focus:outline-none"
-          aria-label="NIRVANA Stays Home"
+          aria-label="NIRVAANA Stays Home"
         >
           {/* Logo badge with generous padding so corners & bottom tagline are NEVER cut off */}
           <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-[#0C1520] p-1 border border-[#0C1520]/20 shadow-sm flex items-center justify-center shrink-0 overflow-hidden group-hover:shadow-md transition-all">
             <img
               src={getAssetUrl('assets/logo-dark.png')}
-              alt="NIRVANA Stays Emblem"
+              alt="NIRVAANA Stays Emblem"
               referrerPolicy="no-referrer"
               className="w-full h-full object-contain"
             />
@@ -51,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
 
           <div className="flex flex-col justify-center">
             <span className="font-editorial text-lg sm:text-2xl font-bold tracking-tight text-[#2C2623] leading-none group-hover:text-[#C87D65] transition-colors">
-              NIRVANA STAYS
+              NIRVAANA STAYS
             </span>
             <span className="text-[10px] sm:text-xs tracking-widest uppercase text-[#C87D65] font-semibold mt-1">
               Co-Living · Viman Nagar

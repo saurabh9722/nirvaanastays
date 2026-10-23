@@ -19,7 +19,7 @@ export const ReferFriendView: React.FC<ReferFriendViewProps> = ({
   const [formData, setFormData] = useState<ReferralFormData>({
     referrerName: '',
     referrerPhone: '',
-    referrerProperty: 'Nirvana Willow (NS-0901)',
+    referrerProperty: 'Nirvaana Willow (NS-0901)',
     friendName: '',
     friendPhone: '',
     friendEmail: '',
@@ -63,7 +63,7 @@ export const ReferFriendView: React.FC<ReferFriendViewProps> = ({
           Share the Calm, Earn Direct Rent Rewards.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-3">
-          Know a classmate from Symbiosis or a colleague seeking a mindful sanctuary in Pune? Refer them to Nirvana Stays and enjoy ₹5,000 credited directly to your next month’s rent when they check in.
+          Know a classmate from Symbiosis or a colleague seeking a mindful sanctuary in Pune? Refer them to Nirvaana Stays and enjoy ₹5,000 credited directly to your next month’s rent when they check in.
         </p>
       </section>
 
@@ -90,7 +90,7 @@ export const ReferFriendView: React.FC<ReferFriendViewProps> = ({
 
           <div>
             <div className="flex justify-between items-center text-xs font-medium text-[#2C2623] mb-2">
-              <span>Friends Joining Nirvana:</span>
+              <span>Friends Joining Nirvaana:</span>
               <span className="font-mono font-bold text-[#C87D65] text-sm">{referralCount} Friends</span>
             </div>
             <input

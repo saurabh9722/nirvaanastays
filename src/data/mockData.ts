@@ -4,7 +4,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-willow',
     propCode: 'NS-0901',
-    name: 'Nirvana Willow',
+    name: 'Nirvaana Willow',
     tagline: 'Sunlit Serenity across Symbiosis Campus',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -22,7 +22,7 @@ export const PROPERTIES: Property[] = [
       'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
     ],
     description:
-      'Nirvana Willow is an architectural gem designed specifically for students and interns who seek quiet study zones alongside vibrant community living. Sun-drenched private rooms feature warm natural oak furniture, acoustic insulation, and en-suite bathrooms.',
+      'Nirvaana Willow is an architectural gem designed specifically for students and interns who seek quiet study zones alongside vibrant community living. Sun-drenched private rooms feature warm natural oak furniture, acoustic insulation, and en-suite bathrooms.',
     proximity: [
       { spot: 'Symbiosis School for Liberal Arts & SLS', distance: '400 m', time: '5 min walk' },
       { spot: 'Phoenix Marketcity Mall', distance: '1.1 km', time: '4 min drive' },
@@ -51,7 +51,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-terra',
     propCode: 'NS-0406',
-    name: 'Nirvana Terra',
+    name: 'Nirvaana Terra',
     tagline: 'Warm Earth Tones & Mindful Focus',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -97,7 +97,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-sage',
     propCode: 'NS-0303',
-    name: 'Nirvana Sage',
+    name: 'Nirvaana Sage',
     tagline: 'Botanical Calm & Collaborative Spirit',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -143,7 +143,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-studios',
     propCode: 'NS-0304',
-    name: 'Nirvana Studios',
+    name: 'Nirvaana Studios',
     tagline: 'Independent Private Luxury Studio Residences',
     location: 'Symbiosis Viman Nagar, Pune',
     subLocation: 'Viman Nagar',
@@ -161,7 +161,7 @@ export const PROPERTIES: Property[] = [
       'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80',
     ],
     description:
-      'Nirvana Studios offers the gold standard of private, self-contained living in Pune. Each studio features a private induction kitchenette with chimney, designer spa-inspired en-suite bathroom, dedicated ergonomic workstation, queen-sized orthopedic bed, and personal high-speed fiber router.',
+      'Nirvaana Studios offers the gold standard of private, self-contained living in Pune. Each studio features a private induction kitchenette with chimney, designer spa-inspired en-suite bathroom, dedicated ergonomic workstation, queen-sized orthopedic bed, and personal high-speed fiber router.',
     isStudioOnly: true,
     proximity: [
       { spot: 'Symbiosis Campus Main Gate', distance: '500 m', time: '6 min walk' },
@@ -191,7 +191,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-olive',
     propCode: 'NS-0502',
-    name: 'Nirvana Olive',
+    name: 'Nirvaana Olive',
     tagline: 'Quiet Elegance in Kalyani Nagar',
     location: 'Kalyani Nagar, Pune',
     subLocation: 'Kalyani Nagar',
@@ -209,7 +209,7 @@ export const PROPERTIES: Property[] = [
       'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80',
     ],
     description:
-      'Nestled on a serene tree-canopied lane in Kalyani Nagar, Nirvana Olive caters to corporate professionals and postgraduate scholars. Features dedicated quiet reading rooms, high ceilings, and artisan oak accents.',
+      'Nestled on a serene tree-canopied lane in Kalyani Nagar, Nirvaana Olive caters to corporate professionals and postgraduate scholars. Features dedicated quiet reading rooms, high ceilings, and artisan oak accents.',
     proximity: [
       { spot: 'Cerebrum IT Park', distance: '600 m', time: '7 min walk' },
       { spot: 'Trump Towers & Mariplex Mall', distance: '900 m', time: '3 min drive' },
@@ -237,7 +237,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'nirvana-haven',
     propCode: 'NS-0708',
-    name: 'Nirvana Haven',
+    name: 'Nirvaana Haven',
     tagline: 'Boutique Greenery in Koregaon Park',
     location: 'Koregaon Park / North Main Rd, Pune',
     subLocation: 'Koregaon Park',
@@ -384,7 +384,7 @@ export const AMENITIES_18: AmenityItem[] = [
   {
     id: 15,
     name: 'Easy Room Swaps',
-    description: 'Hassle-free transfers between Nirvana properties across Pune as plans evolve.',
+    description: 'Hassle-free transfers between Nirvaana properties across Pune as plans evolve.',
     category: 'Living',
     icon: 'ArrowLeftRight',
   },
@@ -429,19 +429,19 @@ export const BLOG_POSTS: BlogPost[] = [
     content: [
       'Moving to Pune for college or your first internship is an invigorating transition. Yet finding an accommodation that offers true sanctuary—away from chaotic traffic and sterile hostel rooms—is often the hardest hurdle.',
       'Viman Nagar stands out as Pune’s premier student pocket. With tree-lined pedestrian avenues, close proximity to Symbiosis International University, and an abundance of specialty cafes, it offers the perfect backdrop for balanced living.',
-      'At Nirvana Willow and Terra, residents enjoy a 5-minute walk to classes, eliminating daily auto-rickshaw negotiations. We recommend spending peaceful weekend mornings at Jogger’s Park or working through group projects at local artisanal roasteries.',
+      'At Nirvaana Willow and Terra, residents enjoy a 5-minute walk to classes, eliminating daily auto-rickshaw negotiations. We recommend spending peaceful weekend mornings at Jogger’s Park or working through group projects at local artisanal roasteries.',
       'Remember: academic excellence flows naturally when your living space honors your circadian rhythm, mental space, and ergonomic well-being.',
     ],
   },
   {
     id: 'studio-vs-traditional-1bhk',
-    title: 'Nirvana Studio vs. Traditional 1BHK: The True Cost of Moving In Pune',
+    title: 'Nirvaana Studio vs. Traditional 1BHK: The True Cost of Moving In Pune',
     category: 'Co-Living Guides',
     readTime: '6 min read',
     date: 'Sep 2026',
     author: {
       name: 'Rohan Mehta',
-      role: 'Tech Lead & Nirvana Resident',
+      role: 'Tech Lead & Nirvaana Resident',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     },
     excerpt:
@@ -449,7 +449,7 @@ export const BLOG_POSTS: BlogPost[] = [
     coverImage: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
     content: [
       'When renting a traditional 1BHK in Pune, the advertised ₹22,000 rent is only the beginning. You face 2 months of brokerage, 4-6 months of security deposit lock-in, appliance rental fees for fridge and washing machine, and independent utility bills.',
-      'With Nirvana Studios, everything is unified under a single predictable fee. High-speed fiber internet, electricity allowances, daily professional housekeeping, and fully equipped private kitchenettes are set up before you unpack your first suitcase.',
+      'With Nirvaana Studios, everything is unified under a single predictable fee. High-speed fiber internet, electricity allowances, daily professional housekeeping, and fully equipped private kitchenettes are set up before you unpack your first suitcase.',
       'Beyond financial savings, you save an estimated 18 hours per month on chores and vendor coordination, leaving you energized for deep work and personal growth.',
     ],
   },
@@ -461,14 +461,14 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Aug 2026',
     author: {
       name: 'Meera Sen',
-      role: 'Interior Architect, Nirvana Stays',
+      role: 'Interior Architect, Nirvaana Stays',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
     },
     excerpt:
       'How natural daylight, tactile linen, 2700K ambient lighting, and muted oat hues foster deep sleep and calm academic focus.',
     coverImage: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80',
     content: [
-      'Visual clutter is mental noise. When designing Nirvana Stays, our architectural team rejected the harsh industrial aesthetics and cold metal bunks that characterize conventional student hostels.',
+      'Visual clutter is mental noise. When designing Nirvaana Stays, our architectural team rejected the harsh industrial aesthetics and cold metal bunks that characterize conventional student hostels.',
       'We embraced "Warm Minimalism": natural Scandinavian birch, terracotta textiles inspired by sunbaked clay, and acoustic felt sound-dampening panels. Every bedroom has wide windows that welcome soft Pune morning light.',
       'Paired with orthopedic memory foam mattresses and dedicated study desks positioned away from sleeping angles, our rooms cultivate an effortless sense of calm.',
     ],
@@ -488,7 +488,7 @@ export const BLOG_POSTS: BlogPost[] = [
       'Explore Pune’s cultural heartland. From North Main Road yoga studios to boutique art galleries and weekend farmer markets.',
     coverImage: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
     content: [
-      'Koregaon Park represents a unique confluence of old-world Pune charm and cosmopolitan vibrancy. Our Nirvana Haven residence on Lane 7 provides female residents with complete security in the heart of this cultural district.',
+      'Koregaon Park represents a unique confluence of old-world Pune charm and cosmopolitan vibrancy. Our Nirvaana Haven residence on Lane 7 provides female residents with complete security in the heart of this cultural district.',
       'Step out your door to discover shaded running loops along Osho Teerth Park, French bakeries, and quiet co-working spaces. It is urban living at its most serene.',
     ],
   },
@@ -500,14 +500,14 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Jun 2026',
     author: {
       name: 'Aditya Kulkarni',
-      role: 'Community Lead, Nirvana Stays',
+      role: 'Community Lead, Nirvaana Stays',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
     },
     excerpt:
       'Why true community means having quiet, unpressured spaces to be alone—and warm, welcoming spaces when you choose to connect.',
     coverImage: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
     content: [
-      'Many co-living operators over-program resident lives with forced icebreakers and mandatory mixers. At Nirvana, we believe authentic belonging begins with respecting individual introversion.',
+      'Many co-living operators over-program resident lives with forced icebreakers and mandatory mixers. At Nirvaana, we believe authentic belonging begins with respecting individual introversion.',
       'Our lounges are designed for parallel play: you can read a book in a sunlit corner while someone brews coffee or finishes a design presentation. When we do host acoustic music evenings or chef-guided dinners, participation is entirely effortless.',
     ],
   },
@@ -527,7 +527,7 @@ export const BLOG_POSTS: BlogPost[] = [
     coverImage: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80',
     content: [
       'Short-term corporate internships often turn into housing nightmares. Landlords demand 11-month commitments and brokers charge exorbitant finders fees for brief stays.',
-      'Nirvana Stays offers flexible 3-month contracts crafted specifically for summer associates at Barclays, Credit Suisse, Wipro, and design agencies in Viman Nagar and Kalyani Nagar. Check-in with a single suitcase and start working on day one.',
+      'Nirvaana Stays offers flexible 3-month contracts crafted specifically for summer associates at Barclays, Credit Suisse, Wipro, and design agencies in Viman Nagar and Kalyani Nagar. Check-in with a single suitcase and start working on day one.',
     ],
   },
 ];
@@ -538,12 +538,12 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Aanya Srivastava',
     role: 'Law Student, Symbiosis Law School',
     collegeOrCompany: 'Symbiosis International University',
-    property: 'Nirvana Willow',
+    property: 'Nirvaana Willow',
     roomType: 'Single En-Suite',
     duration: 'Resident since July 2025 (2nd Year)',
     rating: 5,
     quote:
-      'Coming from Delhi, I was terrified of staying in dingy PGs. Nirvana Willow felt like a boutique retreat from day one. It is a 5-minute walk to SLS, the WiFi never drops during moot court prep, and the warm minimalist aesthetic keeps my headspace so clear.',
+      'Coming from Delhi, I was terrified of staying in dingy PGs. Nirvaana Willow felt like a boutique retreat from day one. It is a 5-minute walk to SLS, the WiFi never drops during moot court prep, and the warm minimalist aesthetic keeps my headspace so clear.',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
   },
   {
@@ -551,12 +551,12 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Kabir Singhania',
     role: 'Software Engineer',
     collegeOrCompany: 'Barclays Global Service Centre',
-    property: 'Nirvana Studios',
+    property: 'Nirvaana Studios',
     roomType: 'Private Studio NS-0304',
     duration: 'Resident for 14 Months',
     rating: 5,
     quote:
-      'Nirvana Studio gave me the independence of a 1BHK with the peace of mind of a five-star serviced residence. Having my own kitchenette, ergonomic desk, and zero landlord hassle allows me to focus on my career without friction.',
+      'Nirvaana Studio gave me the independence of a 1BHK with the peace of mind of a five-star serviced residence. Having my own kitchenette, ergonomic desk, and zero landlord hassle allows me to focus on my career without friction.',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
   },
   {
@@ -564,7 +564,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Rhea Patel',
     role: 'Product Design Intern',
     collegeOrCompany: 'Symbiosis Institute of Design (SID)',
-    property: 'Nirvana Sage',
+    property: 'Nirvaana Sage',
     roomType: 'Double Sharing En-Suite',
     duration: 'Resident for 10 Months',
     rating: 5,
@@ -577,12 +577,12 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Tanvi Joshi',
     role: 'Brand Strategist',
     collegeOrCompany: 'Independent Consultant',
-    property: 'Nirvana Haven',
+    property: 'Nirvaana Haven',
     roomType: 'Single En-Suite',
     duration: 'Resident for 8 Months',
     rating: 5,
     quote:
-      'Living in Koregaon Park as a solo woman can be challenging for housing. Nirvana Haven feels safe, dignified, and exceptionally serene. Biometric entry, responsive facility managers, and thoughtful female co-residents make it feel like home.',
+      'Living in Koregaon Park as a solo woman can be challenging for housing. Nirvaana Haven feels safe, dignified, and exceptionally serene. Biometric entry, responsive facility managers, and thoughtful female co-residents make it feel like home.',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
   },
   {
@@ -590,7 +590,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Arjun Verma',
     role: 'MBA Scholar',
     collegeOrCompany: 'SCMS Pune',
-    property: 'Nirvana Terra',
+    property: 'Nirvaana Terra',
     roomType: 'Single En-Suite',
     duration: 'Resident for 1 Year',
     rating: 5,
@@ -604,7 +604,7 @@ export const FAQS: FaqItem[] = [
   {
     id: 'faq-1',
     category: 'Booking & Deposits',
-    question: 'How do I reserve a room at Nirvana Stays?',
+    question: 'How do I reserve a room at Nirvaana Stays?',
     answer:
       'You can schedule a physical or virtual video tour via our website. Once you select your preferred room, you complete a paperless digital contract with Aadhaar/e-KYC verification and pay a refundable security deposit equivalent to 1 month’s rent. Your booking is confirmed instantly.',
   },
@@ -613,7 +613,7 @@ export const FAQS: FaqItem[] = [
     category: 'Booking & Deposits',
     question: 'Is there any brokerage or hidden registration charge?',
     answer:
-      'No. Nirvana Stays operates on a strict Zero Brokerage policy. You never pay broker commissions, administrative onboarding charges, or key transfer fees.',
+      'No. Nirvaana Stays operates on a strict Zero Brokerage policy. You never pay broker commissions, administrative onboarding charges, or key transfer fees.',
   },
   {
     id: 'faq-3',
@@ -646,7 +646,7 @@ export const FAQS: FaqItem[] = [
   {
     id: 'faq-7',
     category: 'Room Swaps & Notice Period',
-    question: 'Can I swap rooms or transfer to another Nirvana property in Pune?',
+    question: 'Can I swap rooms or transfer to another Nirvaana property in Pune?',
     answer:
       'Yes. If your college schedule or office location changes (e.g., from Viman Nagar to Kalyani Nagar or Koregaon Park), our Easy Room Swap program allows seamless transfer between residences subject to availability, with zero penalty.',
   },
@@ -665,69 +665,69 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Sunlit Oak En-Suite Bedroom',
     category: 'Bedrooms & Suites',
     url: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Willow (NS-0901)',
+    property: 'Nirvaana Willow (NS-0901)',
   },
   {
     id: 'gal-2',
     title: 'Minimalist Work-From-Home Study Desk',
     category: 'Bedrooms & Suites',
     url: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Terra (NS-0406)',
+    property: 'Nirvaana Terra (NS-0406)',
   },
   {
     id: 'gal-3',
     title: 'Self-Contained Luxury Studio Suite',
-    category: 'Nirvana Studios',
+    category: 'Nirvaana Studios',
     url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Studios (NS-0304)',
+    property: 'Nirvaana Studios (NS-0304)',
   },
   {
     id: 'gal-4',
     title: 'Private Studio Induction Kitchenette',
-    category: 'Nirvana Studios',
+    category: 'Nirvaana Studios',
     url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Studios (NS-0304)',
+    property: 'Nirvaana Studios (NS-0304)',
   },
   {
     id: 'gal-5',
     title: 'Warm Boucle Community Lounge & Library',
     category: 'Community Lounge',
     url: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Willow (NS-0901)',
+    property: 'Nirvaana Willow (NS-0901)',
   },
   {
     id: 'gal-6',
     title: 'Acoustic Music & Reading Alcove',
     category: 'Community Lounge',
     url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Sage (NS-0303)',
+    property: 'Nirvaana Sage (NS-0303)',
   },
   {
     id: 'gal-7',
     title: 'Shared Terrazzo Cook & Dine Space',
     category: 'Kitchen & Dining',
     url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Willow (NS-0901)',
+    property: 'Nirvaana Willow (NS-0901)',
   },
   {
     id: 'gal-8',
     title: 'Nutritious Breakfast & Coffee Bar',
     category: 'Kitchen & Dining',
     url: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Terra (NS-0406)',
+    property: 'Nirvaana Terra (NS-0406)',
   },
   {
     id: 'gal-9',
     title: 'In-House Fitness Studio & Yoga Mats',
     category: 'Fitness & Wellness',
     url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Studios (NS-0304)',
+    property: 'Nirvaana Studios (NS-0304)',
   },
   {
     id: 'gal-10',
     title: 'Botanical Balcony Reading Nook',
     category: 'Bedrooms & Suites',
     url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80',
-    property: 'Nirvana Sage (NS-0303)',
+    property: 'Nirvaana Sage (NS-0303)',
   },
 ];

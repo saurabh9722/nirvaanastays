@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   APIProvider,
   Map,
@@ -16,6 +16,7 @@ import {
   Layers,
   Star,
   CheckCircle2,
+  MousePointer,
 } from 'lucide-react';
 
 const API_KEY =
@@ -25,12 +26,12 @@ const API_KEY =
 // Exact verified location coordinates from Google Maps (Plus Code: HWG5+62 Pune, Maharashtra)
 export const NIRVANA_LOCATION = {
   id: 'nirvana-stays-main',
-  title: 'NIRVANA STAYS - Co-living in viman nagar, Pune.',
+  title: 'NIRVAANA STAYS - Co-living in viman nagar, Pune.',
   hindiTitle: 'निर्वाण स्टेज - को-लिविंग इन विमान नगर, पुणे.',
   category: 'Student housing center',
   rating: '5.0',
   reviewCount: 17,
-  position: { lat: 18.5758, lng: 73.9073 },
+  position: { lat: 18.5756, lng: 73.9076 },
   address:
     'First floor, Shubh Gateway, Shop number 116, society, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Pune, Maharashtra 411032',
   landmark: 'Sunset Blvd · Opposite Symbiosis Law School (SLS)',
@@ -40,7 +41,7 @@ export const NIRVANA_LOCATION = {
   googleMapsUrl:
     'https://www.google.com/maps/search/?api=1&query=NIRVANA+STAYS+-+Co-living+in+viman+nagar,+Pune.&query_place_id=ChIJ-ShubhGatewayNirvana',
   directionsUrl:
-    'https://www.google.com/maps/dir/?api=1&destination=18.5758,73.9073&destination_place_id=NIRVANA+STAYS+Viman+Nagar',
+    'https://www.google.com/maps/dir/?api=1&destination=18.5756,73.9076&destination_place_id=NIRVANA+STAYS+Viman+Nagar',
 };
 
 export interface NirvanaLocationMapProps {
@@ -56,6 +57,44 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
 }) => {
   const [mapType, setMapType] = useState<'roadmap' | 'hybrid'>('roadmap');
   const [showInfoWindow, setShowInfoWindow] = useState(true);
+  const [showZoomPrompt, setShowZoomPrompt] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const zoomPromptTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsMac(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform || navigator.userAgent));
+    }
+  }, []);
+
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // If the user scrolls without holding Ctrl (or Cmd on Mac)
+      if (!e.ctrlKey && !e.metaKey) {
+        setShowZoomPrompt(true);
+        if (zoomPromptTimeoutRef.current) {
+          clearTimeout(zoomPromptTimeoutRef.current);
+        }
+        zoomPromptTimeoutRef.current = setTimeout(() => {
+          setShowZoomPrompt(false);
+        }, 1800);
+      } else {
+        setShowZoomPrompt(false);
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { capture: true, passive: true });
+    return () => {
+      container.removeEventListener('wheel', handleWheel, { capture: true });
+      if (zoomPromptTimeoutRef.current) {
+        clearTimeout(zoomPromptTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-[#FFFDF9] rounded-3xl border border-[#E6E0D6] shadow-sm overflow-hidden flex flex-col">
@@ -93,8 +132,11 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
         </div>
       </div>
 
-      {/* Google Maps Container (Single Official Pin) */}
-      <div className="relative w-full h-[460px] sm:h-[520px] bg-[#EAE5DC]">
+      {/* Google Maps Container with Cooperative Scroll and Unique Aesthetic Defense Prompt */}
+      <div
+        ref={mapContainerRef}
+        className="relative w-full h-[460px] sm:h-[520px] bg-[#EAE5DC]"
+      >
         <APIProvider apiKey={API_KEY}>
           <Map
             defaultCenter={defaultCenter}
@@ -102,12 +144,12 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
             mapId="DEMO_MAP_ID"
             mapTypeId={mapType}
             internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
-            gestureHandling="greedy"
+            gestureHandling="cooperative"
             disableDefaultUI={false}
             className="w-full h-full"
             style={{ width: '100%', height: '100%' }}
           >
-            {/* ONLY 1 EXACT PIN: Nirvana Stays at Shubh Gateway, Sunset Blvd */}
+            {/* ONLY 1 EXACT PIN: Nirvaana Stays at Shubh Gateway, Sunset Blvd */}
             <AdvancedMarker
               position={NIRVANA_LOCATION.position}
               title={NIRVANA_LOCATION.title}
@@ -141,7 +183,7 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
 
                   <div>
                     <h4 className="font-bold text-xs sm:text-sm text-[#2C2623] leading-snug">
-                      NIRVANA STAYS
+                      NIRVAANA STAYS
                     </h4>
                     <p className="text-[11px] text-[#6E655F]">
                       Co-living in Viman Nagar, Pune
@@ -176,6 +218,28 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
           </Map>
         </APIProvider>
 
+        {/* Unique Aesthetic Scroll/Zoom Warning Prompt matching Nirvaana's design */}
+        <div
+          className={`absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none transition-all duration-300 z-30 px-4 ${
+            showZoomPrompt ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          }`}
+          aria-live="polite"
+        >
+          <div className="bg-[#FFFDF9]/95 backdrop-blur-md px-6 py-4 rounded-2xl border-2 border-[#C87D65] shadow-2xl text-center max-w-sm flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-[#C87D65]/10 text-[#C87D65] flex items-center justify-center shrink-0 border border-[#C87D65]/20">
+              <MousePointer className="w-5 h-5 animate-pulse text-[#C87D65]" />
+            </div>
+            <div className="text-left space-y-0.5">
+              <p className="text-xs font-bold text-[#2C2623] tracking-tight">
+                Hold <kbd className="px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#E6E0D6] font-mono text-[11px] text-[#C87D65] font-bold shadow-xs">{isMac ? '⌘ Cmd' : 'Ctrl'}</kbd> + scroll to zoom map
+              </p>
+              <p className="text-[11px] text-[#6E655F]">
+                Scroll normally to browse NIRVAANA page
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Single Verified Location Badge on top of Map */}
         <div className="absolute top-4 left-4 pointer-events-auto z-10 max-w-sm hidden sm:block">
           <div className="bg-[#FFFDF9]/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#E6E0D6] shadow-md flex items-center gap-3">
@@ -183,7 +247,7 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
               <MapPin className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs font-bold text-[#2C2623]">Shubh Gateway · Sunset Blvd</p>
+              <p className="text-xs font-bold text-[#2C2623]">Shubh Gateway · Shop 116</p>
               <p className="text-[11px] text-[#6E655F]">Opp. Symbiosis Law School Gate</p>
             </div>
           </div>

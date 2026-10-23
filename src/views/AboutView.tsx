@@ -15,13 +15,13 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onOpenEnquire 
       {/* Header Banner */}
       <section className="pt-12 sm:pt-16 pb-8 text-center max-w-3xl mx-auto px-4">
         <span className="text-xs font-semibold uppercase tracking-wider text-[#7A8B7B]">
-          The Philosophy Behind Nirvana Stays
+          The Philosophy Behind Nirvaana Stays
         </span>
         <h1 className="font-editorial text-4xl sm:text-5xl font-semibold text-[#2C2623] mt-2 leading-tight">
           Where Architecture Honors Peace of Mind.
         </h1>
         <p className="text-sm sm:text-base text-[#6E655F] mt-4 leading-relaxed">
-          Born in Pune out of a simple observation: students and young professionals were forced to choose between depressing, run-down hostels and overpriced, isolating apartments. We built Nirvana Stays to be the third, peaceful alternative.
+          Born in Pune out of a simple observation: students and young professionals were forced to choose between depressing, run-down hostels and overpriced, isolating apartments. We built Nirvaana Stays to be the third, peaceful alternative.
         </p>
       </section>
 
@@ -40,7 +40,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onOpenEnquire 
               <div className="rounded-3xl overflow-hidden border border-[#E6E0D6] shadow-xl aspect-[4/3] bg-[#F3EFE6]">
                 <FallbackImage
                   src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
-                  alt="Cozy Community Lounge at Nirvana Stays"
+                  alt="Cozy Community Lounge at Nirvaana Stays"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -62,7 +62,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onOpenEnquire 
                 The stories were uniform: landlords demanding huge upfront cash deposits, arbitrary utility bills, broken plumbing that took weeks to repair, and an utter lack of ergonomic workspaces. Most devastatingly, residents felt a pervasive loneliness behind locked apartment doors.
               </p>
               <p>
-                Nirvana Stays was conceived as a true sanctuary ("Nirvana"). We eliminated every single pain point: zero brokerage, all-inclusive transparent monthly plans, circadian-conscious interior architecture, and shared spaces designed for authentic, pressure-free connection.
+                Nirvaana Stays was conceived as a true sanctuary ("Nirvaana"). We eliminated every single pain point: zero brokerage, all-inclusive transparent monthly plans, circadian-conscious interior architecture, and shared spaces designed for authentic, pressure-free connection.
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onOpenEnquire 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#7A8B7B]">
-              Life at Nirvana
+              Life at Nirvaana
             </span>
             <h2 className="font-editorial text-3xl sm:text-4xl font-semibold text-[#2C2623] mt-1">
               Community Without the Noise
@@ -157,7 +157,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onOpenEnquire 
               Uncompromising Standards
             </span>
             <h2 className="font-editorial text-3xl sm:text-4xl font-semibold text-[#2C2623]">
-              The Nirvana Safety & Hygiene Promise
+              The Nirvaana Safety & Hygiene Promise
             </h2>
             <p className="text-sm text-[#6E655F] leading-relaxed">
               We treat the safety and health of our residents with the gravity of family. Our residences are equipped with hospitality-grade protocols audited every month.
