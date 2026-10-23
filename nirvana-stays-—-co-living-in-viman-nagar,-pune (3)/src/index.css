@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --color-warm-bg: #FAF7F2;
+  --color-surface-sand: #F3EFE6;
+  --color-surface-card: #FFFDF9;
+  --color-terracotta: #C87D65;
+  --color-terracotta-dark: #B56A52;
+  --color-sage: #7A8B7B;
+  --color-gold: #C9A45B;
+  --color-espresso: #2C2623;
+  --color-taupe: #6E655F;
+  --color-stone-border: #E6E0D6;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  background-color: #FAF7F2;
+  color: #2C2623;
+}
+
+h1, h2, h3, .font-editorial {
+  font-family: var(--font-serif);
+}
+
+/* Custom scrollbar for modern warm aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #E6E0D6;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C87D65;
+}
+
+/* NIRVANA Custom Orange Cursor Styles (#C87D65) */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L8 14 L12 22 L15 20 L11 12 L17 12 Z' fill='%23C87D65' stroke='%23FFFDF9' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto !important;
+  }
+
+  a, button, input[type='button'], input[type='submit'], [role='button'], select, summary, .cursor-pointer {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L8 14 L12 22 L15 20 L11 12 L17 12 Z' fill='%23B56A52' stroke='%23FFFDF9' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer !important;
+  }
+
+  input[type='text'], input[type='email'], input[type='tel'], textarea {
+    cursor: text !important;
+  }
+}
