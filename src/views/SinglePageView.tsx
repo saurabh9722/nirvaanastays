@@ -924,7 +924,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
               <ul className="space-y-2 text-xs text-[#2C2623] pt-2 border-t border-[#E6E0D6]">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
-                  <span><strong>Opposite Symbiosis Law School (SLS)</strong> (100 m / 1 min walk)</span>
+                  <span><strong>Opposite Symbiosis Law School (SLS)</strong> (50 m / 1 min walk)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
@@ -936,7 +936,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
-                  <span><strong>Pune International Airport & Aero Mall</strong> (2.1 km / 6 min)</span>
+                  <span><strong>Pune International Airport & Aero Mall</strong> (100 - 150 m / 6 min)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
