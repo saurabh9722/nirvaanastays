@@ -1,58 +1,189 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-@theme {
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
-  --color-warm-bg: #FAF7F2;
-  --color-surface-sand: #F3EFE6;
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* LIGHT MODE (Default fallback / light toggle):
+     Majorly themed on #E5D9C4 / warm ivory background, with #0B213F deep navy text & accents */
+  --color-bg-main: #FAF7F2;
+  --color-bg-sand: #E5D9C4;
   --color-surface-card: #FFFDF9;
+  --color-surface-elevated: #F3ECE0;
+  --color-text-main: #0B213F;
+  --color-text-muted: #27436B;
+  --color-text-subtle: #4D6485;
+  --color-border-subtle: rgba(11, 33, 63, 0.15);
+  --color-border-strong: rgba(11, 33, 63, 0.3);
+
+  /* NIRVAANA Signature Accents */
+  --color-navy: #0B213F;
+  --color-sand: #E5D9C4;
   --color-terracotta: #C87D65;
   --color-terracotta-dark: #B56A52;
-  --color-sage: #7A8B7B;
-  --color-gold: #C9A45B;
-  --color-espresso: #2C2623;
-  --color-taupe: #6E655F;
-  --color-stone-border: #E6E0D6;
+
+  /* Typography */
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html.dark {
+  /* DARK MODE:
+     Majorly themed on #0B213F deep navy background, with #E5D9C4 warm ivory text & accents */
+  --color-bg-main: #0B213F;
+  --color-bg-sand: #07172C;
+  --color-surface-card: #081A33;
+  --color-surface-elevated: #0E294E;
+  --color-text-main: #E5D9C4;
+  --color-text-muted: #D3C4AA;
+  --color-text-subtle: #B8A687;
+  --color-border-subtle: rgba(229, 217, 196, 0.18);
+  --color-border-strong: rgba(229, 217, 196, 0.35);
+}
+
+@theme {
+  --font-editorial: var(--font-editorial);
+  --font-heading: var(--font-editorial);
+  --font-serif: var(--font-editorial);
+  --font-tagline: var(--font-editorial);
+  --font-sans: var(--font-sans);
+  --font-subheading: var(--font-sans);
+
+  --color-navy: #0B213F;
+  --color-sand: #E5D9C4;
+  --color-terracotta: #C87D65;
+  --color-terracotta-dark: #B56A52;
 }
 
 html {
   font-family: var(--font-sans);
   scroll-behavior: smooth;
-  background-color: #FAF7F2;
-  color: #2C2623;
+  scroll-padding-top: 6rem; /* 96px offset ensures sticky header never cuts off section titles */
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, .font-editorial {
-  font-family: var(--font-serif);
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  min-height: 100vh;
 }
 
-/* Custom scrollbar for modern warm aesthetic */
+/* Sections with IDs stop with generous breathing space below the sticky header */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+h1, h2, h3, .font-heading, .font-editorial, .font-serif {
+  font-family: var(--font-editorial);
+  letter-spacing: -0.01em;
+}
+
+h4, h5, h6, .font-subheading, .font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-tagline {
+  font-family: var(--font-editorial);
+  font-style: italic;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F2;
+  background: var(--color-bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #E6E0D6;
+  background: #C87D65;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C87D65;
+  background: #B56A52;
 }
 
-/* NIRVANA Custom Orange Cursor Styles (#C87D65) */
-@media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L8 14 L12 22 L15 20 L11 12 L17 12 Z' fill='%23C87D65' stroke='%23FFFDF9' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto !important;
+/* Custom Select Single-Line Marquee Animations:
+   - On phone view (<768px): scrolls automatically back and forth so the resident can see all details
+   - On desktop view (>=768px): scrolls smoothly on hover
+*/
+@keyframes select-marquee-scroll {
+  0%, 15% {
+    transform: translateX(0%);
   }
-
-  a, button, input[type='button'], input[type='submit'], [role='button'], select, summary, .cursor-pointer {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L8 14 L12 22 L15 20 L11 12 L17 12 Z' fill='%23B56A52' stroke='%23FFFDF9' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer !important;
-  }
-
-  input[type='text'], input[type='email'], input[type='tel'], textarea {
-    cursor: text !important;
+  85%, 100% {
+    transform: translateX(max(-55%, calc(-100% + 220px)));
   }
 }
+
+/* Phone view (< 768px): automatically scrolls without user input */
+@media (max-width: 767px) {
+  .select-marquee-content {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: select-marquee-scroll 8s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+/* Desktop view (>= 768px): scrolls on hover */
+@media (min-width: 768px) {
+  .select-marquee-content {
+    display: inline-flex;
+    white-space: nowrap;
+    transform: translateX(0%);
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+
+  button:hover .select-marquee-content,
+  .group:hover .select-marquee-content,
+  .select-marquee-wrapper:hover .select-marquee-content {
+    animation: select-marquee-scroll 7s ease-in-out infinite alternate;
+  }
+}
+
+/* Individual Dropdown Option Item Sideways Marquee:
+   - When user hovers on that specific option item in the dropdown list,
+     the text smoothly glides sideways so all details (name, badge, specs, price) are revealed.
+   - On phone view (< 768px), each option item automatically scrolls sideways back and forth.
+   - Eliminates the need for any horizontal scrollbar on the modal or form.
+*/
+@keyframes option-sideways-scroll {
+  0%, 20% {
+    transform: translateX(0%);
+  }
+  80%, 100% {
+    transform: translateX(max(-55%, calc(-100% + 190px)));
+  }
+}
+
+/* Phone view (< 768px): each individual option item scrolls sideways automatically */
+@media (max-width: 767px) {
+  .select-item-marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: option-sideways-scroll 7s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+/* Desktop view (>= 768px): scrolls sideways when hovering on that individual option item */
+@media (min-width: 768px) {
+  .select-item-marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    transform: translateX(0%);
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .group\/option:hover .select-item-marquee-track,
+  .select-item-marquee-wrapper:hover .select-item-marquee-track {
+    animation: option-sideways-scroll 6s ease-in-out infinite alternate;
+  }
+}
+

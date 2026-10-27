@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
 import { CustomSelect } from './CustomSelect.tsx';
+import { ROOM_TIER_SELECT_OPTIONS } from '../data/roomTiers.ts';
+import { generateWhatsAppInquiryUrl } from '../utils/property-logic.ts';
 
 const WEB3FORMS_ACCESS_KEY = 'c85c1c3d-4d3e-40e3-b218-b1ca384cf41f';
 
@@ -9,24 +11,31 @@ const STAY_TYPE_OPTIONS = [
   { value: 'Boys’ Accommodation', label: 'Boys’ Accommodation' },
 ];
 
-const ROOM_TIER_OPTIONS = [
-  { value: 'Nirvaana Lite — Non-Attached Washroom (₹18,999)', label: 'Nirvaana Lite: Non-Attached (₹18,999)' },
-  { value: 'Nirvaana Plus — Attached Balcony + Non-Attached Washroom (₹21,999)', label: 'Nirvaana Plus: Balcony + Non-Attached (₹21,999)' },
-  { value: 'Nirvaana Prime — Attached Washroom + Balcony (₹24,999)', label: 'Nirvaana Prime: Attached Washroom + Balcony (₹24,999)' },
-  { value: 'Nirvaana Elite — Master Bedroom + Attached Washroom (₹24,999)', label: 'Nirvaana Elite: Master Bedroom (₹24,999)' },
-];
-
 const PROPERTY_OPTIONS = [
   { value: 'Shubh Gateway (Opp. Symbiosis Law School)', label: 'Shubh Gateway (Opp. Symbiosis Law School)' },
   { value: 'Shubh Nirvaana (Opp. 10Biz Park)', label: 'Shubh Nirvaana (Opp. 10Biz Park)' },
 ];
 
-export const BookingVisitForm: React.FC = () => {
+export interface BookingVisitFormProps {
+  isModal?: boolean;
+  onClose?: () => void;
+  customTitle?: string;
+  customSubtitle?: string;
+}
+
+export const BookingVisitForm: React.FC<BookingVisitFormProps> = ({
+  isModal = false,
+  onClose,
+  customTitle,
+  customSubtitle,
+}) => {
+  const defaultRoom = ROOM_TIER_SELECT_OPTIONS[2]?.value || 'Nirvaana Prime — Attached Washroom + Balcony - ₹24,999';
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     stayType: 'Girls’ Accommodation',
-    roomType: 'Nirvaana Prime — Attached Washroom + Balcony (₹24,999)',
+    roomType: defaultRoom,
     property: 'Shubh Gateway (Opp. Symbiosis Law School)',
     moveInDate: '',
     message: '',
@@ -103,15 +112,20 @@ export const BookingVisitForm: React.FC = () => {
       if (data.success) {
         setFormSubmitted(true);
 
-        // Also open WhatsApp intent directly to official number +91 90961 66306
-        const text = encodeURIComponent(
-          `Hi NIRVAANA Stays,\nName: ${formData.name}\nPhone: ${formData.phone}\nStay: ${formData.stayType}\nRoom: ${formData.roomType}\nProperty: ${formData.property}\nNote: ${formData.message || 'I would like to schedule a visit.'}`
-        );
-        window.open(`https://wa.me/919096166306?text=${text}`, '_blank');
+        // Open WhatsApp intent directly to official number +91 90961 66306 with the selected room tier and updated price
+        const whatsAppUrl = generateWhatsAppInquiryUrl({
+          name: formData.name,
+          phone: formData.phone,
+          stayType: formData.stayType,
+          roomType: formData.roomType,
+          property: formData.property,
+          message: formData.message || 'I would like to schedule a visit.',
+        });
+        window.open(whatsAppUrl, '_blank');
       } else {
         setSubmitError(data.message || 'Failed to submit inquiry. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setSubmitError('Network error while saving inquiry. Please check your internet connection or contact us via WhatsApp.');
     } finally {
       setIsSubmitting(false);
@@ -125,39 +139,50 @@ export const BookingVisitForm: React.FC = () => {
       name: '',
       phone: '',
       stayType: 'Girls’ Accommodation',
-      roomType: 'Nirvaana Prime — Attached Washroom + Balcony (₹24,999)',
+      roomType: defaultRoom,
       property: 'Shubh Gateway (Opp. Symbiosis Law School)',
       moveInDate: '',
       message: '',
     });
   };
 
-  const whatsAppUrl = `https://wa.me/919096166306?text=${encodeURIComponent(
-    `Hi NIRVAANA Stays,\nName: ${formData.name}\nPhone: ${formData.phone}\nStay: ${formData.stayType}\nRoom: ${formData.roomType}\nProperty: ${formData.property}\nNote: ${formData.message || 'I would like to schedule a visit.'}`
-  )}`;
+  const currentWhatsAppUrl = generateWhatsAppInquiryUrl({
+    name: formData.name || 'Resident',
+    phone: formData.phone,
+    stayType: formData.stayType,
+    roomType: formData.roomType,
+    property: formData.property,
+    message: formData.message || 'I would like to schedule a visit.',
+  });
 
   return (
-    <div className="p-8 sm:p-10 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm space-y-6">
+    <div
+      className={
+        isModal
+          ? 'p-4 sm:p-6 space-y-4'
+          : 'p-8 sm:p-10 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm space-y-6 transition-colors'
+      }
+    >
       {formSubmitted ? (
-        <div className="py-10 text-center space-y-4">
-          <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+        <div className="py-8 text-center space-y-4">
+          <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
             <CheckCircle2 className="w-8 h-8" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">
-              Visit Request Received & Stored!
+            <h3 className="font-editorial text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
+              Visit Request Received!
             </h3>
-            <p className="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1 px-3 rounded-full inline-block">
+            <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/40 py-1 px-3 rounded-full inline-block">
               Recorded via Web3Forms
             </p>
           </div>
-          <p className="text-sm text-[#6E655F] max-w-md mx-auto">
-            Your details have been saved to Web3Forms and dispatched to our community manager. WhatsApp was also opened with your inquiry details.
+          <p className="text-xs sm:text-sm text-[#0B213F]/75 dark:text-[#E5D9C4]/75 max-w-md mx-auto leading-relaxed">
+            Your walkthrough request has been saved and dispatched to our community manager. WhatsApp was also opened with your inquiry details.
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={whatsAppUrl}
+              href={currentWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-semibold tracking-wide transition-all shadow-md flex items-center justify-center gap-2"
@@ -166,35 +191,48 @@ export const BookingVisitForm: React.FC = () => {
               <span>Open WhatsApp Chat</span>
             </a>
 
-            <button
-              onClick={handleResetForm}
-              className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#E6E0D6] bg-[#FAF7F2] hover:bg-[#F3EFE6] text-xs font-semibold text-[#2C2623] transition-colors"
-            >
-              Submit Another Inquiry
-            </button>
+            {onClose ? (
+              <button
+                type="button"
+                onClick={onClose}
+                className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#0B213F] dark:border-[#E5D9C4] bg-[#0B213F] dark:bg-[#E5D9C4] hover:bg-black dark:hover:bg-white text-xs font-semibold text-white dark:text-[#0B213F] transition-colors"
+              >
+                Close & Explore
+              </button>
+            ) : (
+              <button
+                onClick={handleResetForm}
+                className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#0B213F]/20 dark:border-[#E5D9C4]/30 bg-[#FAF7F2] dark:bg-[#0E294E] hover:bg-[#F3EFE6] dark:hover:bg-[#133463] text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4] transition-colors"
+              >
+                Submit Another Inquiry
+              </button>
+            )}
           </div>
         </div>
       ) : (
-        <form onSubmit={handleFormSubmit} className="space-y-5">
-          <div className="space-y-1">
-            <h3 className="font-editorial text-xl font-bold text-[#2C2623]">
-              Schedule an In-Person Walkthrough
+        <form onSubmit={handleFormSubmit} className={isModal ? 'space-y-3.5' : 'space-y-5'}>
+          <div className="space-y-0.5">
+            <h3
+              id={isModal ? 'booking-modal-title' : undefined}
+              className="font-editorial text-xl sm:text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]"
+            >
+              {customTitle || 'Schedule an In-Person Walkthrough'}
             </h3>
-            <p className="text-xs text-[#6E655F]">
-              Fill out your details to visit NIRVAANA Stays. Submissions are stored instantly.
+            <p className="text-xs text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
+              {customSubtitle || 'Fill out your details to visit NIRVAANA Stays. Submissions are stored instantly.'}
             </p>
           </div>
 
           {submitError && (
-            <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+            <div className="p-3 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-300 text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-600 dark:text-red-400" />
               <span>{submitError}</span>
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-[#2C2623]">Full Name *</label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">Full Name *</label>
               <input
                 type="text"
                 name="name"
@@ -204,13 +242,13 @@ export const BookingVisitForm: React.FC = () => {
                 value={formData.name}
                 onChange={handleNameChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-2xl bg-[#FAF7F2] border border-[#E6E0D6] text-sm text-[#2C2623] focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/20 transition-colors disabled:opacity-60"
+                className={`w-full px-4 ${isModal ? 'py-2.5' : 'py-3'} rounded-2xl bg-[#FAF7F2] dark:bg-[#071930] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 text-sm text-[#0B213F] dark:text-[#E5D9C4] focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/20 transition-colors disabled:opacity-60 placeholder-[#0B213F]/40 dark:placeholder-[#E5D9C4]/40`}
               />
               {formErrors.name && <p className="text-[11px] text-red-500">{formErrors.name}</p>}
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-[#2C2623]">Mobile / WhatsApp *</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">Mobile / WhatsApp *</label>
               <input
                 type="tel"
                 name="phone"
@@ -220,15 +258,15 @@ export const BookingVisitForm: React.FC = () => {
                 value={formData.phone}
                 onChange={handlePhoneChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-2xl bg-[#FAF7F2] border border-[#E6E0D6] text-sm text-[#2C2623] focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/20 transition-colors disabled:opacity-60"
+                className={`w-full px-4 ${isModal ? 'py-2.5' : 'py-3'} rounded-2xl bg-[#FAF7F2] dark:bg-[#071930] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 text-sm text-[#0B213F] dark:text-[#E5D9C4] focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/20 transition-colors disabled:opacity-60 placeholder-[#0B213F]/40 dark:placeholder-[#E5D9C4]/40`}
               />
               {formErrors.phone && <p className="text-[11px] text-red-500">{formErrors.phone}</p>}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-[#2C2623]">Accommodation Preference</label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">Accommodation Preference</label>
               <CustomSelect
                 name="stay_type"
                 value={formData.stayType}
@@ -238,20 +276,23 @@ export const BookingVisitForm: React.FC = () => {
               />
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-[#2C2623]">Select Room Tier</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">
+                Select Room Tier
+              </label>
               <CustomSelect
                 name="room_tier"
                 value={formData.roomType}
                 onChange={(val) => setFormData((prev) => ({ ...prev, roomType: val }))}
-                options={ROOM_TIER_OPTIONS}
+                options={ROOM_TIER_SELECT_OPTIONS}
                 disabled={isSubmitting}
+                enableMarquee={true}
               />
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-[#2C2623]">Preferred Property</label>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">Preferred Property</label>
             <CustomSelect
               name="preferred_property"
               value={formData.property}
@@ -261,23 +302,23 @@ export const BookingVisitForm: React.FC = () => {
             />
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-[#2C2623]">Additional Note (Optional)</label>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]">Additional Note (Optional)</label>
             <textarea
               name="message"
-              rows={3}
+              rows={isModal ? 2 : 3}
               placeholder="Tell us your tentative move-in date or questions..."
               value={formData.message}
               onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
               disabled={isSubmitting}
-              className="w-full px-4 py-3 rounded-2xl bg-[#FAF7F2] border border-[#E6E0D6] text-sm text-[#2C2623] focus:outline-none focus:border-[#C87D65] resize-none disabled:opacity-60"
+              className={`w-full px-4 ${isModal ? 'py-2' : 'py-3'} rounded-2xl bg-[#FAF7F2] dark:bg-[#071930] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 text-sm text-[#0B213F] dark:text-[#E5D9C4] focus:outline-none focus:border-[#C87D65] resize-none disabled:opacity-60 placeholder-[#0B213F]/40 dark:placeholder-[#E5D9C4]/40`}
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md hover:shadow-xl hover:scale-[1.01] flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+            className={`w-full ${isModal ? 'py-3' : 'py-4'} rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md hover:shadow-xl hover:scale-[1.01] flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed`}
           >
             {isSubmitting ? (
               <>

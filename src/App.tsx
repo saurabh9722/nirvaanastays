@@ -3,10 +3,13 @@ import { Header } from './components/Header.tsx';
 import { Footer } from './components/Footer.tsx';
 import { FloatingActions } from './components/FloatingActions.tsx';
 import { NirvanaCursorTrail } from './components/NirvanaCursorTrail.tsx';
+import { BookingPopupModal } from './components/BookingPopupModal.tsx';
+import { NirvanaWatermark } from './components/NirvanaWatermark.tsx';
 import { SinglePageView } from './views/SinglePageView.tsx';
+import { ThemeProvider } from './context/ThemeContext.tsx';
 import { X } from 'lucide-react';
 
-export default function App() {
+function AppContent() {
   // Lightbox Modal state
   const [lightboxData, setLightboxData] = useState<{ src: string; alt: string } | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -33,20 +36,23 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2623] font-sans antialiased selection:bg-[#F3EFE6] selection:text-[#C87D65] relative">
+    <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#0B213F] text-[#0B213F] dark:text-[#E5D9C4] font-sans antialiased selection:bg-[#C87D65]/20 selection:text-[#C87D65] relative transition-colors duration-300">
+      {/* Fixed Capital "N" Watermark in Signature Terracotta Orange */}
+      <NirvanaWatermark />
+
       {/* NIRVANA Themed Orange Cursor & Radiant Light Trail */}
       <NirvanaCursorTrail />
 
       {/* Google Maps Platform Demo Quota Notification Bar */}
       {isQuotaExceeded && (
-        <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs text-center sticky top-0 z-50 shadow-sm">
+        <div className="bg-amber-50 dark:bg-amber-950/60 border-b border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200 px-4 py-2.5 text-xs text-center sticky top-0 z-50 shadow-sm">
           <span>
             Google Maps temporary quota limit reached. To configure a dedicated API key for high-volume visits, visit the{' '}
             <a
               href="https://developers.google.com/maps/documentation/javascript/get-api-key"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline font-semibold text-amber-950 hover:text-amber-800"
+              className="underline font-semibold text-amber-950 dark:text-amber-100 hover:text-amber-800"
             >
               Google Maps Platform Console
             </a>
@@ -55,13 +61,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Sticky Translucent Warm Header */}
-      <Header
-        onBookVisitClick={() => {
-          const el = document.getElementById('contact');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
+      {/* Sticky Translucent Header with Light/Dark Theme Switcher */}
+      <Header />
 
       {/* Main Single-Page Website with 12 Minimal Sections */}
       <main>
@@ -73,6 +74,9 @@ export default function App() {
 
       {/* Floating Action Strip (WhatsApp + Phone) */}
       <FloatingActions />
+
+      {/* Automatic 5-Second Visit Inquiry Pop Up with Close Button */}
+      <BookingPopupModal delayMs={5000} />
 
       {/* Lightbox Modal for Gallery */}
       {isLightboxOpen && lightboxData && (
@@ -101,11 +105,19 @@ export default function App() {
             </div>
             <div className="mt-4 text-center">
               <h3 className="font-editorial text-xl text-white font-semibold">{lightboxData.alt}</h3>
-              <p className="text-xs text-[#FAF7F2]/75 mt-0.5">NIRVAANA Stays · Viman Nagar, Pune</p>
+              <p className="text-xs text-[#E5D9C4]/75 mt-0.5">NIRVAANA Stays · Viman Nagar, Pune</p>
             </div>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }

@@ -6,6 +6,8 @@ import {
   calculateReferralDiscount,
   validatePhone,
   validateEmail,
+  shouldTriggerPopup,
+  generateWhatsAppInquiryUrl,
 } from './property-logic.ts';
 import type { Property } from '../types.ts';
 
@@ -127,3 +129,31 @@ test('validatePhone and validateEmail check accurately', () => {
   assert.equal(validateEmail('hello@nirvaanastays.in'), true);
   assert.equal(validateEmail('invalid-email'), false);
 });
+
+test('shouldTriggerPopup correctly honors 5s delay and dismissal', () => {
+  // Before 5 seconds and not dismissed -> false
+  assert.equal(shouldTriggerPopup(false, 3000, 5000), false);
+  // Exactly 5 seconds and not dismissed -> true
+  assert.equal(shouldTriggerPopup(false, 5000, 5000), true);
+  // After 5 seconds and not dismissed -> true
+  assert.equal(shouldTriggerPopup(false, 6500, 5000), true);
+  // If dismissed, never trigger even after 5s or 10s
+  assert.equal(shouldTriggerPopup(true, 5000, 5000), false);
+  assert.equal(shouldTriggerPopup(true, 10000, 5000), false);
+});
+
+test('generateWhatsAppInquiryUrl creates correct URL with encoded payload', () => {
+  const url = generateWhatsAppInquiryUrl({
+    name: 'Rohan Verma',
+    phone: '9876543210',
+    stayType: 'Boys’ Accommodation',
+    roomType: 'Nirvaana Prime',
+    property: 'Shubh Gateway',
+    message: 'Visiting tomorrow at 4pm',
+  });
+
+  assert.match(url, /^https:\/\/wa\.me\/919096166306\?text=/);
+  assert.ok(url.includes(encodeURIComponent('Rohan Verma')));
+  assert.ok(url.includes(encodeURIComponent('Shubh Gateway')));
+});
+

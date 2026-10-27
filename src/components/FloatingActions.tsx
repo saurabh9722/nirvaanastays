@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
+import { MessageCircle, Phone } from 'lucide-react';
 
 interface FloatingActionsProps {
   onBookVisitClick?: () => void;
@@ -18,11 +18,11 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onBookVisitCli
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3 font-sans">
       {/* Call Button */}
       <button
         onClick={handleCall}
-        className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-full bg-[#FFFDF9] text-[#2C2623] shadow-lg hover:bg-[#F3EFE6] transition-all border border-[#E6E0D6] hover:scale-105"
+        className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-[#0E294E] text-[#0B213F] dark:text-[#E5D9C4] shadow-lg hover:bg-[#FAF7F2] dark:hover:bg-[#133463] transition-all border border-[#0B213F]/15 dark:border-[#E5D9C4]/25 hover:scale-105"
         title="Call NIRVAANA Stays"
         aria-label="Call NIRVAANA Stays"
       >
@@ -33,12 +33,12 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onBookVisitCli
       {/* WhatsApp Floating Button */}
       <button
         onClick={handleWhatsApp}
-        className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-medium border border-[#B56A52]"
+        className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-semibold tracking-wide"
         title="Chat on WhatsApp (+91 90961 66306)"
         aria-label="WhatsApp NIRVAANA Stays"
       >
-        <MessageCircle className="w-4 h-4 fill-current" />
-        <span className="text-xs font-semibold tracking-wide">WhatsApp Us</span>
+        <MessageCircle className="w-4 h-4 fill-current text-white" />
+        <span className="text-xs tracking-wide">WhatsApp Us</span>
       </button>
     </div>
   );

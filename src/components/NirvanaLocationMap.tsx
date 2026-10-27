@@ -225,15 +225,15 @@ export const NirvanaLocationMap: React.FC<NirvanaLocationMapProps> = React.memo(
           }`}
           aria-live="polite"
         >
-          <div className="bg-[#FFFDF9]/95 backdrop-blur-md px-6 py-4 rounded-2xl border-2 border-[#C87D65] shadow-2xl text-center max-w-sm flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-[#C87D65]/10 text-[#C87D65] flex items-center justify-center shrink-0 border border-[#C87D65]/20">
+          <div className="bg-[#2C2623]/95 backdrop-blur-md px-6 py-4 rounded-2xl border-2 border-[#C87D65] shadow-2xl text-center max-w-sm flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-[#C87D65]/20 text-[#C87D65] flex items-center justify-center shrink-0 border border-[#C87D65]/40">
               <MousePointer className="w-5 h-5 animate-pulse text-[#C87D65]" />
             </div>
             <div className="text-left space-y-0.5">
-              <p className="text-xs font-bold text-[#2C2623] tracking-tight">
-                Hold <kbd className="px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#E6E0D6] font-mono text-[11px] text-[#C87D65] font-bold shadow-xs">{isMac ? '⌘ Cmd' : 'Ctrl'}</kbd> + scroll to zoom map
+              <p className="font-editorial text-sm font-bold text-[#FAF7F2] tracking-wide">
+                Hold <kbd className="px-1.5 py-0.5 rounded bg-[#1B1816] border border-[#C87D65]/60 font-mono text-[11px] text-[#FAF7F2] font-bold shadow-xs">{isMac ? '⌘ Cmd' : 'Ctrl'}</kbd> + scroll to zoom
               </p>
-              <p className="text-[11px] text-[#6E655F]">
+              <p className="font-sans text-[11px] text-[#FAF7F2]/80">
                 Scroll normally to browse NIRVAANA page
               </p>
             </div>

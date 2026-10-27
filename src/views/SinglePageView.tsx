@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Sparkles,
   ArrowRight,
   MessageCircle,
   MapPin,
   CheckCircle2,
-  Maximize2,
-  Flame,
-  ShieldCheck,
   Clock,
   Phone,
-  Mail,
-  Send,
-  Building,
-  School,
-  ExternalLink,
   Gift,
-  Compass,
   Award,
 } from 'lucide-react';
 import { getAssetUrl } from '../utils/asset-helper.ts';
@@ -24,6 +15,8 @@ import { PerspectiveCard } from '../components/PerspectiveCard.tsx';
 import { NirvanaLocationMap } from '../components/NirvanaLocationMap.tsx';
 import { ArcGalleryCarousel } from '../components/ArcGalleryCarousel.tsx';
 import { BookingVisitForm } from '../components/BookingVisitForm.tsx';
+import { NirvaanaScrollJourney } from '../components/NirvaanaScrollJourney.tsx';
+import { ROOM_TIERS } from '../data/roomTiers.ts';
 
 const NIRVAANA_STATIC_CENTER = { lat: 18.5758, lng: 73.9073 };
 
@@ -139,12 +132,18 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
   ];
 
   return (
-    <div className="space-y-24 sm:space-y-32 pb-24 overflow-x-hidden">
+    <div className="pb-24 overflow-x-hidden relative transition-colors">
+      {/* NIRVAANA Resonant Scroll-Driven Flowing Line Animation & Traveling Beacon */}
+      <NirvaanaScrollJourney />
+
+      {/* Foreground Content Stack (all cards, text, and buttons strictly in front of scroll line) */}
+      <div className="relative z-10 space-y-24 sm:space-y-32">
+
       {/* ============================================================== */}
       {/* SECTION 1: HERO (#home) */}
       {/* ============================================================== */}
       <section id="home" className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        {/* Background Image with warm soft-darkened espresso gradient overlay */}
+        {/* Background Image with warm soft-darkened gradient overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             referrerPolicy="no-referrer"
@@ -152,33 +151,33 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             alt="NIRVAANA Stays Premium Room"
             className="w-full h-full object-cover object-center scale-105 filter brightness-95 transition-transform duration-1000"
           />
-          {/* Subtle warm espresso scrim - lets real room details shine through */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#2C2623]/60 via-[#2C2623]/35 to-[#2C2623]/65" />
-          {/* Smooth, gentle fade into the soft ivory canvas */}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/30 to-transparent pointer-events-none" />
+          {/* Subtle espresso scrim - lets real room details shine through */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B213F]/75 via-[#0B213F]/40 to-[#0B213F]/85" />
+          {/* Smooth, gentle fade into the canvas (light or dark) */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#FAF7F2] dark:from-[#0B213F] via-[#FAF7F2]/30 dark:via-[#0B213F]/30 to-transparent pointer-events-none" />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8 text-white">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8 text-white font-sans">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF9]/20 backdrop-blur-md border border-[#FFFDF9]/30 text-[#FAF7F2] text-xs font-semibold tracking-widest uppercase shadow-sm">
-            <MapPin className="w-3.5 h-3.5 text-[#C9A45B]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#E5D9C4] text-xs font-semibold tracking-widest uppercase shadow-sm">
+            <MapPin className="w-3.5 h-3.5 text-[#C87D65]" />
             <span>VIMAN NAGAR · PUNE</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#FFFDF9] leading-[1.12] text-balance drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
+          {/* Headline in Cormorant Garamond */}
+          <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.12] text-balance drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
             Premium Co-Living, Designed Around You.
           </h1>
 
           {/* Minimal Subcopy */}
-          <p className="text-base sm:text-xl text-[#FAF7F2] font-light max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+          <p className="text-lg sm:text-xl text-[#E5D9C4]/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
             Fully furnished, professionally managed homes for students and working professionals.
           </p>
 
-          {/* Price Highlight Badge */}
+          {/* Price Highlight Badge in Terracotta */}
           <div className="pt-2">
-            <span className="inline-block px-5 py-2.5 rounded-full bg-[#C87D65] text-[#FFFDF9] text-sm sm:text-base font-semibold shadow-lg tracking-wide border border-[#B56A52]">
+            <span className="inline-block px-6 py-2.5 rounded-full bg-[#C87D65] text-white text-sm sm:text-base font-semibold shadow-lg tracking-wide">
               Starting from ₹18,999 / bed
             </span>
           </div>
@@ -197,19 +196,19 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
               href="https://wa.me/919096166306"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-full bg-[#FFFDF9]/10 hover:bg-[#FFFDF9]/20 backdrop-blur-md border border-[#FFFDF9]/30 text-[#FFFDF9] text-base font-medium tracking-wide transition-all hover:scale-105 flex items-center gap-2.5"
+              className="px-8 py-4 rounded-full bg-black/35 hover:bg-black/55 backdrop-blur-md border border-white/30 text-white text-base font-medium tracking-wide transition-all hover:scale-105 flex items-center gap-2.5"
             >
-              <MessageCircle className="w-5 h-5 text-[#C9A45B]" />
+              <MessageCircle className="w-5 h-5 text-white" />
               <span>WhatsApp Now</span>
             </a>
           </div>
 
           {/* 4 Minimal Hero Pills */}
-          <div className="pt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-medium text-[#FAF7F2]/90">
-            {['Fully Furnished', 'AC Rooms', 'Wi-Fi', 'Housekeeping'].map((pill, i) => (
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-medium text-white/90">
+            {['Fully Furnished', 'AC Rooms', 'Wi-Fi', 'Housekeeping'].map((pill) => (
               <span
                 key={pill}
-                className="px-4 py-1.5 rounded-full bg-[#2C2623]/60 backdrop-blur-md border border-[#FFFDF9]/20"
+                className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15"
               >
                 {pill}
               </span>
@@ -222,22 +221,22 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 2: MINIMAL TRUST STRIP */}
       {/* ============================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-[#F3EFE6] border border-[#E6E0D6] shadow-sm">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm font-sans transition-colors">
           <div className="space-y-1">
-            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#2C2623]">Prime Location</h4>
-            <p className="text-xs sm:text-sm text-[#6E655F]">Viman Nagar, Pune</p>
+            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Prime Location</h4>
+            <p className="text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">Viman Nagar, Pune</p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#2C2623]">Move-In Ready</h4>
-            <p className="text-xs sm:text-sm text-[#6E655F]">Furniture + essentials</p>
+            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Move-In Ready</h4>
+            <p className="text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">Furniture + essentials</p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#2C2623]">Professionally Managed</h4>
-            <p className="text-xs sm:text-sm text-[#6E655F]">Clean, simple, hassle-free</p>
+            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Professionally Managed</h4>
+            <p className="text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">Clean, simple, hassle-free</p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#2C2623]">Premium Amenities</h4>
-            <p className="text-xs sm:text-sm text-[#6E655F]">Pool, gym & more</p>
+            <h4 className="font-editorial text-lg sm:text-xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Premium Amenities</h4>
+            <p className="text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">Pool, gym & more</p>
           </div>
         </div>
       </section>
@@ -245,12 +244,12 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 3: STAY TYPES (2-Column Visual Split) */}
       {/* ============================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             CURATED LIVING EXPERIENCES
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
             Thoughtfully Segregated Accommodations
           </h2>
         </div>
@@ -260,9 +259,9 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           <PerspectiveCard
             maxTilt={7}
             scale={1.02}
-            className="rounded-3xl overflow-hidden bg-[#2C2623] text-white border border-[#E6E0D6] shadow-md group flex flex-col justify-between min-h-[440px] relative"
+            className="rounded-3xl overflow-hidden bg-[#071930] text-white border border-[#0B213F]/20 dark:border-[#E5D9C4]/20 shadow-md group flex flex-col justify-between min-h-[440px] relative"
           >
-            {/* Background image - fully visible with soft gentle scrim */}
+            {/* Background image */}
             <div className="absolute inset-0 z-0">
               <img
                 referrerPolicy="no-referrer"
@@ -270,34 +269,33 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 alt="Girls’ Accommodation"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Light non-prominent gradient so the navy bedding and room details are crystal clear */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2C2623]/85 via-[#2C2623]/25 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B213F]/90 via-[#0B213F]/35 to-black/35" />
             </div>
 
             {/* Top Info */}
             <div className="relative z-10 p-8 space-y-3">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-[#7A8B7B] text-[#FFFDF9] text-xs font-semibold tracking-wider uppercase shadow-sm">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C87D65] text-white text-xs font-semibold tracking-wider uppercase shadow-sm">
                 For Women
               </span>
-              <h3 className="font-editorial text-3xl sm:text-4xl font-bold text-[#FFFDF9] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <h3 className="font-editorial text-3xl sm:text-4xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 Girls’ Accommodation
               </h3>
-              <p className="text-sm sm:text-base text-[#FAF7F2] max-w-md leading-relaxed font-light drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+              <p className="text-base sm:text-lg text-[#E5D9C4] max-w-md leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
                 Furnished AC rooms, study spaces & daily housekeeping.
               </p>
             </div>
 
             {/* Bottom Bar */}
             <div className="relative z-10 p-8 pt-0 flex items-center justify-between border-t border-white/20 mt-auto backdrop-blur-[2px]">
-              <span className="text-sm sm:text-base font-semibold text-[#E9C377] drop-shadow-sm">
+              <span className="text-sm sm:text-base font-semibold text-[#C87D65] drop-shadow-sm">
                 Starting from ₹18,999 / bed
               </span>
               <button
                 onClick={scrollToRooms}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#FFFDF9] hover:text-[#C87D65] transition-colors drop-shadow-sm"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#C87D65] transition-colors drop-shadow-sm"
               >
                 <span>View Rooms</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#C87D65]" />
               </button>
             </div>
           </PerspectiveCard>
@@ -306,9 +304,9 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           <PerspectiveCard
             maxTilt={7}
             scale={1.02}
-            className="rounded-3xl overflow-hidden bg-[#2C2623] text-white border border-[#E6E0D6] shadow-md group flex flex-col justify-between min-h-[440px] relative"
+            className="rounded-3xl overflow-hidden bg-[#071930] text-white border border-[#0B213F]/20 dark:border-[#E5D9C4]/20 shadow-md group flex flex-col justify-between min-h-[440px] relative"
           >
-            {/* Background image - fully visible with soft gentle scrim */}
+            {/* Background image */}
             <div className="absolute inset-0 z-0">
               <img
                 referrerPolicy="no-referrer"
@@ -316,34 +314,33 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 alt="Boys’ Accommodation"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Light non-prominent gradient so the grey bedding and study space are crystal clear */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2C2623]/85 via-[#2C2623]/25 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B213F]/90 via-[#0B213F]/35 to-black/35" />
             </div>
 
             {/* Top Info */}
             <div className="relative z-10 p-8 space-y-3">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C87D65] text-[#FFFDF9] text-xs font-semibold tracking-wider uppercase shadow-sm">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C87D65] text-white text-xs font-semibold tracking-wider uppercase shadow-sm">
                 For Men
               </span>
-              <h3 className="font-editorial text-3xl sm:text-4xl font-bold text-[#FFFDF9] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <h3 className="font-editorial text-3xl sm:text-4xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 Boys’ Accommodation
               </h3>
-              <p className="text-sm sm:text-base text-[#FAF7F2] max-w-md leading-relaxed font-light drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+              <p className="text-base sm:text-lg text-[#E5D9C4] max-w-md leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
                 Fully managed bedrooms with AC, study setup & amenities.
               </p>
             </div>
 
             {/* Bottom Bar */}
             <div className="relative z-10 p-8 pt-0 flex items-center justify-between border-t border-white/20 mt-auto backdrop-blur-[2px]">
-              <span className="text-sm sm:text-base font-semibold text-[#E9C377] drop-shadow-sm">
+              <span className="text-sm sm:text-base font-semibold text-[#C87D65] drop-shadow-sm">
                 Premium room options available
               </span>
               <button
                 onClick={scrollToRooms}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#FFFDF9] hover:text-[#C87D65] transition-colors drop-shadow-sm"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#C87D65] transition-colors drop-shadow-sm"
               >
                 <span>View Rooms</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#C87D65]" />
               </button>
             </div>
           </PerspectiveCard>
@@ -353,15 +350,15 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 4: OUR PROPERTIES (#properties) */}
       {/* ============================================================== */}
-      <section id="properties" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="properties" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             OUR PROPERTIES
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
             Two premium addresses. One NIRVAANA experience.
           </h2>
-          <p className="text-sm sm:text-base text-[#6E655F]">
+          <p className="text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
             Close to Symbiosis, major business hubs, and Pune Airport.
           </p>
         </div>
@@ -372,7 +369,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             maxTilt={10}
             scale={1.02}
             containerClassName="h-full flex flex-col"
-            className="rounded-3xl overflow-hidden bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-xl transition-all flex flex-col h-full justify-between"
+            className="rounded-3xl overflow-hidden bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-xl transition-all flex flex-col h-full justify-between"
           >
             <div className="relative h-64 sm:h-72 overflow-hidden shrink-0">
               <img referrerPolicy="no-referrer"
@@ -380,25 +377,25 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 alt="Shubh Gateway Property"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#FFFDF9]/95 text-[#2C2623] text-xs font-semibold backdrop-blur-md shadow-sm">
+              <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#FFFDF9]/95 dark:bg-[#071930]/95 text-[#0B213F] dark:text-[#E5D9C4] text-xs font-semibold backdrop-blur-md shadow-sm border border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
                 Viman Nagar
               </div>
             </div>
 
             <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
               <div className="space-y-3">
-                <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">Shubh Gateway</h3>
-                <p className="text-xs sm:text-sm text-[#6E655F] leading-relaxed">
+                <h3 className="font-editorial text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Shubh Gateway</h3>
+                <p className="text-xs sm:text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
                   First floor, Shubh Gateway, Shop number 116, society, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Pune, Maharashtra 411032.
                 </p>
               </div>
 
               <button
                 onClick={scrollToContact}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#C87D65] hover:text-[#B56A52] transition-colors group mt-auto pt-2"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] dark:hover:text-[#C87D65] transition-colors group mt-auto pt-2"
               >
                 <span>Check availability</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-[#C87D65] group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </PerspectiveCard>
@@ -408,33 +405,33 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             maxTilt={10}
             scale={1.02}
             containerClassName="h-full flex flex-col"
-            className="rounded-3xl overflow-hidden bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-xl transition-all flex flex-col h-full justify-between"
+            className="rounded-3xl overflow-hidden bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-xl transition-all flex flex-col h-full justify-between"
           >
             <div className="relative h-64 sm:h-72 overflow-hidden shrink-0">
               <img referrerPolicy="no-referrer"
-                src={getAssetUrl('assets/living.jpeg')}
+                src={getAssetUrl('assets/kitchen-premium.jpeg')}
                 alt="Shubh Nirvaana Property"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#FFFDF9]/95 text-[#2C2623] text-xs font-semibold backdrop-blur-md shadow-sm">
-                Viman Nagar
+              <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#FFFDF9]/95 dark:bg-[#071930]/95 text-[#0B213F] dark:text-[#E5D9C4] text-xs font-semibold backdrop-blur-md shadow-sm border border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
+                Opp. 10Biz Park
               </div>
             </div>
 
             <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
               <div className="space-y-3">
-                <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">Shubh Nirvaana</h3>
-                <p className="text-xs sm:text-sm text-[#6E655F] leading-relaxed">
-                  Opposite 10Biz Park, Viman Nagar, Pune, Maharashtra 411014.
+                <h3 className="font-editorial text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Shubh Nirvaana</h3>
+                <p className="text-xs sm:text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
+                  Opposite 10Biz Park, Viman Nagar, Pune, Maharashtra 411014. Premium student and executive accommodations with loaded kitchens.
                 </p>
               </div>
 
               <button
                 onClick={scrollToContact}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#C87D65] hover:text-[#B56A52] transition-colors group mt-auto pt-2"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] dark:hover:text-[#C87D65] transition-colors group mt-auto pt-2"
               >
                 <span>Check availability</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-[#C87D65] group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </PerspectiveCard>
@@ -444,226 +441,155 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 5: ROOMS & PRICING (#rooms) */}
       {/* ============================================================== */}
-      <section id="rooms" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="rooms" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             ROOMS & PRICING
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
             Simple room choices. Clear pricing.
           </h2>
+          <p className="text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
+            Transparent coliving living tiers with zero brokerage and premium inclusions.
+          </p>
         </div>
 
-        {/* 4 Pricing Cards (2x2 or 4-column responsive grid) - Equal Heights */}
+        {/* 4 Pricing Cards (Equal Heights) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {/* Card 1 */}
-          <PerspectiveCard
-            maxTilt={12}
-            containerClassName="w-full h-full flex flex-col"
-            className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm flex flex-col justify-between space-y-6 hover:shadow-lg transition-all h-full"
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="h-6 flex items-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#7A8B7B]">
-                    Essential Tier
-                  </span>
+          {ROOM_TIERS.map((tier) => {
+            const isDarkCard = tier.popular || tier.exclusive;
+            return (
+              <PerspectiveCard
+                key={tier.id}
+                maxTilt={12}
+                containerClassName="w-full h-full flex flex-col"
+                className={`p-7 rounded-3xl flex flex-col justify-between space-y-6 transition-all h-full ${
+                  isDarkCard
+                    ? 'bg-[#071930] dark:bg-[#071529] text-white border-2 border-[#C87D65] shadow-xl'
+                    : 'bg-[#FFFDF9] dark:bg-[#081A33] text-[#0B213F] dark:text-[#E5D9C4] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-lg'
+                }`}
+              >
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="h-6 flex items-center">
+                      {tier.popular ? (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C87D65] text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                          <Sparkles className="w-3 h-3 fill-white" />
+                          <span>Popular</span>
+                        </span>
+                      ) : tier.exclusive ? (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C87D65] text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                          <Award className="w-3 h-3" />
+                          <span>Exclusive</span>
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#C87D65]">
+                          {tier.categoryBadge}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3
+                      className={`font-editorial text-xl sm:text-2xl font-bold tracking-tight ${
+                        isDarkCard ? 'text-white' : 'text-[#0B213F] dark:text-[#E5D9C4]'
+                      }`}
+                    >
+                      {tier.name}
+                    </h3>
+                    <p
+                      className={`text-sm line-clamp-2 min-h-[2.5rem] leading-snug ${
+                        isDarkCard ? 'text-white/80' : 'text-[#0B213F]/70 dark:text-[#E5D9C4]/70'
+                      }`}
+                    >
+                      {tier.subtitle}
+                    </p>
+                  </div>
+
+                  <div
+                    className={`text-2xl font-bold ${
+                      isDarkCard ? 'text-white' : 'text-[#0B213F] dark:text-[#E5D9C4]'
+                    }`}
+                  >
+                    {tier.priceFormatted}{' '}
+                    <span
+                      className={`text-xs font-normal ${
+                        isDarkCard ? 'text-white/70' : 'text-[#0B213F]/60 dark:text-[#E5D9C4]/60'
+                      }`}
+                    >
+                      {tier.pricePeriod}
+                    </span>
+                  </div>
+
+                  <ul
+                    className={`space-y-2.5 text-xs pt-2 ${
+                      isDarkCard ? 'text-white/90' : 'text-[#0B213F] dark:text-[#E5D9C4]'
+                    }`}
+                  >
+                    {tier.features.map((bullet) => (
+                      <li key={bullet} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#2C2623] tracking-tight">
-                  Nirvaana Lite
-                </h3>
-                <p className="text-xs sm:text-sm font-medium text-[#6E655F] line-clamp-2 min-h-[2.5rem] leading-snug">
-                  Non-Attached Washroom
-                </p>
-              </div>
-              <div className="text-2xl font-bold text-[#2C2623]">
-                ₹18,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
-              </div>
-              <ul className="space-y-2.5 text-xs text-[#6E655F] pt-2">
-                {['Fully furnished room', 'Air conditioning', 'Study setup', 'Shared / non-attached washroom', 'Housekeeping'].map((bullet) => (
-                  <li key={bullet} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#7A8B7B] shrink-0" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            <button
-              onClick={scrollToContact}
-              className="w-full py-3 rounded-full border border-[#E6E0D6] bg-[#FAF7F2] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65] text-[#2C2623] text-xs font-semibold tracking-wide transition-all shadow-sm mt-auto"
-            >
-              Check Availability
-            </button>
-          </PerspectiveCard>
-
-          {/* Card 2 */}
-          <PerspectiveCard
-            maxTilt={12}
-            containerClassName="w-full h-full flex flex-col"
-            className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm flex flex-col justify-between space-y-6 hover:shadow-lg transition-all h-full"
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="h-6 flex items-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#7A8B7B]">
-                    Balcony View
-                  </span>
-                </div>
-                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#2C2623] tracking-tight">
-                  Nirvaana Plus
-                </h3>
-                <p className="text-xs sm:text-sm font-medium text-[#6E655F] line-clamp-2 min-h-[2.5rem] leading-snug">
-                  Attached Balcony + Non-Attached Washroom
-                </p>
-              </div>
-              <div className="text-2xl font-bold text-[#2C2623]">
-                ₹21,999 <span className="text-xs font-normal text-[#6E655F]">/ bed / month</span>
-              </div>
-              <ul className="space-y-2.5 text-xs text-[#6E655F] pt-2">
-                {['Fully furnished room', 'Attached private balcony', 'Air conditioning', 'Shared / non-attached washroom', 'Housekeeping'].map((bullet) => (
-                  <li key={bullet} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#7A8B7B] shrink-0" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <button
-              onClick={scrollToContact}
-              className="w-full py-3 rounded-full border border-[#E6E0D6] bg-[#FAF7F2] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65] text-[#2C2623] text-xs font-semibold tracking-wide transition-all shadow-sm mt-auto"
-            >
-              Check Availability
-            </button>
-          </PerspectiveCard>
-
-          {/* Card 3 (Highlighted Warm Premium Card) */}
-          <PerspectiveCard
-            maxTilt={12}
-            containerClassName="w-full h-full flex flex-col"
-            className="p-7 rounded-3xl bg-[#2C2623] text-white border-2 border-[#C9A45B] shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden h-full"
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="h-6 flex items-center">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
-                    <Sparkles className="w-3 h-3 fill-[#2C2623]" />
-                    <span>Popular</span>
-                  </span>
-                </div>
-                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#FFFDF9] tracking-tight">
-                  Nirvaana Prime
-                </h3>
-                <p className="text-xs sm:text-sm font-medium text-[#FAF7F2]/80 line-clamp-2 min-h-[2.5rem] leading-snug">
-                  Attached Washroom + Balcony
-                </p>
-              </div>
-              <div className="text-2xl font-bold text-[#FFFDF9]">
-                ₹24,999 <span className="text-xs font-normal text-[#FAF7F2]/75">/ bed / month</span>
-              </div>
-              <ul className="space-y-2.5 text-xs text-[#FAF7F2]/90 pt-2">
-                {['Fully furnished room', 'Attached washroom', 'Attached balcony', 'Air conditioning', 'Housekeeping'].map((bullet) => (
-                  <li key={bullet} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#C9A45B] shrink-0" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <button
-              onClick={scrollToContact}
-              className="w-full py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-semibold tracking-wide transition-all shadow-md mt-auto"
-            >
-              Check Availability
-            </button>
-          </PerspectiveCard>
-
-          {/* Card 4 (Highlighted Warm Premium Card) */}
-          <PerspectiveCard
-            maxTilt={12}
-            containerClassName="w-full h-full flex flex-col"
-            className="p-7 rounded-3xl bg-[#2C2623] text-white border-2 border-[#C9A45B] shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden h-full"
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="h-6 flex items-center">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A45B] text-[#2C2623] text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
-                    <Award className="w-3 h-3" />
-                    <span>Exclusive</span>
-                  </span>
-                </div>
-                <h3 className="font-editorial text-xl sm:text-2xl font-bold text-[#FFFDF9] tracking-tight">
-                  Nirvaana Elite
-                </h3>
-                <p className="text-xs sm:text-sm font-medium text-[#FAF7F2]/80 line-clamp-2 min-h-[2.5rem] leading-snug">
-                  Master Bedroom + Attached Washroom
-                </p>
-              </div>
-              <div className="text-2xl font-bold text-[#FFFDF9]">
-                ₹24,999 <span className="text-xs font-normal text-[#FAF7F2]/75">/ bed / month</span>
-              </div>
-              <ul className="space-y-2.5 text-xs text-[#FAF7F2]/90 pt-2">
-                {['Master bedroom category', 'Attached washroom', 'Fully furnished', 'Air conditioning', 'Housekeeping'].map((bullet) => (
-                  <li key={bullet} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#C9A45B] shrink-0" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <button
-              onClick={scrollToContact}
-              className="w-full py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-semibold tracking-wide transition-all shadow-md mt-auto"
-            >
-              Check Availability
-            </button>
-          </PerspectiveCard>
+                <button
+                  onClick={scrollToContact}
+                  className={`w-full py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-sm mt-auto ${
+                    isDarkCard
+                      ? 'bg-[#C87D65] hover:bg-[#B56A52] text-white'
+                      : 'border border-[#0B213F]/15 dark:border-[#E5D9C4]/25 bg-[#FAF7F2] dark:bg-[#0E294E] hover:bg-[#C87D65] hover:text-white text-[#0B213F] dark:text-[#E5D9C4]'
+                  }`}
+                >
+                  Check Availability
+                </button>
+              </PerspectiveCard>
+            );
+          })}
         </div>
 
-        {/* 12-Month Lock-In Bonus Banner — Length matches exactly all 4 cards above */}
+        {/* 12-Month Lock-In Bonus Banner */}
         <PerspectiveCard
           maxTilt={5}
           scale={1.005}
           containerClassName="w-full"
-          className="w-full p-8 sm:p-10 lg:p-12 rounded-3xl bg-gradient-to-br from-[#2C2623] via-[#3A2F2A] to-[#201A18] text-white border-2 border-[#C9A45B] shadow-xl relative overflow-hidden"
+          className="w-full p-8 sm:p-10 lg:p-12 rounded-3xl bg-gradient-to-br from-[#071930] via-[#08182E] to-[#040C16] text-white border-2 border-[#C87D65] shadow-xl relative overflow-hidden"
         >
-          {/* Subtle Ambient Radial Glows */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#C87D65]/25 blur-3xl pointer-events-none" />
-          <div className="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-[#C9A45B]/20 blur-3xl pointer-events-none" />
+          {/* Subtle Ambient Glows */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#C87D65]/20 blur-3xl pointer-events-none" />
+          <div className="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-[#C87D65]/15 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C9A45B]/20 border border-[#C9A45B]/40 text-[#C9A45B] text-xs font-bold tracking-wider uppercase">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C87D65]/25 border border-[#C87D65]/40 text-[#E5D9C4] text-[11px] font-bold tracking-wider uppercase">
+                <Sparkles className="w-3.5 h-3.5 text-[#C87D65]" />
                 <span>Special Long-Stay Bonus</span>
               </div>
 
-              <h3 className="font-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFFDF9] leading-tight">
-                Lock-In for 12 Months, Get <span className="text-[#C9A45B]">1 Month Complimentary</span>
+              <h3 className="font-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                Lock-In for 12 Months, Get <span className="text-[#C87D65]">1 Month Complimentary</span>
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#FAF7F2]/85 leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
                 Commit to a 12-month tenure at NIRVAANA Stays and enjoy your 12th month completely free of charge. Stay for a full year while paying rent for only 11 months—including high-speed fiber Wi-Fi, air conditioning, regular housekeeping, fully equipped kitchen, and community amenities.
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs text-[#FAF7F2]/90">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs text-white/90">
                 <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4 text-[#C9A45B] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C87D65] shrink-0" />
                   <span className="font-medium">1 Month Free</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4 text-[#C9A45B] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C87D65] shrink-0" />
                   <span className="font-medium">Zero Brokerage</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4 text-[#C9A45B] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C87D65] shrink-0" />
                   <span className="font-medium">Rent Lock</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4 text-[#C9A45B] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C87D65] shrink-0" />
                   <span className="font-medium">All Inclusions</span>
                 </div>
               </div>
@@ -676,18 +602,18 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                     'Hi NIRVAANA Stays, I would like to lock-in for 12 months and claim the 1-month complimentary stay bonus. Please share available rooms.'
                   )
                 }
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-semibold tracking-wide transition-all shadow-md flex items-center justify-center gap-2 hover:scale-[1.02]"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 hover:scale-[1.02]"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 text-white" />
                 <span>Claim 12-Month Bonus</span>
               </button>
 
               <button
                 onClick={scrollToContact}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold tracking-wider uppercase transition-all flex items-center justify-center gap-2"
               >
                 <span>Schedule a Walkthrough</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#C87D65]" />
               </button>
             </div>
           </div>
@@ -697,21 +623,21 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 6: REFERRAL REWARDS BANNER */}
       {/* ============================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
         <PerspectiveCard
           maxTilt={6}
           scale={1.01}
-          className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#F3EFE6] via-[#FAF7F2] to-[#F4E6DF] border border-[#E6E0D6] shadow-sm flex flex-col md:flex-row items-center justify-between gap-8"
+          className="p-8 sm:p-12 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 transition-colors"
         >
           <div className="space-y-2 text-center md:text-left">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#7A8B7B] inline-flex items-center gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#C87D65] inline-flex items-center gap-1.5">
               <Gift className="w-3.5 h-3.5" />
               <span>REFERRAL REWARDS</span>
             </span>
-            <h2 className="font-editorial text-2xl sm:text-4xl font-bold text-[#2C2623]">
+            <h2 className="font-editorial text-2xl sm:text-4xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
               Share NIRVAANA. Earn ₹3,000.
             </h2>
-            <p className="text-sm text-[#6E655F] max-w-xl">
+            <p className="text-sm sm:text-base text-[#0B213F]/70 dark:text-[#E5D9C4]/70 max-w-xl">
               Refer a friend for a minimum 6-month stay and receive a ₹3,000 referral reward.
             </p>
           </div>
@@ -723,7 +649,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
             className="px-8 py-3.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md hover:scale-105 shrink-0 flex items-center gap-2"
           >
             <span>Refer Someone</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-white" />
           </a>
         </PerspectiveCard>
       </section>
@@ -731,26 +657,26 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 7: AMENITIES (#amenities) */}
       {/* ============================================================== */}
-      <section id="amenities" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="amenities" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-center">
           {/* Left: Full height kitchen showcase image */}
           <div className="lg:col-span-5 w-full h-[320px] sm:h-[420px] lg:h-[580px] shrink-0">
             <PerspectiveCard
               maxTilt={9}
               containerClassName="w-full h-full"
-              className="w-full h-full rounded-3xl overflow-hidden shadow-lg border border-[#E6E0D6] relative group"
+              className="w-full h-full rounded-3xl overflow-hidden shadow-lg border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 relative group"
             >
               <img referrerPolicy="no-referrer"
                 src={getAssetUrl('assets/kitchen-premium.jpeg')}
                 alt="Fully equipped NIRVAANA kitchen"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2C2623]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B213F]/85 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                <span className="text-xs uppercase tracking-wider text-[#C9A45B] font-semibold">
+                <span className="text-xs uppercase tracking-wider text-[#C87D65] font-bold">
                   Kitchen Showcase
                 </span>
-                <h4 className="font-editorial text-xl font-bold">
+                <h4 className="font-editorial text-xl sm:text-2xl font-bold text-white">
                   Fully equipped NIRVAANA kitchen
                 </h4>
               </div>
@@ -760,12 +686,15 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           {/* Right: Content & 12-Item clean pill grid */}
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+              <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
                 EVERYTHING YOU NEED
               </span>
-              <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623] leading-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B213F] dark:text-[#E5D9C4] leading-tight">
                 More than a room. A complete living experience.
               </h2>
+              <p className="text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
+                Modern conveniences, professional housekeeping, and leisure amenities designed for effortless living.
+              </p>
             </div>
 
             {/* 12-Item Clean Pill/Grid List */}
@@ -773,10 +702,10 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
               {amenitiesList.map((item) => (
                 <div
                   key={item.name}
-                  className="p-3.5 rounded-2xl bg-[#FFFDF9] border border-[#E6E0D6] flex items-center gap-3 shadow-sm hover:border-[#C87D65] transition-colors h-[54px]"
+                  className="p-3.5 rounded-2xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 flex items-center gap-3 shadow-sm hover:border-[#C87D65] transition-colors h-[54px]"
                 >
                   <span className="text-lg">{item.icon}</span>
-                  <span className="text-xs sm:text-sm font-medium text-[#2C2623]">{item.name}</span>
+                  <span className="text-xs sm:text-sm font-medium text-[#0B213F] dark:text-[#E5D9C4]">{item.name}</span>
                 </div>
               ))}
             </div>
@@ -785,21 +714,17 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       </section>
 
       {/* ============================================================== */}
-      {/* ============================================================== */}
       {/* SECTION 8: GALLERY (#gallery) */}
       {/* ============================================================== */}
-      {/* ============================================================== */}
-      {/* SECTION 8: GALLERY (#gallery) */}
-      {/* ============================================================== */}
-      <section id="gallery" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section id="gallery" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             CURATED GALLERY & SPACES
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">
             See what living at NIRVAANA feels like.
           </h2>
-          <p className="text-sm sm:text-base text-[#6E655F]">
+          <p className="text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
             Browse through our authentic spaces with interactive arrow controls, high-resolution photography, and detailed room specifications.
           </p>
         </div>
@@ -814,14 +739,17 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 9: WHY NIRVAANA (#why) */}
       {/* ============================================================== */}
-      <section id="why" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="why" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             WHY NIRVAANA
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
             Live better. Stay NIRVAANA.
           </h2>
+          <p className="font-sans text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
+            The standard of refined, managed co-living across East Pune.
+          </p>
         </div>
 
         {/* 5 Minimal Cards in a single row on desktop - Equal Dimensions */}
@@ -831,17 +759,17 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
               key={point.num}
               maxTilt={12}
               containerClassName="h-full flex flex-col"
-              className="p-6 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all flex flex-col justify-between h-full space-y-3"
+              className="p-6 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-lg hover:border-[#C87D65]/40 transition-all flex flex-col justify-between h-full space-y-3"
             >
               <div className="space-y-2">
                 <span className="font-editorial text-2xl font-bold text-[#C87D65]">
                   {point.num}
                 </span>
-                <h3 className="font-editorial text-lg font-bold text-[#2C2623] min-h-[3rem] flex items-center">
+                <h3 className="font-editorial text-xl font-medium text-[#0B213F] dark:text-[#E5D9C4] min-h-[3rem] flex items-center">
                   {point.title}
                 </h3>
               </div>
-              <p className="text-xs text-[#6E655F] leading-relaxed mt-auto pt-2">
+              <p className="font-sans text-xs text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed mt-auto pt-2">
                 {point.desc}
               </p>
             </PerspectiveCard>
@@ -852,15 +780,15 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 10: FAQ (#faq) */}
       {/* ============================================================== */}
-      <section id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="faq" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm text-[#6E655F] max-w-xl mx-auto">
+          <p className="font-sans text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70 max-w-xl mx-auto">
             Clear, transparent answers about our Viman Nagar community, amenities, and annual residency benefits.
           </p>
         </div>
@@ -870,17 +798,17 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           {faqs.map((faq, index) => (
             <div
               key={faq.q}
-              className="p-6 sm:p-7 rounded-3xl border border-[#E6E0D6] bg-[#FFFDF9] shadow-sm flex flex-col justify-start space-y-3 hover:border-[#C87D65]/40 hover:shadow-md transition-all h-full"
+              className="p-6 sm:p-7 rounded-3xl border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 bg-[#FFFDF9] dark:bg-[#081A33] shadow-sm flex flex-col justify-start space-y-3 hover:border-[#C87D65]/50 hover:shadow-md transition-all h-full"
             >
               <div className="flex items-start gap-3">
-                <span className="w-7 h-7 rounded-xl bg-[#FAF7F2] text-[#C87D65] border border-[#E6E0D6] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-xl bg-[#FAF7F2] dark:bg-[#0E294E] text-[#C87D65] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 flex items-center justify-center font-editorial text-sm font-bold shrink-0 mt-0.5">
                   0{index + 1}
                 </span>
-                <h3 className="font-editorial text-lg sm:text-xl font-bold text-[#2C2623] leading-snug">
+                <h3 className="font-editorial text-lg sm:text-xl font-medium text-[#0B213F] dark:text-[#E5D9C4] leading-snug">
                   {faq.q}
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-[#6E655F] leading-relaxed pl-10">
+              <p className="font-sans text-xs sm:text-sm text-[#0B213F]/75 dark:text-[#E5D9C4]/75 leading-relaxed pl-11">
                 {faq.a}
               </p>
             </div>
@@ -891,15 +819,15 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION: EAST PUNE CONNECTIVITY HUB (#connectivity) */}
       {/* ============================================================== */}
-      <section id="connectivity" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="connectivity" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             STRATEGIC LOCATION & CONNECTIVITY
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
             Connected to East Pune's Top Colleges & Tech Parks
           </h2>
-          <p className="text-sm sm:text-base text-[#6E655F] max-w-2xl mx-auto">
+          <p className="font-sans text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70 max-w-2xl mx-auto">
             Situated directly opposite Symbiosis Law School at Shubh Gateway, Mhada Colony, Nirvaana Stays offers seamless daily commutes across Viman Nagar, Kharadi, and Kalyani Nagar.
           </p>
         </div>
@@ -907,24 +835,24 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
         {/* 3 Strategic Hubs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {/* Hub 1: Viman Nagar Cluster */}
-          <div className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+          <div className="p-7 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-lg hover:border-[#C87D65]/40 transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7F2] text-[#C87D65] border border-[#E6E0D6] text-[11px] font-bold uppercase tracking-wider">
+              <div className="flex flex-wrap items-center justify-between gap-2 font-sans">
+                <span className="px-3 py-1 rounded-full bg-[#0B213F] dark:bg-[#E5D9C4] text-[#E5D9C4] dark:text-[#0B213F] text-[11px] font-bold uppercase tracking-wider">
                   0–2 Mins · Walking Hub
                 </span>
-                <span className="text-[11px] font-mono text-[#7A8B7B] font-semibold bg-[#F5EBDC]/50 px-2 py-0.5 rounded border border-[#E6E0D6]/60">PIN 411032</span>
+                <span className="text-[11px] font-mono text-[#0B213F] dark:text-[#E5D9C4] font-semibold bg-[#FAF7F2] dark:bg-[#0E294E] px-2 py-0.5 rounded border border-[#0B213F]/15 dark:border-[#E5D9C4]/20">PIN 411032</span>
               </div>
-              <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">
+              <h3 className="font-editorial text-2xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
                 Viman Nagar Campus Cluster
               </h3>
-              <p className="text-xs text-[#6E655F] leading-relaxed">
+              <p className="font-sans text-xs text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
                 Step directly across the avenue into Symbiosis institutes and neighborhood conveniences.
               </p>
-              <ul className="space-y-2 text-xs text-[#2C2623] pt-2 border-t border-[#E6E0D6]">
+              <ul className="space-y-2 font-sans text-xs text-[#0B213F] dark:text-[#E5D9C4] pt-2 border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
-                  <span><strong>Opposite Symbiosis Law School (SLS)</strong> (50 m / 1 min walk)</span>
+                  <span><strong>Opposite Symbiosis Law School (SLS)</strong> (100 m / 1 min walk)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
@@ -936,7 +864,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
-                  <span><strong>Pune International Airport & Aero Mall</strong> (100 - 150 m / 6 min)</span>
+                  <span><strong>Pune International Airport & Aero Mall</strong> (2.1 km / 6 min)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
@@ -944,27 +872,27 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
               </ul>
             </div>
-            <div className="pt-2 text-[11px] text-[#7A8B7B] font-medium border-t border-[#E6E0D6]/60">
+            <div className="pt-2 font-sans text-[11px] text-[#0B213F]/70 dark:text-[#E5D9C4]/70 font-medium border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
               Ideal for SLS students, SIU scholars & airport crew
             </div>
           </div>
 
           {/* Hub 2: Kalyani Nagar & Metro */}
-          <div className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+          <div className="p-7 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-lg hover:border-[#C87D65]/40 transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7F2] text-[#C87D65] border border-[#E6E0D6] text-[11px] font-bold uppercase tracking-wider">
+              <div className="flex flex-wrap items-center justify-between gap-2 font-sans">
+                <span className="px-3 py-1 rounded-full bg-[#0B213F] dark:bg-[#E5D9C4] text-[#E5D9C4] dark:text-[#0B213F] text-[11px] font-bold uppercase tracking-wider">
                   5–10 Mins · Metro & Lifestyle
                 </span>
-                <span className="text-[11px] font-mono text-[#7A8B7B] font-semibold bg-[#F5EBDC]/50 px-2 py-0.5 rounded border border-[#E6E0D6]/60">PIN 411006</span>
+                <span className="text-[11px] font-mono text-[#0B213F] dark:text-[#E5D9C4] font-semibold bg-[#FAF7F2] dark:bg-[#0E294E] px-2 py-0.5 rounded border border-[#0B213F]/15 dark:border-[#E5D9C4]/20">PIN 411006</span>
               </div>
-              <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">
+              <h3 className="font-editorial text-2xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
                 Kalyani Nagar & Transit
               </h3>
-              <p className="text-xs text-[#6E655F] leading-relaxed">
+              <p className="font-sans text-xs text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
                 Effortless link to Pune Metro line, major IT parks, and premier retail hubs.
               </p>
-              <ul className="space-y-2 text-xs text-[#2C2623] pt-2 border-t border-[#E6E0D6]">
+              <ul className="space-y-2 font-sans text-xs text-[#0B213F] dark:text-[#E5D9C4] pt-2 border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
                   <span><strong>Ramwadi Metro & Kalyani Nagar Metro</strong> (4–6 min drive)</span>
@@ -987,27 +915,27 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
               </ul>
             </div>
-            <div className="pt-2 text-[11px] text-[#7A8B7B] font-medium border-t border-[#E6E0D6]/60">
+            <div className="pt-2 font-sans text-[11px] text-[#0B213F]/70 dark:text-[#E5D9C4]/70 font-medium border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
               Rapid metro connectivity to Central Pune & Koregaon Park
             </div>
           </div>
 
           {/* Hub 3: Kharadi IT Parks */}
-          <div className="p-7 rounded-3xl bg-[#FFFDF9] border border-[#E6E0D6] shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+          <div className="p-7 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 shadow-sm hover:shadow-lg hover:border-[#C87D65]/40 transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7F2] text-[#C87D65] border border-[#E6E0D6] text-[11px] font-bold uppercase tracking-wider">
+              <div className="flex flex-wrap items-center justify-between gap-2 font-sans">
+                <span className="px-3 py-1 rounded-full bg-[#0B213F] dark:bg-[#E5D9C4] text-[#E5D9C4] dark:text-[#0B213F] text-[11px] font-bold uppercase tracking-wider">
                   15–20 Mins · IT Tech Corridor
                 </span>
-                <span className="text-[11px] font-mono text-[#7A8B7B] font-semibold bg-[#F5EBDC]/50 px-2 py-0.5 rounded border border-[#E6E0D6]/60">PIN 411014</span>
+                <span className="text-[11px] font-mono text-[#0B213F] dark:text-[#E5D9C4] font-semibold bg-[#FAF7F2] dark:bg-[#0E294E] px-2 py-0.5 rounded border border-[#0B213F]/15 dark:border-[#E5D9C4]/20">PIN 411014</span>
               </div>
-              <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">
+              <h3 className="font-editorial text-2xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
                 Kharadi Corporate Hub
               </h3>
-              <p className="text-xs text-[#6E655F] leading-relaxed">
+              <p className="font-sans text-xs text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
                 Direct commute down Nagar Road and Kharadi South Main Road for working professionals.
               </p>
-              <ul className="space-y-2 text-xs text-[#2C2623] pt-2 border-t border-[#E6E0D6]">
+              <ul className="space-y-2 font-sans text-xs text-[#0B213F] dark:text-[#E5D9C4] pt-2 border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
                   <span><strong>EON Free Zone / EON IT Park (Phases 1 & 2)</strong> (12–15 min)</span>
@@ -1030,7 +958,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
               </ul>
             </div>
-            <div className="pt-2 text-[11px] text-[#7A8B7B] font-medium border-t border-[#E6E0D6]/60">
+            <div className="pt-2 font-sans text-[11px] text-[#0B213F]/70 dark:text-[#E5D9C4]/70 font-medium border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20">
               Top choice for engineers, consultants & summer corporate interns
             </div>
           </div>
@@ -1040,81 +968,81 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* ============================================================== */}
       {/* SECTION 11: BOOK A VISIT & INTERACTIVE MAP (#contact) */}
       {/* ============================================================== */}
-      <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section id="contact" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#7A8B7B]">
+          <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             BOOK A VISIT & CONTACT
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2623]">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
             Schedule Your Visit Today
           </h2>
-          <p className="text-sm text-[#6E655F]">
+          <p className="font-sans text-base sm:text-lg text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
             Walk into our Shubh Gateway office or send us a visit inquiry below.
           </p>
         </div>
 
-        {/* 2-Column Split: Booking Form on Left, Location Details & Quick WhatsApp on Right */}
+        {/* 2-Column Split: Booking Form on Left, Location Details on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Clean Booking Form - Static, No 3D Tilt */}
+          {/* Left Column: Clean Booking Form */}
           <div className="lg:col-span-7">
             <BookingVisitForm />
           </div>
 
-          {/* Right Column: Contact Details, WhatsApp Concierge, and Quick Routing */}
+          {/* Right Column: Contact Details, WhatsApp Concierge */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 rounded-3xl bg-[#F3EFE6] border border-[#E6E0D6] space-y-6 shadow-sm">
+            <div className="p-8 rounded-3xl bg-[#FFFDF9] dark:bg-[#081A33] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 space-y-6 shadow-sm transition-colors">
               <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#7A8B7B]">
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#C87D65]">
                   DIRECT CONCIERGE
                 </span>
-                <h3 className="font-editorial text-2xl font-bold text-[#2C2623]">
+                <h3 className="font-editorial text-2xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
                   Talk Directly with NIRVAANA Stays
                 </h3>
-                <p className="text-xs sm:text-sm text-[#6E655F]">
+                <p className="font-sans text-xs sm:text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
                   Need immediate confirmation or photos? Reach out to our Pune management team.
                 </p>
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-4 pt-2 font-sans">
                 <a
                   href="https://wa.me/919096166306"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-md flex items-center justify-between"
+                  className="w-full py-3.5 px-6 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wider uppercase transition-all shadow-sm hover:shadow flex items-center justify-between"
                 >
                   <span className="flex items-center gap-2">
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-4 h-4 text-white" />
                     <span>WhatsApp: +91 90961 66306</span>
                   </span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </a>
 
                 <a
                   href="tel:+919096166306"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#FFFDF9] hover:bg-[#FAF7F2] border border-[#E6E0D6] text-[#2C2623] text-sm font-semibold tracking-wide transition-all flex items-center justify-between"
+                  className="w-full py-3.5 px-6 rounded-full bg-white dark:bg-[#0E294E] hover:bg-[#FAF7F2] dark:hover:bg-[#133463] border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 text-[#0B213F] dark:text-[#E5D9C4] text-sm font-semibold tracking-wider uppercase transition-all flex items-center justify-between"
                 >
                   <span className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#C87D65]" />
                     <span>Phone: +91 90961 66306</span>
                   </span>
-                  <ArrowRight className="w-4 h-4 text-[#6E655F]" />
+                  <ArrowRight className="w-4 h-4 text-[#C87D65]" />
                 </a>
               </div>
 
-              <div className="pt-4 border-t border-[#E6E0D6] space-y-3 text-xs text-[#6E655F]">
+              <div className="pt-4 border-t border-[#0B213F]/15 dark:border-[#E5D9C4]/20 space-y-3 text-xs font-sans text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#C87D65] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold text-[#2C2623] block">Campus Headquarters & Visits</span>
-                    <p>First floor, Shubh Gateway, Shop number 116, society, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Pune, Maharashtra 411032</p>
-                    <span className="inline-block mt-1 font-mono text-[11px] text-[#C87D65] bg-[#FAF7F2] px-2 py-0.5 rounded border border-[#E6E0D6]">Plus Code: HWG5+62</span>
+                    <span className="font-bold text-[#0B213F] dark:text-[#E5D9C4] block">Campus Headquarters & Visits</span>
+                    <p className="leading-relaxed">First floor, Shubh Gateway, Shop number 116, society, opp. to Symbiosis Law School, Survey Number 235, Mhada Colony, Pune, Maharashtra 411032</p>
+                    <span className="inline-block mt-1 font-mono text-[11px] text-[#0B213F] dark:text-[#E5D9C4] bg-[#FAF7F2] dark:bg-[#0E294E] px-2 py-0.5 rounded border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 font-semibold">Plus Code: HWG5+62</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-[#7A8B7B] shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#C87D65] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold text-[#2C2623] block">Visit Timings</span>
+                    <span className="font-bold text-[#0B213F] dark:text-[#E5D9C4] block">Visit Timings</span>
                     <p>Daily: 9:30 AM to 8:30 PM (Walk-ins welcomed)</p>
                   </div>
                 </div>
@@ -1123,18 +1051,18 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           </div>
         </div>
 
-        {/* Dedicated Interactive Google Maps Section for Contact / Viman Nagar precise coordinates */}
-        <div className="pt-8 space-y-4">
+        {/* Dedicated Interactive Google Maps Section for Contact */}
+        <div id="location-map" className="pt-8 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#7A8B7B]">
+              <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
                 GEOGRAPHIC LOCATION
               </span>
-              <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-[#2C2623]">
+              <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#0B213F] dark:text-[#E5D9C4]">
                 NIRVAANA Stays on Google Maps
               </h3>
             </div>
-            <p className="text-xs text-[#6E655F]">
+            <p className="font-sans text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
               Directly on Sunset Blvd, opposite Symbiosis Law School (SLS), Viman Nagar, Pune
             </p>
           </div>
@@ -1146,6 +1074,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           />
         </div>
       </section>
+      </div>
     </div>
   );
 };

@@ -153,3 +153,27 @@ export function validateEmail(email: string): boolean {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email.trim());
 }
+
+export function shouldTriggerPopup(
+  hasDismissed: boolean,
+  timeElapsedMs: number,
+  delayMs: number = 5000
+): boolean {
+  if (hasDismissed) return false;
+  return timeElapsedMs >= delayMs;
+}
+
+export function generateWhatsAppInquiryUrl(params: {
+  name: string;
+  phone: string;
+  stayType: string;
+  roomType: string;
+  property: string;
+  message?: string;
+  phoneTarget?: string;
+}): string {
+  const target = params.phoneTarget || '919096166306';
+  const text = `Hi NIRVAANA Stays,\nName: ${params.name}\nPhone: ${params.phone}\nStay: ${params.stayType}\nRoom: ${params.roomType}\nProperty: ${params.property}\nNote: ${params.message || 'I would like to schedule a visit.'}`;
+  return `https://wa.me/${target}?text=${encodeURIComponent(text)}`;
+}
+

@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, Check } from 'lucide-react';
+import { ChevronDown, Check, Sparkles } from 'lucide-react';
 
 export interface SelectOption {
   value: string;
   label: string;
+  title?: string;
+  subtitle?: string;
+  price?: string;
+  badge?: string;
 }
 
 export interface CustomSelectProps {
@@ -19,6 +23,11 @@ export interface CustomSelectProps {
   dropdownClassName?: string;
   error?: boolean;
   size?: 'sm' | 'md';
+  /**
+   * Only enable sideways marquee scrolling on specific complex fields (e.g. Room Tier).
+   * Standard selects like Accommodation Preference & Preferred Property remain static.
+   */
+  enableMarquee?: boolean;
 }
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -34,14 +43,18 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   dropdownClassName = '',
   error = false,
   size = 'md',
+  enableMarquee = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Normalize options to { value, label } format
-  const normalizedOptions: SelectOption[] = options.map((opt) =>
-    typeof opt === 'string' ? { value: opt, label: opt } : opt
-  );
+  // Normalize options to SelectOption format
+  const normalizedOptions: SelectOption[] = options.map((opt) => {
+    if (typeof opt === 'string') {
+      return { value: opt, label: opt };
+    }
+    return opt;
+  });
 
   const selectedOption = normalizedOptions.find((opt) => opt.value === value);
 
@@ -112,33 +125,71 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full flex items-center justify-between text-left transition-all ${
+        className={`w-full flex items-center justify-between text-left transition-all font-sans ${
           isSmall
             ? 'px-3 py-2 rounded-xl text-xs'
-            : 'px-4 py-3 rounded-2xl text-sm'
-        } bg-[#FAF7F2] border text-[#2C2623] hover:border-[#C87D65] focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/20 disabled:opacity-60 disabled:cursor-not-allowed ${
-          error ? 'border-red-400' : 'border-[#E6E0D6]'
-        } ${isOpen ? 'border-[#C87D65] ring-1 ring-[#C87D65]/20' : ''} ${buttonClassName}`}
+            : 'px-4 py-2.5 sm:py-3 rounded-2xl text-sm'
+        } bg-[#FFFDF9] dark:bg-[#071930] border text-[#0B213F] dark:text-[#E5D9C4] hover:border-[#C87D65]/60 focus:outline-none focus:border-[#C87D65] focus:ring-1 focus:ring-[#C87D65]/30 disabled:opacity-60 disabled:cursor-not-allowed ${
+          error
+            ? 'border-red-400 dark:border-red-500'
+            : 'border-[#0B213F]/15 dark:border-[#E5D9C4]/20'
+        } ${isOpen ? 'border-[#C87D65] dark:border-[#C87D65] ring-1 ring-[#C87D65]/25' : ''} ${buttonClassName} ${enableMarquee ? 'group' : ''}`}
       >
-        <span className={`truncate ${!selectedOption && placeholder ? 'text-[#6E655F]/60' : 'text-[#2C2623]'}`}>
-          {selectedOption ? selectedOption.label : placeholder}
-        </span>
+        <div className="flex-1 min-w-0 pr-2 overflow-hidden">
+          {selectedOption ? (
+            enableMarquee ? (
+              <div className="select-marquee-wrapper relative w-full overflow-hidden whitespace-nowrap">
+                <div className="select-marquee-content inline-flex items-center gap-1.5 whitespace-nowrap text-xs sm:text-sm font-medium">
+                  {selectedOption.title && selectedOption.price ? (
+                    <>
+                      <span className="font-bold text-[#0B213F] dark:text-[#E5D9C4] shrink-0">
+                        {selectedOption.title}
+                      </span>
+                      {selectedOption.subtitle && (
+                        <span className="text-[#0B213F]/75 dark:text-[#E5D9C4]/75 shrink-0 font-normal">
+                          · {selectedOption.subtitle}
+                        </span>
+                      )}
+                      <span className="font-bold text-[#C87D65] shrink-0">
+                        · {selectedOption.price}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-[#0B213F] dark:text-[#E5D9C4]">
+                      {selectedOption.label}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <span className="block truncate text-[#0B213F] dark:text-[#E5D9C4] font-medium leading-snug">
+                {selectedOption.label}
+              </span>
+            )
+          ) : (
+            <span className="text-[#0B213F]/50 dark:text-[#E5D9C4]/50 font-normal truncate block">
+              {placeholder}
+            </span>
+          )}
+        </div>
         <ChevronDown
-          className={`${isSmall ? 'w-3.5 h-3.5' : 'w-4 h-4'} text-[#6E655F] shrink-0 ml-2 transition-transform duration-200 ${
-            isOpen ? 'rotate-180 text-[#C87D65]' : ''
+          className={`${isSmall ? 'w-3.5 h-3.5' : 'w-4 h-4'} text-[#C87D65] shrink-0 ml-1 transition-transform duration-200 ${
+            isOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
 
-      {/* Custom Floating Options Panel (Themed warm ivory / terracotta) */}
+      {/* Custom Floating Options Panel - Fits container width, strictly no modal overflow */}
       {isOpen && (
         <div
           role="listbox"
           tabIndex={-1}
-          className={`absolute left-0 right-0 top-full mt-1.5 z-50 bg-[#FFFDF9] border border-[#E6E0D6] rounded-2xl shadow-xl p-1.5 max-h-60 overflow-y-auto space-y-0.5 animate-in fade-in zoom-in-95 duration-100 ${dropdownClassName}`}
+          className={`absolute left-0 right-0 w-full top-full mt-1.5 z-50 bg-[#FFFDF9] dark:bg-[#0B213F] border border-[#0B213F]/20 dark:border-[#E5D9C4]/30 rounded-2xl shadow-2xl p-1.5 sm:p-2 max-h-64 overflow-y-auto overflow-x-hidden space-y-1 animate-in fade-in zoom-in-95 duration-150 font-sans ${dropdownClassName}`}
         >
           {normalizedOptions.map((opt) => {
             const isSelected = opt.value === value;
+            const hasRichDetails = Boolean(opt.title && opt.price);
+
             return (
               <div
                 key={opt.value}
@@ -148,17 +199,56 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`w-full flex items-center justify-between cursor-pointer rounded-xl transition-colors ${
-                  isSmall ? 'px-3 py-2 text-xs' : 'px-3.5 py-2.5 text-sm'
+                className={`w-full flex items-center justify-between cursor-pointer rounded-xl p-2.5 transition-colors ${
+                  enableMarquee ? 'group/option' : ''
                 } ${
                   isSelected
-                    ? 'bg-[#FAF0E6] text-[#C87D65] font-semibold'
-                    : 'text-[#2C2623] hover:bg-[#FAF7F2] hover:text-[#C87D65] font-medium'
+                    ? 'bg-[#E5D9C4]/40 dark:bg-[#133463] text-[#0B213F] dark:text-[#E5D9C4] ring-1 ring-[#C87D65]/40'
+                    : 'text-[#0B213F] dark:text-[#E5D9C4] hover:bg-[#E5D9C4]/20 dark:hover:bg-[#0E294E]'
                 }`}
               >
-                <span className="truncate pr-2">{opt.label}</span>
+                <div className="flex-1 min-w-0 pr-1.5 overflow-hidden">
+                  {enableMarquee ? (
+                    hasRichDetails ? (
+                      <div className="select-item-marquee-wrapper relative w-full overflow-hidden whitespace-nowrap">
+                        <div className="select-item-marquee-track inline-flex items-center gap-1.5 whitespace-nowrap text-xs sm:text-sm font-medium">
+                          <span className="font-bold text-[#0B213F] dark:text-[#E5D9C4] shrink-0">
+                            {opt.title}
+                          </span>
+                          {opt.badge && (
+                            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide bg-[#C87D65] text-white shrink-0">
+                              <Sparkles className="w-2.5 h-2.5 fill-white" />
+                              <span>{opt.badge}</span>
+                            </span>
+                          )}
+                          {opt.subtitle && (
+                            <span className="text-[#0B213F]/75 dark:text-[#E5D9C4]/75 shrink-0 font-normal">
+                              · {opt.subtitle}
+                            </span>
+                          )}
+                          <span className="font-bold text-xs text-[#C87D65] bg-[#C87D65]/10 px-2 py-0.5 rounded-full shrink-0">
+                            · {opt.price}
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="select-item-marquee-wrapper relative w-full overflow-hidden whitespace-nowrap">
+                        <div className="select-item-marquee-track inline-block whitespace-nowrap text-xs sm:text-sm font-medium text-[#0B213F] dark:text-[#E5D9C4]">
+                          {opt.label}
+                        </div>
+                      </div>
+                    )
+                  ) : (
+                    <span className="text-xs sm:text-sm font-medium block text-[#0B213F] dark:text-[#E5D9C4] truncate">
+                      {opt.label}
+                    </span>
+                  )}
+                </div>
+
                 {isSelected && (
-                  <Check className={`${isSmall ? 'w-3.5 h-3.5' : 'w-4 h-4'} text-[#C87D65] shrink-0`} />
+                  <div className="shrink-0 pl-1">
+                    <Check className="w-4 h-4 text-[#C87D65]" />
+                  </div>
                 )}
               </div>
             );

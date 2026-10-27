@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowRight, MessageCircle } from 'lucide-react';
+import { Menu, X, ArrowRight, MessageCircle, Sun, Moon } from 'lucide-react';
 import { getAssetUrl } from '../utils/asset-helper.ts';
+import { useTheme } from '../context/ThemeContext.tsx';
 
 interface HeaderProps {
   onBookVisitClick?: () => void;
@@ -8,6 +9,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, isDark, toggleTheme } = useTheme();
 
   const navLinks = [
     { label: 'Properties', href: '#properties' },
@@ -19,16 +21,24 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
     { label: 'FAQ', href: '#faq' },
   ];
 
+  // Exact scroll target calculation with header offset to guarantee headers are NEVER cut off
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 96; // 80px header height + 16px buffer
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#FAF7F2]/90 border-b border-[#E6E0D6] transition-all">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#FAF7F2]/90 dark:bg-[#0B213F]/90 border-b border-[#0B213F]/15 dark:border-[#E5D9C4]/15 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand Logo - Full size & uncropped with complete typography */}
         <a
@@ -41,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           aria-label="NIRVAANA Stays Home"
         >
           {/* Logo badge with generous padding so corners & bottom tagline are NEVER cut off */}
-          <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-[#0C1520] p-1 border border-[#0C1520]/20 shadow-sm flex items-center justify-center shrink-0 overflow-hidden group-hover:shadow-md transition-all">
+          <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-[#0D1826] p-1 border border-black/10 dark:border-[#E5D9C4]/20 shadow-sm flex items-center justify-center shrink-0 overflow-hidden group-hover:shadow-md transition-all">
             <img
               src={getAssetUrl('assets/logo-dark.png')}
               alt="NIRVAANA Stays Emblem"
@@ -51,17 +61,17 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="font-editorial text-lg sm:text-2xl font-bold tracking-tight text-[#2C2623] leading-none group-hover:text-[#C87D65] transition-colors">
+            <span className="font-editorial text-xl sm:text-2xl font-bold tracking-tight text-[#0B213F] dark:text-[#E5D9C4] leading-none group-hover:text-[#C87D65] transition-colors">
               NIRVAANA STAYS
             </span>
-            <span className="text-[10px] sm:text-xs tracking-widest uppercase text-[#C87D65] font-semibold mt-1">
+            <span className="text-[11px] sm:text-xs uppercase font-bold tracking-widest text-[#C87D65] mt-1 font-sans">
               Co-Living · Viman Nagar
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#2C2623]" aria-label="Main Navigation">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-sans font-medium" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -70,15 +80,35 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
                 e.preventDefault();
                 handleLinkClick(link.href);
               }}
-              className="text-[#6E655F] hover:text-[#C87D65] transition-colors duration-200 tracking-wide font-medium"
+              className="text-[#0B213F]/75 dark:text-[#E5D9C4]/80 hover:text-[#C87D65] dark:hover:text-[#C87D65] transition-colors duration-200 tracking-wide font-medium text-sm"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Right CTA Button & Mobile Menu Toggle */}
-        <div className="flex items-center gap-3">
+        {/* Right CTA Button, Theme Toggle & Mobile Menu Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Theme Toggle Button (Light / Dark) */}
+          <button
+            onClick={toggleTheme}
+            aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            title={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
+            className="flex items-center gap-2 px-3 py-2 rounded-full border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 bg-[#FFFDF9] dark:bg-[#071930] hover:bg-[#F3ECE0] dark:hover:bg-[#0E294E] text-[#0B213F] dark:text-[#E5D9C4] transition-all focus:outline-none focus:ring-2 focus:ring-[#C87D65]"
+          >
+            {isDark ? (
+              <>
+                <Sun className="w-4 h-4 text-amber-300 animate-in spin-in-90 duration-200" />
+                <span className="hidden sm:inline text-xs font-semibold">Light</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-4 h-4 text-[#0B213F] animate-in spin-in-90 duration-200" />
+                <span className="hidden sm:inline text-xs font-semibold">Dark</span>
+              </>
+            )}
+          </button>
+
           <a
             href="#contact"
             onClick={(e) => {
@@ -86,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
               if (onBookVisitClick) onBookVisitClick();
               handleLinkClick('#contact');
             }}
-            className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-sm hover:shadow-md hover:scale-105"
+            className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-sm font-semibold tracking-wide transition-all shadow-sm hover:shadow-md hover:scale-[1.02]"
           >
             <span>Book a Visit</span>
             <ArrowRight className="w-4 h-4" />
@@ -95,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl border border-[#E6E0D6] bg-[#FFFDF9] text-[#2C2623] hover:text-[#C87D65] transition-colors focus:outline-none"
+            className="lg:hidden p-2.5 rounded-xl border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 bg-[#FFFDF9] dark:bg-[#071930] text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] transition-colors focus:outline-none"
             aria-label="Toggle navigation drawer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -105,7 +135,29 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FFFDF9] border-b border-[#E6E0D6] px-6 py-6 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-[#FAF7F2] dark:bg-[#071930] border-b border-[#0B213F]/15 dark:border-[#E5D9C4]/15 px-6 py-6 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 font-sans">
+          <div className="flex items-center justify-between pb-2 border-b border-[#0B213F]/10 dark:border-[#E5D9C4]/15">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0B213F]/70 dark:text-[#E5D9C4]/70">
+              Theme Mode:
+            </span>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0B213F]/20 dark:border-[#E5D9C4]/30 bg-[#FFFDF9] dark:bg-[#0B213F] text-xs font-semibold text-[#0B213F] dark:text-[#E5D9C4]"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Switch to Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-[#0B213F]" />
+                  <span>Switch to Dark Mode</span>
+                </>
+              )}
+            </button>
+          </div>
+
           <div className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
@@ -115,7 +167,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
                   e.preventDefault();
                   handleLinkClick(link.href);
                 }}
-                className="text-base font-medium text-[#2C2623] hover:text-[#C87D65] py-2 border-b border-[#FAF7F2] transition-colors"
+                className="text-base font-medium text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] py-2 border-b border-[#0B213F]/10 dark:border-[#E5D9C4]/10 transition-colors"
               >
                 {link.label}
               </a>
@@ -140,9 +192,9 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
               href="https://wa.me/919096166306"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 rounded-full border border-[#E6E0D6] bg-[#F3EFE6] text-[#2C2623] hover:bg-[#FAF7F2] text-center text-sm font-medium tracking-wide transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-full border border-[#0B213F]/20 dark:border-[#E5D9C4]/30 bg-[#FFFDF9] dark:bg-[#0B213F] text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] text-center text-sm font-medium tracking-wide transition-all flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 text-[#7A8B7B]" />
+              <MessageCircle className="w-4 h-4 text-[#C87D65]" />
               <span>WhatsApp Concierge</span>
             </a>
           </div>

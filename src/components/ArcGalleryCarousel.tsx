@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Maximize2, Sparkles, MessageCircle, Calendar } from 'lucide-react';
 import { getAssetUrl } from '../utils/asset-helper.ts';
+import { useTheme } from '../context/ThemeContext.tsx';
 
 export interface GalleryItem {
   id: string;
@@ -205,38 +206,35 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
     };
   };
 
-  const isDark = themeMode === 'espresso';
+  const { isDark: globalIsDark } = useTheme();
+  const isDark = globalIsDark;
 
   return (
     <div
       className={`relative w-full rounded-3xl md:rounded-[36px] overflow-hidden transition-colors duration-500 border ${
         isDark
-          ? 'bg-[#1E1917] border-[#382E2A] text-[#FAF7F2] shadow-2xl'
-          : 'bg-[#F3EFE6] border-[#E6E0D6] text-[#2C2623] shadow-lg'
+          ? 'bg-[#071930] border-[#E5D9C4]/20 text-[#E5D9C4] shadow-2xl'
+          : 'bg-[#FFFDF9] border-[#0B213F]/15 text-[#0B213F] shadow-lg'
       }`}
     >
-      {/* Subtle Background Glow & Texture */}
+      {/* Subtle Background Glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className={`absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[380px] rounded-full blur-3xl opacity-20 ${
-            isDark ? 'bg-[#C87D65]' : 'bg-[#C9A45B]'
-          }`}
+          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[380px] rounded-full blur-3xl opacity-15 bg-[#C87D65]"
         />
         <div
-          className={`absolute -bottom-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-15 ${
-            isDark ? 'bg-[#7A8B7B]' : 'bg-[#C87D65]'
-          }`}
+          className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-10 bg-[#C87D65]"
         />
       </div>
 
       {/* Top Bar: Counter & Theme Switch */}
-      <div className="relative z-20 flex items-center justify-between px-6 sm:px-10 pt-6 sm:pt-8">
+      <div className="relative z-20 flex items-center justify-between px-6 sm:px-10 pt-6 sm:pt-8 font-sans">
         <div className="flex items-center gap-2.5">
           <span
             className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase border ${
               isDark
-                ? 'bg-[#2C2623] border-[#443833] text-[#C9A45B]'
-                : 'bg-[#FFFDF9] border-[#E6E0D6] text-[#7A8B7B]'
+                ? 'bg-white/5 border-white/10 text-[#C87D65]'
+                : 'bg-[#FAF7F2] border-[#E6E0D6] text-[#C87D65]'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C87D65]" />
@@ -245,17 +243,21 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Theme Switcher */}
           <button
-            onClick={() => setThemeMode(isDark ? 'ivory' : 'espresso')}
-            title="Toggle gallery theme"
-            className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${
+            onClick={() => {
+              if (onOpenLightbox) {
+                onOpenLightbox(getAssetUrl(currentItem.image), currentItem.title);
+              }
+            }}
+            title="Expand photo full size"
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-all border flex items-center gap-1.5 ${
               isDark
-                ? 'bg-[#2C2623] border-[#443833] text-[#FAF7F2] hover:bg-[#382E2A]'
-                : 'bg-[#FFFDF9] border-[#E6E0D6] text-[#2C2623] hover:bg-white'
+                ? 'bg-white/10 border-white/20 text-[#E5D9C4] hover:bg-white/20'
+                : 'bg-[#FAF7F2] border-[#0B213F]/15 text-[#0B213F] hover:bg-[#F3EFE6]'
             }`}
           >
-            {isDark ? '🌙 Night Theme' : '☀️ Sunlit Theme'}
+            <Maximize2 className="w-3 h-3 text-[#C87D65]" />
+            <span className="hidden sm:inline">Expand</span>
           </button>
         </div>
       </div>
@@ -333,11 +335,7 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
           <button
             onClick={prevSlide}
             aria-label="Previous room photo"
-            className={`absolute left-3 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl group ${
-              isDark
-                ? 'bg-[#2C2623]/85 text-[#FAF7F2] border border-[#443833] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65]'
-                : 'bg-[#FFFDF9]/90 text-[#2C2623] border border-[#E6E0D6] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65]'
-            }`}
+            className="absolute left-3 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl bg-white/90 text-[#2C2623] border border-[#E6E0D6] hover:bg-[#FAF7F2] hover:text-[#C87D65] group"
           >
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:-translate-x-0.5" />
           </button>
@@ -346,30 +344,28 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
           <button
             onClick={nextSlide}
             aria-label="Next room photo"
-            className={`absolute right-3 sm:right-6 md:right-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl group ${
-              isDark
-                ? 'bg-[#2C2623]/85 text-[#FAF7F2] border border-[#443833] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65]'
-                : 'bg-[#FFFDF9]/90 text-[#2C2623] border border-[#E6E0D6] hover:bg-[#C87D65] hover:text-white hover:border-[#C87D65]'
-            }`}
+            className="absolute right-3 sm:right-6 md:right-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl bg-white/90 text-[#2C2623] border border-[#E6E0D6] hover:bg-[#FAF7F2] hover:text-[#C87D65] group"
           >
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
 
-        {/* Central Text Placeholder & Room Details (Directly under the arc, like Gather) */}
-        <div className="relative z-30 max-w-3xl mx-auto px-6 sm:px-10 text-center space-y-4 pt-4 sm:pt-6 pb-8 sm:pb-12">
+        {/* Central Text Placeholder & Room Details */}
+        <div className="relative z-30 max-w-3xl mx-auto px-6 sm:px-10 text-center space-y-4 pt-4 sm:pt-6 pb-8 sm:pb-12 font-sans">
           {/* Eyebrow */}
           <div className="inline-block">
             <span
-              className={`text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full ${
-                isDark ? 'bg-[#2C2623] text-[#C9A45B]' : 'bg-[#FFFDF9] text-[#7A8B7B] border border-[#E6E0D6]'
+              className={`text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full border ${
+                isDark
+                  ? 'bg-white/5 text-[#C87D65] border-white/10'
+                  : 'bg-[#FAF7F2] text-[#C87D65] border-[#E6E0D6]'
               }`}
             >
               {currentItem.category}
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline in Cormorant Garamond */}
           <h3
             key={`title-${currentItem.id}`}
             className="font-editorial text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight animate-fade-in"
@@ -377,11 +373,11 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
             {currentItem.title}
           </h3>
 
-          {/* Description / Text Placeholder */}
+          {/* Description */}
           <p
             key={`desc-${currentItem.id}`}
             className={`text-sm sm:text-base leading-relaxed max-w-2xl mx-auto animate-fade-in ${
-              isDark ? 'text-[#D5CEC7]' : 'text-[#6E655F]'
+              isDark ? 'text-[#FAF7F2]/80' : 'text-[#6E655F]'
             }`}
           >
             {currentItem.description}
@@ -394,8 +390,8 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
                 key={feat}
                 className={`text-xs font-medium px-3 py-1 rounded-full border transition-colors ${
                   isDark
-                    ? 'bg-[#25201E] border-[#3D332F] text-[#FAF7F2]'
-                    : 'bg-[#FFFDF9] border-[#E6E0D6] text-[#2C2623]'
+                    ? 'bg-white/5 border-white/10 text-[#FAF7F2]/90'
+                    : 'bg-[#FAF7F2] border-[#E6E0D6] text-[#2C2623]'
                 }`}
               >
                 {feat}
@@ -407,7 +403,7 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               onClick={onBookVisit}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C87D65] hover:bg-[#B56A52] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md hover:shadow-lg"
             >
               <Calendar className="w-4 h-4" />
               <span>Book a Visit to View</span>
@@ -421,8 +417,8 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
               }}
               className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
                 isDark
-                  ? 'bg-[#2C2623] border-[#443833] text-[#FAF7F2] hover:bg-[#382E2A]'
-                  : 'bg-[#FFFDF9] border-[#E6E0D6] text-[#2C2623] hover:bg-white'
+                  ? 'bg-white/10 border-white/20 text-[#FAF7F2] hover:bg-white/20'
+                  : 'bg-[#FAF7F2] border-[#E6E0D6] text-[#2C2623] hover:bg-[#F3EFE6]'
               }`}
             >
               <Maximize2 className="w-4 h-4 text-[#C87D65]" />
@@ -437,11 +433,11 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
                 isDark
-                  ? 'bg-[#2C2623] border-[#443833] text-[#7A8B7B] hover:text-white'
-                  : 'bg-[#FFFDF9] border-[#E6E0D6] text-[#7A8B7B] hover:text-[#2C2623]'
+                  ? 'bg-transparent border-[#C87D65]/50 text-[#C87D65] hover:bg-[#C87D65] hover:text-white'
+                  : 'bg-transparent border-[#C87D65]/40 text-[#C87D65] hover:bg-[#C87D65] hover:text-white'
               }`}
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 text-[#C87D65]" />
               <span>WhatsApp Inquiry</span>
             </a>
           </div>

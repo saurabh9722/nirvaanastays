@@ -89,9 +89,9 @@ export const NirvanaCursorTrail: React.FC = () => {
         opacity: 0,
         width: '420px',
         height: '420px',
-        // Diffused warm orange soft light (#C87D65) perfectly blended with no hard edges or circles
+        // Diffused warm terracotta soft light (#C87D65) perfectly blended with no hard edges
         background:
-          'radial-gradient(circle closest-side, rgba(200, 125, 101, 0.20) 0%, rgba(200, 125, 101, 0.10) 40%, rgba(200, 125, 101, 0.03) 70%, rgba(200, 125, 101, 0) 100%)',
+          'radial-gradient(circle closest-side, rgba(200, 125, 101, 0.16) 0%, rgba(200, 125, 101, 0.08) 40%, rgba(200, 125, 101, 0) 100%)',
         filter: 'blur(30px)',
       }}
     />
