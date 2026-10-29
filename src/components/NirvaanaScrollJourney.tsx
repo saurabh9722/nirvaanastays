@@ -2,16 +2,16 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 /**
  * NirvaanaScrollJourney
- * A centered, scroll-synchronized ambient guide line and traveling radiant beacon.
+ * A fluid, wavy scroll-synchronized ambient guide line and traveling radiant beacon.
  * 
  * Key Features:
- * 1. Centered & Organic: Flows down the middle axis of the page (centered around midX)
- *    with a serene harmonic sway, remaining centered behind content.
- * 2. Stops Exactly Behind Map Section: The line and beacon follower terminate behind
+ * 1. Expressive Harmonic Waves: Features sweeping organic sways (±135px on desktop,
+ *    ±65px on mobile) flowing rhythmically down the page like a serene river.
+ * 2. Unhindered Typography: Soft ambient stroke styling and section-level text shields
+ *    guarantee the wavy line never obstructs or hinders text readability.
+ * 3. Stops Exactly Behind Map Section: The line and beacon follower terminate behind
  *    the upper half of the Google Map section, completely hidden by the map card
  *    so it NEVER peeks out below the map or into the footer.
- * 3. Minimal Zen Aesthetic: Extra intermediate milestone dots have been removed for a clean,
- *    pure visual flow.
  * 4. Zero Foreground Interference: Positioned at z-[1] pointer-events-none in the background.
  */
 export const NirvaanaScrollJourney: React.FC = () => {
@@ -84,27 +84,29 @@ export const NirvaanaScrollJourney: React.FC = () => {
     };
   }, []);
 
-  // Compute the centered Zen Path down the page:
-  // Terminates squarely behind the map section so it NEVER peeks out below
+  // Compute the expressive wavy Zen Path down the page:
+  // Features fluid harmonic sweeps across gutters, terminating behind the map
   const pathD = useMemo(() => {
     const { width: w, endY } = dimensions;
     const midX = w * 0.5;
     const isMobile = w < 768;
-    const sway = isMobile ? 18 : 32;
+    // Noticeably wavy amplitude that creates beautiful organic S-curves
+    const sway = isMobile ? 65 : 135;
 
-    const startY = 60;
+    const startY = 70;
     const totalDist = Math.max(100, endY - startY);
 
-    // 8 segments down the center spine of the page ending behind the map
-    const steps = 8;
+    // 14 segments creating rich, fluid harmonic waves
+    const steps = 14;
     const pts: { x: number; y: number }[] = [];
 
     for (let i = 0; i <= steps; i++) {
       const frac = i / steps;
       const y = startY + frac * totalDist;
-      // Oscillate gently around midX, then settle to 0 at the map
-      const damp = i === steps ? 0 : 1;
-      const wave = Math.sin(frac * Math.PI * 4) * sway * damp;
+
+      // Multi-frequency harmonic wave: sweeping sways that gently damp before the map
+      const damp = i === steps ? 0 : Math.sin(frac * Math.PI * 0.95);
+      const wave = (Math.sin(frac * Math.PI * 5) * 0.85 + Math.cos(frac * Math.PI * 2.5) * 0.35) * sway * damp;
       const x = midX + wave;
       pts.push({ x, y });
     }
@@ -114,8 +116,8 @@ export const NirvaanaScrollJourney: React.FC = () => {
     for (let i = 0; i < pts.length - 1; i++) {
       const pCurrent = pts[i];
       const pNext = pts[i + 1];
-      const midY = (pCurrent.y + pNext.y) / 2;
-      d += ` C ${pCurrent.x} ${midY}, ${pNext.x} ${midY}, ${pNext.x} ${pNext.y}`;
+      const dy = (pNext.y - pCurrent.y) * 0.5;
+      d += ` C ${pCurrent.x} ${pCurrent.y + dy}, ${pNext.x} ${pNext.y - dy}, ${pNext.x} ${pNext.y}`;
     }
 
     return d;
@@ -142,7 +144,7 @@ export const NirvaanaScrollJourney: React.FC = () => {
     }
   }, [pathD]);
 
-  // Real-time zero-lag scroll tracking: dot & progress line stay updated, stopping behind the map
+  // Real-time zero-lag scroll tracking: dot & progress line stay updated along the wave
   useEffect(() => {
     const updateProgress = () => {
       if (!pathRef.current) return;
@@ -156,7 +158,6 @@ export const NirvaanaScrollJourney: React.FC = () => {
       if (mapEl) {
         const scrollYCurrent = window.scrollY || window.pageYOffset;
         const mapRect = mapEl.getBoundingClientRect();
-        // Target scroll reaches 1.0 when the middle of the map reaches viewport center
         const mapDocTop = scrollYCurrent + mapRect.top;
         maxScrollForPath = Math.max(1, mapDocTop - window.innerHeight * 0.35);
       }
@@ -168,14 +169,12 @@ export const NirvaanaScrollJourney: React.FC = () => {
       const activeLength = progress * len;
       pathEl.style.strokeDashoffset = `${len - activeLength}`;
 
-      // Keep beacon dot visible and smoothly tracked at all times.
-      // When at the map section or scrolling into footer, it stays parked safely behind the map card.
+      // Keep beacon dot visible and smoothly tracked along the wavy path
       if (beaconGroupRef.current) {
         const pt = pathEl.getPointAtLength(activeLength);
         beaconGroupRef.current.style.transform = `translate3d(${pt.x}px, ${pt.y}px, 0)`;
 
-        // If the user has scrolled past the map section into the footer, hide the beacon completely
-        // to guarantee it never peeks out from any angles
+        // Hide beacon when scrolling into footer so it never peeks out
         const footer = document.querySelector('footer');
         if (footer) {
           const footerTop = footer.getBoundingClientRect().top;
@@ -234,32 +233,32 @@ export const NirvaanaScrollJourney: React.FC = () => {
           {/* Signature Terracotta Radiant Gradient for Nirvaana Path */}
           <linearGradient id="nirvaanaLineGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#C87D65" stopOpacity="0.75" />
-            <stop offset="50%" stopColor="#DF937D" stopOpacity="1" />
-            <stop offset="100%" stopColor="#C87D65" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#DF937D" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#C87D65" stopOpacity="0.80" />
           </linearGradient>
 
           {/* Soft warm aura glow filter */}
           <filter id="nirvaanaGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#C87D65" floodOpacity="0.5" />
+            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#C87D65" floodOpacity="0.4" />
           </filter>
 
           <filter id="beaconRadiance" x="-100%" y="-100%" width="300%" height="300%">
-            <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#C87D65" floodOpacity="0.7" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#C87D65" floodOpacity="0.65" />
           </filter>
         </defs>
 
-        {/* 1. Underlying Centered Guide Track (Soft Terracotta trace) - ends behind map */}
+        {/* 1. Underlying Wavy Guide Track (Soft Terracotta trace) */}
         <path
           ref={guidePathRef}
           d={pathD}
           stroke="#C87D65"
-          strokeOpacity="0.20"
+          strokeOpacity="0.18"
           strokeWidth="2"
           strokeDasharray="4 6"
           strokeLinecap="round"
         />
 
-        {/* 2. Active Illuminated Nirvaana Path (Follows scroll, ends behind map) */}
+        {/* 2. Active Illuminated Nirvaana Wavy Path */}
         <path
           ref={pathRef}
           d={pathD}
@@ -270,7 +269,7 @@ export const NirvaanaScrollJourney: React.FC = () => {
           style={{ willChange: 'stroke-dashoffset' }}
         />
 
-        {/* 3. The Traveling Radiant Beacon (Stays behind map at bottom, never peeks out) */}
+        {/* 3. The Traveling Radiant Beacon along the wavy path */}
         <g
           ref={beaconGroupRef}
           filter="url(#beaconRadiance)"

@@ -50,12 +50,12 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     { name: 'Fully Furnished Rooms', icon: '🛋️' },
     { name: 'Chef Ready Kitchen', icon: '🍳' },
     { name: 'Refrigerator', icon: '🧊' },
-    { name: 'Microwave', icon: '♨️' },
-    { name: 'RO Water', icon: '💧' },
+    { name: 'Zero Brokerage', icon: '🤝' },
+    { name: 'Premium Interiors', icon: '✨' },
     { name: 'Gym', icon: '🏋️' },
     { name: 'Swimming Pool', icon: '🏊' },
-    { name: 'Basketball', icon: '🏀' },
-    { name: 'Jogging Track', icon: '🏃' },
+    { name: 'Flexible Plans', icon: '📅' },
+    { name: '24x7 Security', icon: '🛡️' },
   ];
 
   // 5 Why NIRVAANA points
@@ -245,7 +245,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 3: STAY TYPES (2-Column Visual Split) */}
       {/* ============================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+        <div className="text-center max-w-2xl mx-auto space-y-2 zen-text-shield px-6 py-4">
           <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             CURATED LIVING EXPERIENCES
           </span>
@@ -351,7 +351,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 4: OUR PROPERTIES (#properties) */}
       {/* ============================================================== */}
       <section id="properties" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="text-center max-w-3xl mx-auto space-y-3 zen-text-shield px-6 py-4">
           <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             OUR PROPERTIES
           </span>
@@ -442,7 +442,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 5: ROOMS & PRICING (#rooms) */}
       {/* ============================================================== */}
       <section id="rooms" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-3 zen-text-shield px-6 py-4">
           <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             ROOMS & PRICING
           </span>
@@ -717,7 +717,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 8: GALLERY (#gallery) */}
       {/* ============================================================== */}
       <section id="gallery" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-3 zen-text-shield px-6 py-4">
           <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             CURATED GALLERY & SPACES
           </span>
@@ -740,7 +740,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 9: WHY NIRVAANA (#why) */}
       {/* ============================================================== */}
       <section id="why" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-3 zen-text-shield px-6 py-4">
           <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             WHY NIRVAANA
           </span>
@@ -781,7 +781,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 10: FAQ (#faq) */}
       {/* ============================================================== */}
       <section id="faq" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-3 zen-text-shield max-w-2xl mx-auto px-6 py-4">
           <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             FREQUENTLY ASKED QUESTIONS
           </span>
@@ -820,7 +820,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION: EAST PUNE CONNECTIVITY HUB (#connectivity) */}
       {/* ============================================================== */}
       <section id="connectivity" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-3 zen-text-shield max-w-2xl mx-auto px-6 py-4">
           <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             STRATEGIC LOCATION & CONNECTIVITY
           </span>
@@ -969,7 +969,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       {/* SECTION 11: BOOK A VISIT & INTERACTIVE MAP (#contact) */}
       {/* ============================================================== */}
       <section id="contact" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-3 zen-text-shield px-6 py-4">
           <span className="font-sans text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             BOOK A VISIT & CONTACT
           </span>

@@ -1,13 +1,22 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext.tsx';
 
 /**
  * NirvanaWatermark
- * Fixed monumental capital 'N' watermark in NIRVAANA signature terracotta orange (#C87D65).
+ * Fixed monumental logo watermark using the official logo-only SVG.
+ * Light theme: Blue logo (/assets/aistudio/Trans_blue_logo_only_407c30d8.svg)
+ * Dark theme: Beige logo (/assets/aistudio/Trans_biege_logo_only_a2d50d83.svg)
+ * Rendered at subtle 0.14 opacity so it is visible but never prominent.
  * Follows the center of the viewport during body scrolling, and STOPS following the
  * center of the screen rule just before the footer so it never bleeds into or overlaps the footer.
  */
 export const NirvanaWatermark: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const { isDark } = useTheme();
+
+  const logoSrc = isDark
+    ? '/assets/aistudio/Trans_biege_logo_only_a2d50d83.svg'
+    : '/assets/aistudio/Trans_blue_logo_only_407c30d8.svg';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,15 +27,15 @@ export const NirvanaWatermark: React.FC = () => {
       const footerTop = footer.getBoundingClientRect().top;
       const vh = window.innerHeight;
 
-      // Half height of watermark glyph (~320px) plus breathing margin before footer
-      const watermarkBottomBuffer = 330;
+      // Half height of watermark glyph (~290px) plus breathing margin before footer
+      const watermarkBottomBuffer = 300;
       const stopThreshold = vh * 0.5 + watermarkBottomBuffer;
 
       if (footerTop < stopThreshold) {
         // Stop following the center of the screen: pin it just above the footer
         const shiftUp = stopThreshold - footerTop;
         contentRef.current.style.transform = `translate3d(0, ${-shiftUp}px, 0)`;
-        const fade = Math.max(0, 1 - shiftUp / 350);
+        const fade = Math.max(0, 1 - shiftUp / 300);
         contentRef.current.style.opacity = `${fade}`;
       } else {
         contentRef.current.style.transform = 'translate3d(0, 0, 0)';
@@ -53,31 +62,16 @@ export const NirvanaWatermark: React.FC = () => {
         ref={contentRef}
         className="relative flex items-center justify-center will-change-transform transition-opacity duration-150"
       >
-        {/* Subtle warm radial warmth centered behind the letterform */}
-        <div className="absolute w-[80vw] max-w-[850px] h-[80vw] max-h-[850px] rounded-full bg-[#C87D65]/[0.08] dark:bg-[#C87D65]/[0.10] blur-3xl pointer-events-none" />
+        {/* Subtle warm radial warmth centered behind the logo */}
+        <div className="absolute w-[80vw] max-w-[850px] h-[80vw] max-h-[850px] rounded-full bg-[#C87D65]/[0.05] dark:bg-[#C87D65]/[0.08] blur-3xl pointer-events-none" />
 
-        {/* Clean Monumental Serif Capital 'N' Watermark without weird outlines or double strokes */}
-        <svg
-          viewBox="0 0 600 700"
-          className="w-[75vw] max-w-[620px] h-[72vh] max-h-[700px] text-[#C87D65] overflow-visible pointer-events-none"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Pure Serif 'N' glyph with smooth luxury fill, zero stroke artifacts */}
-          <text
-            x="300"
-            y="540"
-            textAnchor="middle"
-            fontFamily="'Cormorant Garamond', Georgia, serif"
-            fontSize="560"
-            fontWeight="700"
-            fill="#C87D65"
-            fillOpacity="0.14"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            N
-          </text>
-        </svg>
+        {/* Official Brand Logo-Only Watermark: visible but not prominent */}
+        <img
+          src={logoSrc}
+          alt=""
+          aria-hidden="true"
+          className="w-[75vw] max-w-[580px] h-[72vh] max-h-[580px] object-contain opacity-[0.14] select-none pointer-events-none transition-opacity duration-200"
+        />
       </div>
     </div>
   );

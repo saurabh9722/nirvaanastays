@@ -26,11 +26,10 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-5 space-y-6">
             {/* Full-size uncropped brand logo card */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-[#0D1826] p-2.5 border border-[#E5D9C4]/20 shadow-xl flex items-center justify-center shrink-0">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#0D1826] p-2.5 border border-[#E5D9C4]/20 shadow-xl flex items-center justify-center shrink-0">
                 <img
-                  src={getAssetUrl('assets/logo-dark.png')}
+                  src="/assets/aistudio/Trans_biege_logo_only_a2d50d83.svg"
                   alt="NIRVAANA Stays Official Logo"
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-contain"
                 />
               </div>

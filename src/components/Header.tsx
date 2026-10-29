@@ -40,31 +40,33 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#FAF7F2]/90 dark:bg-[#0B213F]/90 border-b border-[#0B213F]/15 dark:border-[#E5D9C4]/15 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Brand Logo - Full size & uncropped with complete typography */}
+        {/* Brand Logo - Theme-aware official SVG logo and text */}
         <a
           href="#home"
           onClick={(e) => {
             e.preventDefault();
             handleLinkClick('#home');
           }}
-          className="flex items-center gap-3.5 shrink-0 group focus:outline-none"
+          className="flex items-center gap-3 shrink-0 group focus:outline-none"
           aria-label="NIRVAANA Stays Home"
         >
-          {/* Logo badge with generous padding so corners & bottom tagline are NEVER cut off */}
-          <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-[#0D1826] p-1 border border-black/10 dark:border-[#E5D9C4]/20 shadow-sm flex items-center justify-center shrink-0 overflow-hidden group-hover:shadow-md transition-all">
+          {/* Logo badge with logo-only SVG: Blue on Light mode, Beige on Dark mode */}
+          <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-[#0B213F]/5 dark:bg-[#E5D9C4]/10 p-1.5 border border-[#0B213F]/10 dark:border-[#E5D9C4]/20 shadow-xs flex items-center justify-center shrink-0 group-hover:scale-105 transition-all">
             <img
-              src={getAssetUrl('assets/logo-dark.png')}
-              alt="NIRVAANA Stays Emblem"
-              referrerPolicy="no-referrer"
+              src={isDark ? '/assets/aistudio/Trans_biege_logo_only_a2d50d83.svg' : '/assets/aistudio/Trans_blue_logo_only_407c30d8.svg'}
+              alt="NIRVAANA Stays Logo Emblem"
               className="w-full h-full object-contain"
             />
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="font-editorial text-xl sm:text-2xl font-bold tracking-tight text-[#0B213F] dark:text-[#E5D9C4] leading-none group-hover:text-[#C87D65] transition-colors">
-              NIRVAANA STAYS
-            </span>
-            <span className="text-[11px] sm:text-xs uppercase font-bold tracking-widest text-[#C87D65] mt-1 font-sans">
+            {/* Header text replaced with official text-only SVG: Blue on Light mode, Beige on Dark mode */}
+            <img
+              src={isDark ? '/assets/aistudio/Trans_biege_text_only_e19768c1.svg' : '/assets/aistudio/Trans_blue_text_only_cf746784.svg'}
+              alt="NIRVAANA STAYS"
+              className="h-7 sm:h-8 w-auto object-contain transition-opacity"
+            />
+            <span className="text-[10px] sm:text-[11px] uppercase font-bold tracking-widest text-[#C87D65] mt-0.5 font-sans">
               Co-Living · Viman Nagar
             </span>
           </div>
