@@ -90,34 +90,47 @@ export const NirvaanaScrollJourney: React.FC = () => {
     const { width: w, endY } = dimensions;
     const midX = w * 0.5;
     const isMobile = w < 768;
-    // Noticeably wavy amplitude that creates beautiful organic S-curves
-    const sway = isMobile ? 65 : 135;
 
-    const startY = 70;
+    // Noticeably wide, sweeping amplitude for prominent left-to-right waves
+    // Desktop spans ±320px across the viewport; mobile spans ±120px
+    const maxAmplitude = isMobile ? Math.min(120, w * 0.32) : Math.min(340, w * 0.28);
+
+    const startY = 80;
     const totalDist = Math.max(100, endY - startY);
 
-    // 14 segments creating rich, fluid harmonic waves
-    const steps = 14;
+    // 24 segments creating continuous, prominent, fluid harmonic S-curves
+    const steps = 24;
     const pts: { x: number; y: number }[] = [];
 
     for (let i = 0; i <= steps; i++) {
       const frac = i / steps;
       const y = startY + frac * totalDist;
 
-      // Multi-frequency harmonic wave: sweeping sways that gently damp before the map
-      const damp = i === steps ? 0 : Math.sin(frac * Math.PI * 0.95);
-      const wave = (Math.sin(frac * Math.PI * 5) * 0.85 + Math.cos(frac * Math.PI * 2.5) * 0.35) * sway * damp;
-      const x = midX + wave;
+      // Rich dual harmonic waves oscillating back and forth across the screen:
+      // Primary wave: 4.5 full oscillations down the page (sin)
+      // Secondary undertone: 2.25 oscillations (cos) adding natural organic curvature
+      const harmonic1 = Math.sin(frac * Math.PI * 9.0);
+      const harmonic2 = Math.cos(frac * Math.PI * 4.5) * 0.3;
+      const combinedWave = harmonic1 + harmonic2;
+
+      // Smooth envelope: gentle start, full deep wavy swings throughout the page,
+      // and a graceful convergence to center right before the map so it ends cleanly behind it
+      const startEnvelope = Math.min(1, frac * 4);
+      const endEnvelope = Math.max(0, 1 - Math.pow(Math.max(0, (frac - 0.90) / 0.10), 2));
+      const envelope = startEnvelope * endEnvelope;
+
+      const waveOffset = combinedWave * maxAmplitude * envelope;
+      const x = midX + waveOffset;
       pts.push({ x, y });
     }
 
     // Build smooth cubic Bezier curve through all points
-    let d = `M ${pts[0].x} ${pts[0].y}`;
+    let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
     for (let i = 0; i < pts.length - 1; i++) {
       const pCurrent = pts[i];
       const pNext = pts[i + 1];
       const dy = (pNext.y - pCurrent.y) * 0.5;
-      d += ` C ${pCurrent.x} ${pCurrent.y + dy}, ${pNext.x} ${pNext.y - dy}, ${pNext.x} ${pNext.y}`;
+      d += ` C ${pCurrent.x.toFixed(1)} ${(pCurrent.y + dy).toFixed(1)}, ${pNext.x.toFixed(1)} ${(pNext.y - dy).toFixed(1)}, ${pNext.x.toFixed(1)} ${pNext.y.toFixed(1)}`;
     }
 
     return d;
