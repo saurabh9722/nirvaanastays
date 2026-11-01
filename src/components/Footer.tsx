@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, ArrowUp, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Phone, ArrowUp, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
 import { getAssetUrl } from '../utils/asset-helper.ts';
 
 export const Footer: React.FC = () => {
@@ -126,14 +126,28 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E5D9C4]/70">
           <p>© {new Date().getFullYear()} NIRVAANA Urban Nest Pvt. Ltd. All rights reserved.</p>
 
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 hover:text-[#C87D65] transition-colors group focus:outline-none"
-            aria-label="Scroll back to top"
-          >
-            <span>Back to top</span>
-            <ArrowUp className="w-4 h-4 text-[#C87D65] group-hover:-translate-y-0.5 transition-transform" />
-          </button>
+          <div className="flex items-center gap-6">
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                window.dispatchEvent(new CustomEvent('replay-intro'));
+              }}
+              className="flex items-center gap-1.5 hover:text-[#C87D65] transition-colors group focus:outline-none cursor-pointer"
+              aria-label="Replay brand logo reveal animation"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#C87D65] group-hover:rotate-12 transition-transform" />
+              <span>Replay Logo Reveal</span>
+            </button>
+
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 hover:text-[#C87D65] transition-colors group focus:outline-none cursor-pointer"
+              aria-label="Scroll back to top"
+            >
+              <span>Back to top</span>
+              <ArrowUp className="w-4 h-4 text-[#C87D65] group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

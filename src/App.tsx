@@ -7,12 +7,27 @@ import { BookingPopupModal } from './components/BookingPopupModal.tsx';
 import { NirvanaWatermark } from './components/NirvanaWatermark.tsx';
 import { SinglePageView } from './views/SinglePageView.tsx';
 import { ThemeProvider } from './context/ThemeContext.tsx';
+import { WebsiteLoader } from './components/WebsiteLoader.tsx';
 import { X } from 'lucide-react';
 
 function AppContent() {
+  // Website Loader Animation state
+  const [showLoader, setShowLoader] = useState(true);
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
+
   // Lightbox Modal state
   const [lightboxData, setLightboxData] = useState<{ src: string; alt: string } | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  // Listen for replay-intro event from footer or anywhere
+  useEffect(() => {
+    const handleReplay = () => {
+      setIsIntroComplete(false);
+      setShowLoader(true);
+    };
+    window.addEventListener('replay-intro', handleReplay);
+    return () => window.removeEventListener('replay-intro', handleReplay);
+  }, []);
 
   // Google Maps Platform Demo Key Quota Defense
   const [isQuotaExceeded, setIsQuotaExceeded] = useState(false);
@@ -37,6 +52,17 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#0B213F] text-[#0B213F] dark:text-[#E5D9C4] font-sans antialiased selection:bg-[#C87D65]/20 selection:text-[#C87D65] relative transition-colors duration-300">
+      {/* Official Website Reveal Video Loader Animation (Strictly Muted, Dissolves 3s Before Video Ends) */}
+      {showLoader && (
+        <WebsiteLoader
+          leadTimeSeconds={3.0}
+          onComplete={() => {
+            setShowLoader(false);
+            setIsIntroComplete(true);
+          }}
+        />
+      )}
+
       {/* Fixed Capital "N" Watermark in Signature Terracotta Orange */}
       <NirvanaWatermark />
 
@@ -75,8 +101,8 @@ function AppContent() {
       {/* Floating Action Strip (WhatsApp + Phone) */}
       <FloatingActions />
 
-      {/* Automatic 5-Second Visit Inquiry Pop Up with Close Button */}
-      <BookingPopupModal delayMs={5000} />
+      {/* Automatic 5-Second Visit Inquiry Pop Up (Initiates only after intro loader finishes) */}
+      {isIntroComplete && <BookingPopupModal delayMs={5000} />}
 
       {/* Lightbox Modal for Gallery */}
       {isLightboxOpen && lightboxData && (
