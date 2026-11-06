@@ -229,8 +229,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           Skip Intro
         </button>
       </div>
->>>>>>> 27acd82 (added sound and fixed pricing info)
-
       {/* Subtle brand attribution at bottom */}
       <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-10 flex items-center gap-2 pointer-events-none opacity-60">
         <div className="w-1.5 h-1.5 rounded-full bg-[#C87D65] animate-pulse" />
