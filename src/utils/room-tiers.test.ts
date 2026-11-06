@@ -18,8 +18,13 @@ test('ROOM_TIERS contains exact updated prices from prompt', () => {
 
   const prime = ROOM_TIERS.find((r) => r.id === 'prime');
   assert.ok(prime);
+<<<<<<< HEAD
   assert.equal(prime.price, 24999);
   assert.equal(prime.priceFormatted, '₹24,999');
+=======
+  assert.equal(prime.price, 25999);
+  assert.equal(prime.priceFormatted, '₹25,999');
+>>>>>>> 27acd82 (added sound and fixed pricing info)
   assert.equal(prime.subtitle, 'Attached Washroom + Balcony');
 
   const elite = ROOM_TIERS.find((r) => r.id === 'elite');
@@ -60,3 +65,17 @@ test('generateWhatsAppInquiryUrl includes the updated prices in message payload'
   });
   assert.ok(urlElite.includes(encodeURIComponent('₹25,999')));
 });
+<<<<<<< HEAD
+=======
+
+test('every ROOM_TIER includes "Double sharing" in features pointers', () => {
+  assert.equal(ROOM_TIERS.length, 4);
+  ROOM_TIERS.forEach((tier) => {
+    assert.ok(
+      tier.features.some((f) => f.toLowerCase().includes('double sharing')),
+      `${tier.name} must include "Double sharing" in features`
+    );
+  });
+});
+
+>>>>>>> 27acd82 (added sound and fixed pricing info)

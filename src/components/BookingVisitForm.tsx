@@ -29,7 +29,11 @@ export const BookingVisitForm: React.FC<BookingVisitFormProps> = ({
   customTitle,
   customSubtitle,
 }) => {
+<<<<<<< HEAD
   const defaultRoom = ROOM_TIER_SELECT_OPTIONS[2]?.value || 'Nirvaana Prime — Attached Washroom + Balcony - ₹24,999';
+=======
+  const defaultRoom = ROOM_TIER_SELECT_OPTIONS[2]?.value || 'Nirvaana Prime — Attached Washroom + Balcony - ₹25,999';
+>>>>>>> 27acd82 (added sound and fixed pricing info)
 
   const [formData, setFormData] = useState({
     name: '',
