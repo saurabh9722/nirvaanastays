@@ -238,4 +238,4 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
       </div>
     </div>
   );
-};
+}
