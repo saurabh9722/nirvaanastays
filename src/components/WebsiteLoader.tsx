@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { shouldStartDissolve } from '../utils/loader-logic.ts';
-<<<<<<< HEAD
-=======
 import { Volume2, VolumeX } from 'lucide-react';
->>>>>>> 27acd82 (added sound and fixed pricing info)
+
 
 interface WebsiteLoaderProps {
   onComplete: () => void;
@@ -18,10 +16,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   const [duration, setDuration] = useState<number>(10.0);
   const [isDissolving, setIsDissolving] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
-<<<<<<< HEAD
-=======
   const [isMuted, setIsMuted] = useState<boolean>(false);
->>>>>>> 27acd82 (added sound and fixed pricing info)
   const hasTriggeredCompleteRef = useRef<boolean>(false);
 
   // Safely finish loader and notify parent
@@ -34,7 +29,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   };
 
   // Skip intro immediately if user clicks skip
-<<<<<<< HEAD
   const handleSkip = () => {
     handleFinish();
   };
@@ -52,7 +46,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           // In case autoplay is blocked or deferred by browser policy, keep playing muted
           if (videoRef.current) {
             videoRef.current.muted = true;
-=======
+
   const handleSkip = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     handleFinish();
@@ -83,7 +77,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           if (videoRef.current) {
             videoRef.current.muted = true;
             setIsMuted(true);
->>>>>>> 27acd82 (added sound and fixed pricing info)
             videoRef.current.play().catch(() => {});
           }
         });
@@ -167,11 +160,8 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           <video
             ref={videoRef}
             autoPlay
-<<<<<<< HEAD
             muted
-=======
             muted={isMuted}
->>>>>>> 27acd82 (added sound and fixed pricing info)
             playsInline
             preload="auto"
             onLoadedMetadata={handleLoadedMetadata}
@@ -179,16 +169,13 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
             onEnded={handleVideoEnded}
             className="w-full h-full object-contain max-h-[95vh]"
           >
-<<<<<<< HEAD
             {/* 100% silent audio-stripped stream */}
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4" type="video/mp4" />
             {/* Fallback to original with muted attribute enforced */}
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4" type="video/mp4" />
-=======
             {/* Full-fidelity official reveal video with original audio track */}
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4" type="video/mp4" />
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4" type="video/mp4" />
->>>>>>> 27acd82 (added sound and fixed pricing info)
           </video>
         </div>
 
@@ -200,7 +187,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,#091A2E_92%)] pointer-events-none" />
       </div>
 
-<<<<<<< HEAD
+
       {/* Subtle luxury skip button in corner */}
       <button
         onClick={handleSkip}
@@ -210,7 +197,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
       >
         Skip Intro
       </button>
-=======
       {/* Bottom control cluster: Sound Toggle & Skip Intro */}
       <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-10 flex items-center gap-2.5">
         {/* Sound Toggle Button */}

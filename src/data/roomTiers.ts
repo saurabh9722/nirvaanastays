@@ -21,10 +21,8 @@ export const ROOM_TIERS: RoomTier[] = [
     priceFormatted: '₹18,999',
     pricePeriod: '/ bed / month',
     features: [
-<<<<<<< HEAD
-=======
+
       'Double sharing',
->>>>>>> 27acd82 (added sound and fixed pricing info)
       'Fully furnished room',
       'Air conditioning',
       'Study setup',
@@ -41,10 +39,8 @@ export const ROOM_TIERS: RoomTier[] = [
     priceFormatted: '₹22,999',
     pricePeriod: '/ bed / month',
     features: [
-<<<<<<< HEAD
-=======
+
       'Double sharing',
->>>>>>> 27acd82 (added sound and fixed pricing info)
       'Fully furnished room',
       'Attached private balcony',
       'Air conditioning',
@@ -57,20 +53,17 @@ export const ROOM_TIERS: RoomTier[] = [
     name: 'Nirvaana Prime',
     categoryBadge: 'Popular',
     subtitle: 'Attached Washroom + Balcony',
-<<<<<<< HEAD
     price: 24999,
     priceFormatted: '₹24,999',
     pricePeriod: '/ bed / month',
     popular: true,
-    features: [
-=======
+    features: 
     price: 25999,
     priceFormatted: '₹25,999',
     pricePeriod: '/ bed / month',
     popular: true,
     features: [
-      'Double sharing',
->>>>>>> 27acd82 (added sound and fixed pricing info)
+      'Double sharing',>>>>>>> 27acd82 (added sound and fixed pricing info)
       'Fully furnished room',
       'Attached washroom',
       'Attached balcony',
@@ -88,10 +81,7 @@ export const ROOM_TIERS: RoomTier[] = [
     pricePeriod: '/ bed / month',
     exclusive: true,
     features: [
-<<<<<<< HEAD
-=======
       'Double sharing',
->>>>>>> 27acd82 (added sound and fixed pricing info)
       'Master bedroom category',
       'Attached washroom',
       'Fully furnished',
