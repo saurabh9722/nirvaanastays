@@ -53,12 +53,24 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // If browser policy prevents unmuted autoplay prior to user gesture,
-          // continue playback muted and show sound toggle prompt
           if (videoRef.current) {
             videoRef.current.muted = true;
             setIsMuted(true);
             videoRef.current.play().catch(() => {});
+          
+            // Unmute automatically on the user's very first click/tap anywhere
+            const unlockAudio = () => {
+              if (videoRef.current) {
+                videoRef.current.muted = false;
+                videoRef.current.volume = 1.0;
+                setIsMuted(false);
+              }
+              window.removeEventListener('click', unlockAudio);
+              window.removeEventListener('touchstart', unlockAudio);
+            };
+          
+            window.addEventListener('click', unlockAudio, { once: true });
+            window.addEventListener('touchstart', unlockAudio, { once: true });
           }
         });
       }
