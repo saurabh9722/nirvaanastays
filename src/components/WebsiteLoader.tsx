@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { shouldStartDissolve } from '../utils/loader-logic.ts';
 import { Volume2, VolumeX } from 'lucide-react';
 
-
 interface WebsiteLoaderProps {
   onComplete: () => void;
   leadTimeSeconds?: number; // Starts dissolve 3 seconds before video ends
@@ -29,24 +28,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   };
 
   // Skip intro immediately if user clicks skip
-  const handleSkip = () => {
-    handleFinish();
-  };
-
-  // Enforce zero audio across all browsers
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.volume = 0;
-      videoRef.current.defaultMuted = true;
-      
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // In case autoplay is blocked or deferred by browser policy, keep playing muted
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-
   const handleSkip = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     handleFinish();
@@ -160,7 +141,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           <video
             ref={videoRef}
             autoPlay
-            muted
             muted={isMuted}
             playsInline
             preload="auto"
@@ -169,10 +149,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
             onEnded={handleVideoEnded}
             className="w-full h-full object-contain max-h-[95vh]"
           >
-            {/* 100% silent audio-stripped stream */}
-            <source src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4" type="video/mp4" />
-            {/* Fallback to original with muted attribute enforced */}
-            <source src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4" type="video/mp4" />
             {/* Full-fidelity official reveal video with original audio track */}
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4" type="video/mp4" />
             <source src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4" type="video/mp4" />
@@ -187,16 +163,6 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,#091A2E_92%)] pointer-events-none" />
       </div>
 
-
-      {/* Subtle luxury skip button in corner */}
-      <button
-        onClick={handleSkip}
-        type="button"
-        aria-label="Skip intro animation"
-        className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-10 px-4 py-1.5 rounded-full bg-[#0B213F]/60 hover:bg-[#0B213F]/90 text-[#E5D9C4]/80 hover:text-[#E5D9C4] border border-[#E5D9C4]/20 backdrop-blur-md text-[11px] font-sans tracking-widest uppercase transition-all duration-300 shadow-lg hover:border-[#E5D9C4]/50 cursor-pointer"
-      >
-        Skip Intro
-      </button>
       {/* Bottom control cluster: Sound Toggle & Skip Intro */}
       <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-10 flex items-center gap-2.5">
         {/* Sound Toggle Button */}
@@ -229,6 +195,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           Skip Intro
         </button>
       </div>
+
       {/* Subtle brand attribution at bottom */}
       <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-10 flex items-center gap-2 pointer-events-none opacity-60">
         <div className="w-1.5 h-1.5 rounded-full bg-[#C87D65] animate-pulse" />
@@ -238,4 +205,4 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
       </div>
     </div>
   );
-}
+};
