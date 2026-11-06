@@ -15,7 +15,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   const [duration, setDuration] = useState<number>(10.0);
   const [isDissolving, setIsDissolving] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
   const hasTriggeredCompleteRef = useRef<boolean>(false);
 
   // Safely finish loader and notify parent
@@ -46,9 +46,9 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   // Enable audio for video reveal animation (gracefully handles strict browser autoplay policies)
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.muted = false;
+      videoRef.current.muted = true;
       videoRef.current.volume = 1.0;
-      videoRef.current.defaultMuted = false;
+      videoRef.current.defaultMuted = true;
 
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
