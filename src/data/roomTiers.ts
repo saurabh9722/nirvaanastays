@@ -53,18 +53,12 @@ export const ROOM_TIERS: RoomTier[] = [
     name: 'Nirvaana Prime',
     categoryBadge: 'Popular',
     subtitle: 'Attached Washroom + Balcony',
-    price: 24999,
-    priceFormatted: '₹24,999',
-    pricePeriod: '/ bed / month',
-    popular: true,
-    features: 
     price: 25999,
     priceFormatted: '₹25,999',
     pricePeriod: '/ bed / month',
     popular: true,
     features: [
-      'Double sharing',>>>>>>> 27acd82 (added sound and fixed pricing info)
-      'Fully furnished room',
+      'Double sharing',
       'Attached washroom',
       'Attached balcony',
       'Air conditioning',
