@@ -215,8 +215,8 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
           >
             {/* Full-fidelity official reveal video with original audio track */}
             <source
-              src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4"
-              type="video/mp4"
+              src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.webm"
+              type="video/webm"
             />
             <source
               src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4"
