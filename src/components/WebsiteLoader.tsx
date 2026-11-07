@@ -12,6 +12,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   leadTimeSeconds = 3.0,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [hasStarted, setHasStarted] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(10.0);
   const [isDissolving, setIsDissolving] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -27,13 +28,39 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
     onComplete();
   };
 
+  // Triggered when user clicks "Enter Experience"
+  // Calling .play() synchronously inside an onClick handler unlocks unmuted browser audio
+  const handleEnterExperience = () => {
+    setHasStarted(true);
+
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1.0;
+      videoRef.current.defaultMuted = false;
+      setIsMuted(false);
+
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback in case a strict device setting still restricts audio
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            setIsMuted(true);
+            videoRef.current.play().catch(() => {});
+          }
+        });
+      }
+    }
+  };
+
   // Skip intro immediately if user clicks skip
   const handleSkip = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     handleFinish();
   };
 
-  // Toggle sound on/off
+  // Toggle sound on/off while video is playing
   const toggleSound = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (!videoRef.current) return;
@@ -43,41 +70,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
     setIsMuted(nextMuted);
   };
 
-  // Enable audio for video reveal animation (gracefully handles strict browser autoplay policies)
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = false;
-      videoRef.current.volume = 1.0;
-      videoRef.current.defaultMuted = false;
-
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            setIsMuted(true);
-            videoRef.current.play().catch(() => {});
-          
-            // Unmute automatically on the user's very first click/tap anywhere
-            const unlockAudio = () => {
-              if (videoRef.current) {
-                videoRef.current.muted = false;
-                videoRef.current.volume = 1.0;
-                setIsMuted(false);
-              }
-              window.removeEventListener('click', unlockAudio);
-              window.removeEventListener('touchstart', unlockAudio);
-            };
-          
-            window.addEventListener('click', unlockAudio, { once: true });
-            window.addEventListener('touchstart', unlockAudio, { once: true });
-          }
-        });
-      }
-    }
-  }, []);
-
-  // Prevent background scroll while intro video is running
+  // Prevent background scroll while intro gate or video is active
   useEffect(() => {
     if (!isDissolving && !isFinished) {
       const prevOverflow = document.body.style.overflow;
@@ -90,14 +83,18 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
 
   // Video metadata loaded: record duration
   const handleLoadedMetadata = () => {
-    if (videoRef.current && Number.isFinite(videoRef.current.duration) && videoRef.current.duration > 0) {
+    if (
+      videoRef.current &&
+      Number.isFinite(videoRef.current.duration) &&
+      videoRef.current.duration > 0
+    ) {
       setDuration(videoRef.current.duration);
     }
   };
 
-  // Track video playback time to trigger dissolve exactly 3s before video completes
+  // Track video playback time to trigger dissolve 3s before video completes
   const handleTimeUpdate = () => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || !hasStarted) return;
     const current = videoRef.current.currentTime;
     const dur = duration || videoRef.current.duration || 10.0;
 
@@ -111,8 +108,10 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
     handleFinish();
   };
 
-  // Safety fallback timer: guarantees site is never stuck even on low-power devices
+  // Safety fallback timer: ONLY starts counting after user clicks "Enter Experience"
   useEffect(() => {
+    if (!hasStarted) return;
+
     const safetyMs = (duration + 1.0) * 1000;
     const safetyTimer = setTimeout(() => {
       if (!hasTriggeredCompleteRef.current) {
@@ -121,7 +120,7 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
     }, safetyMs);
 
     return () => clearTimeout(safetyTimer);
-  }, [duration]);
+  }, [hasStarted, duration]);
 
   if (isFinished) {
     return null;
@@ -130,7 +129,9 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
   return (
     <div
       aria-label="Website loading animation"
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#091A2E] select-none transition-opacity ease-out pointer-events-${isDissolving ? 'none' : 'auto'}`}
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#091A2E] select-none transition-opacity ease-out pointer-events-${
+        isDissolving ? 'none' : 'auto'
+      }`}
       style={{
         opacity: isDissolving ? 0 : 1,
         transitionDuration: `${leadTimeSeconds * 1000}ms`,
@@ -140,19 +141,70 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
       {/* Background ambient depth glow */}
       <div className="absolute inset-0 bg-radial from-[#0e2746]/50 via-[#091A2E]/90 to-[#091A2E] pointer-events-none" />
 
-      {/* Main Brand Reveal Video Box with feathered gradient edges */}
-      <div className="relative w-full h-full max-w-6xl max-h-screen flex items-center justify-center p-0 sm:p-4">
+      {/* =====================================================================
+          1. INITIAL "ENTER EXPERIENCE" OVERLAY (Shown before user clicks)
+      ===================================================================== */}
+      {!hasStarted && (
+        <div className="relative z-20 flex flex-col items-center justify-center px-6 text-center animate-fade-in">
+          {/* Subtle top badge */}
+          <div className="flex items-center gap-2 mb-4 opacity-80">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C87D65] animate-pulse" />
+            <span className="text-[11px] uppercase tracking-[0.3em] text-[#E5D9C4]/80 font-sans">
+              Viman Nagar · Pune
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C87D65] animate-pulse" />
+          </div>
+
+          {/* Brand Title */}
+          <h1 className="text-2xl sm:text-4xl font-serif tracking-[0.2em] uppercase text-[#E5D9C4] mb-3">
+            Nirvaana Stays
+          </h1>
+          <p className="text-xs sm:text-sm text-[#E5D9C4]/60 tracking-widest uppercase font-sans mb-10 max-w-md">
+            Luxury Co-Living & Curated Comfort
+          </p>
+
+          {/* Primary Enter Experience CTA (Unlocks Audio + Starts Video) */}
+          <button
+            onClick={handleEnterExperience}
+            type="button"
+            aria-label="Enter experience with sound"
+            className="group relative flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#0B213F]/90 hover:bg-[#C87D65] text-[#E5D9C4] hover:text-[#091A2E] border border-[#C87D65]/50 hover:border-[#C87D65] backdrop-blur-md text-xs font-sans font-medium tracking-[0.25em] uppercase transition-all duration-500 shadow-[0_0_30px_rgba(200,125,101,0.15)] hover:shadow-[0_0_40px_rgba(200,125,101,0.4)] cursor-pointer"
+          >
+            <Volume2 className="w-4 h-4 text-[#C87D65] group-hover:text-[#091A2E] transition-colors duration-300 animate-pulse" />
+            <span>Enter Experience</span>
+          </button>
+
+          {/* Direct Skip Option for returning visitors */}
+          <button
+            onClick={handleSkip}
+            type="button"
+            className="mt-6 text-[10px] uppercase tracking-[0.2em] text-[#E5D9C4]/40 hover:text-[#E5D9C4]/80 font-sans transition-colors duration-300 cursor-pointer"
+          >
+            Skip Intro
+          </button>
+        </div>
+      )}
+
+      {/* =====================================================================
+          2. VIDEO REVEAL CONTAINER (Preloads silently in DOM, reveals on click)
+      ===================================================================== */}
+      <div
+        className={`relative w-full h-full max-w-6xl max-h-screen flex items-center justify-center p-0 sm:p-4 transition-opacity duration-700 ${
+          hasStarted ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
         {/* Masked Video Wrapper: CSS mask-image feathers the video perimeter smoothly into the background */}
         <div
           className="relative w-full h-full flex items-center justify-center overflow-hidden"
           style={{
-            maskImage: 'radial-gradient(ellipse 80% 75% at 50% 50%, black 45%, rgba(0,0,0,0.85) 65%, transparent 95%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 75% at 50% 50%, black 45%, rgba(0,0,0,0.85) 65%, transparent 95%)',
+            maskImage:
+              'radial-gradient(ellipse 80% 75% at 50% 50%, black 45%, rgba(0,0,0,0.85) 65%, transparent 95%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 75% at 50% 50%, black 45%, rgba(0,0,0,0.85) 65%, transparent 95%)',
           }}
         >
           <video
             ref={videoRef}
-            autoPlay
             muted={isMuted}
             playsInline
             preload="auto"
@@ -162,8 +214,14 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
             className="w-full h-full object-contain max-h-[95vh]"
           >
             {/* Full-fidelity official reveal video with original audio track */}
-            <source src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4" type="video/mp4" />
-            <source src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4" type="video/mp4" />
+            <source
+              src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4"
+              type="video/mp4"
+            />
+            <source
+              src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
 
@@ -175,40 +233,44 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,#091A2E_92%)] pointer-events-none" />
       </div>
 
-      {/* Bottom control cluster: Sound Toggle & Skip Intro */}
-      <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-10 flex items-center gap-2.5">
-        {/* Sound Toggle Button */}
-        <button
-          onClick={toggleSound}
-          type="button"
-          aria-label={isMuted ? 'Turn sound on' : 'Mute sound'}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0B213F]/75 hover:bg-[#0B213F] text-[#E5D9C4] border border-[#E5D9C4]/30 hover:border-[#E5D9C4]/60 backdrop-blur-md text-[11px] font-sans tracking-wider uppercase transition-all duration-300 shadow-lg cursor-pointer"
-        >
-          {isMuted ? (
-            <>
-              <VolumeX className="w-3.5 h-3.5 text-[#C87D65]" />
-              <span>Sound Off</span>
-            </>
-          ) : (
-            <>
-              <Volume2 className="w-3.5 h-3.5 text-[#C87D65] animate-pulse" />
-              <span>Sound On</span>
-            </>
-          )}
-        </button>
+      {/* =====================================================================
+          3. BOTTOM CONTROLS (Only shown after the video has started)
+      ===================================================================== */}
+      {hasStarted && (
+        <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-10 flex items-center gap-2.5">
+          {/* Sound Toggle Button */}
+          <button
+            onClick={toggleSound}
+            type="button"
+            aria-label={isMuted ? 'Turn sound on' : 'Mute sound'}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0B213F]/75 hover:bg-[#0B213F] text-[#E5D9C4] border border-[#E5D9C4]/30 hover:border-[#E5D9C4]/60 backdrop-blur-md text-[11px] font-sans tracking-wider uppercase transition-all duration-300 shadow-lg cursor-pointer"
+          >
+            {isMuted ? (
+              <>
+                <VolumeX className="w-3.5 h-3.5 text-[#C87D65]" />
+                <span>Sound Off</span>
+              </>
+            ) : (
+              <>
+                <Volume2 className="w-3.5 h-3.5 text-[#C87D65] animate-pulse" />
+                <span>Sound On</span>
+              </>
+            )}
+          </button>
 
-        {/* Skip Intro Button */}
-        <button
-          onClick={handleSkip}
-          type="button"
-          aria-label="Skip intro animation"
-          className="px-4 py-1.5 rounded-full bg-[#0B213F]/60 hover:bg-[#0B213F]/90 text-[#E5D9C4]/80 hover:text-[#E5D9C4] border border-[#E5D9C4]/20 hover:border-[#E5D9C4]/50 backdrop-blur-md text-[11px] font-sans tracking-widest uppercase transition-all duration-300 shadow-lg cursor-pointer"
-        >
-          Skip Intro
-        </button>
-      </div>
+          {/* Skip Intro Button */}
+          <button
+            onClick={handleSkip}
+            type="button"
+            aria-label="Skip intro animation"
+            className="px-4 py-1.5 rounded-full bg-[#0B213F]/60 hover:bg-[#0B213F]/90 text-[#E5D9C4]/80 hover:text-[#E5D9C4] border border-[#E5D9C4]/20 hover:border-[#E5D9C4]/50 backdrop-blur-md text-[11px] font-sans tracking-widest uppercase transition-all duration-300 shadow-lg cursor-pointer"
+          >
+            Skip Intro
+          </button>
+        </div>
+      )}
 
-      {/* Subtle brand attribution at bottom */}
+      {/* Subtle brand attribution at bottom left */}
       <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-10 flex items-center gap-2 pointer-events-none opacity-60">
         <div className="w-1.5 h-1.5 rounded-full bg-[#C87D65] animate-pulse" />
         <span className="text-[10px] uppercase tracking-widest text-[#E5D9C4]/70 font-sans">
