@@ -13,7 +13,7 @@ const STAY_TYPE_OPTIONS = [
 
 const PROPERTY_OPTIONS = [
   { value: 'Shubh Gateway (Opp. Symbiosis Law School)', label: 'Shubh Gateway (Opp. Symbiosis Law School)' },
-  { value: 'Shubh Nirvaana (Opp. 10Biz Park)', label: 'Shubh Nirvaana (Opp. 10Biz Park)' },
+  { value: 'Shubh Nirvaana (Opp. 10Biz Park)', label: 'Shubh Nirvana (Opp. 10Biz Park)' },
 ];
 
 export interface BookingVisitFormProps {

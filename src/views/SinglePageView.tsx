@@ -420,7 +420,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
 
             <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
               <div className="space-y-3">
-                <h3 className="font-editorial text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Shubh Nirvaana</h3>
+                <h3 className="font-editorial text-2xl font-bold text-[#0B213F] dark:text-[#E5D9C4]">Shubh Nirvana</h3>
                 <p className="text-xs sm:text-sm text-[#0B213F]/70 dark:text-[#E5D9C4]/70 leading-relaxed">
                   Opposite 10Biz Park, Viman Nagar, Pune, Maharashtra 411014. Premium student and executive accommodations with loaded kitchens.
                 </p>
