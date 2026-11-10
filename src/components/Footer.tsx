@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
                   NIRVAANA Stays
                 </span>
                 <span className="text-xs uppercase font-bold tracking-widest text-[#C87D65] block">
-                  NIRVAANA Urban Nest Pvt. Ltd.
+                  NIRVANA Urban Nest Pvt. Ltd.
                 </span>
                 <p className="text-xs text-[#E5D9C4]/70 pt-1">
                   Co-Living in Viman Nagar, Pune
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="space-y-1">
-                <span className="font-bold text-[#E5D9C4] block">2. Shubh Nirvaana</span>
+                <span className="font-bold text-[#E5D9C4] block">2. Shubh Nirvana</span>
                 <p className="leading-relaxed">
                   Opposite 10Biz Park, Viman Nagar, Pune, Maharashtra 411014.
                 </p>
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
 
               <div className="pt-2 text-xs text-[#E5D9C4]/70 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#C87D65]" />
-                <span>Verified Legal Entity: NIRVAANA Urban Nest Pvt. Ltd.</span>
+                <span>Verified Legal Entity: NIRVANA Urban Nest Pvt. Ltd.</span>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E5D9C4]/70">
-          <p>© {new Date().getFullYear()} NIRVAANA Urban Nest Pvt. Ltd. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NIRVANA Urban Nest Pvt. Ltd. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
             <button
