@@ -373,7 +373,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           >
             <div className="relative h-64 sm:h-72 overflow-hidden shrink-0">
               <img referrerPolicy="no-referrer"
-                src={getAssetUrl('assets/amenities.jpeg')}
+                src={getAssetUrl('assets/amenities2.jpeg')}
                 alt="Shubh Gateway Property"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -409,7 +409,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
           >
             <div className="relative h-64 sm:h-72 overflow-hidden shrink-0">
               <img referrerPolicy="no-referrer"
-                src={getAssetUrl('assets/kitchen-premium.jpeg')}
+                src={getAssetUrl('assets/amenities.jpg')}
                 alt="Shubh Nirvaana Property"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
