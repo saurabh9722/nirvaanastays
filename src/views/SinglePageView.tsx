@@ -1,3 +1,21 @@
+/**
+ * Main Single-Page Experience (`src/views/SinglePageView.tsx`)
+ *
+ * Section Index & Anchor Map:
+ * - Background Layer: `NirvaanaScrollJourney` (scroll-synchronized wavy SVG line & beacon)
+ * - Section 1  (`#home`)         : Hero Banner, Pricing Pill & Primary CTAs
+ * - Section 2                    : Minimal 4-Pillar Trust Strip
+ * - Section 3                    : Segregated Stay Types (Girls’ vs. Boys’ Accommodation)
+ * - Section 4  (`#properties`)   : Property Showcase (Shubh Gateway & Shubh Nirvaana)
+ * - Section 5  (`#rooms`)        : 4 Room Tiers (`ROOM_TIERS`) + 12-Month Lock-In Bonus Banner
+ * - Section 6                    : Referral Rewards Banner (Earn ₹3,000)
+ * - Section 7  (`#amenities`)    : Kitchen Showcase & 12-Amenity Pill Grid
+ * - Section 8  (`#gallery`)      : `ArcGalleryCarousel` Interactive 3D Photo Carousel
+ * - Section 9  (`#why`)          : 5 "Why NIRVAANA" Value Cards
+ * - Section 10 (`#faq`)          : 10 Local SEO & Resident Q&A Cards
+ * - Section 11 (`#connectivity`) : East Pune Connectivity Hub (Viman Nagar, Kalyani Nagar, Kharadi)
+ * - Section 12 (`#contact`)      : `BookingVisitForm`, Direct Concierge & `NirvanaLocationMap` (`#location-map`)
+ */
 import React from 'react';
 import {
   Sparkles,

@@ -1,3 +1,9 @@
+/**
+ * Full-Screen Brand Intro Video Loader (`src/components/WebsiteLoader.tsx`)
+ * - Plays the NIRVAANA Stays logo reveal animation from `public/assets/aistudio/`.
+ * - Begins a smooth 3.0-second opacity dissolve before the video finishes (`leadTimeSeconds`).
+ * - Can be re-triggered anytime via the "Replay Logo Reveal" button in `Footer.tsx`.
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import { shouldStartDissolve } from '../utils/loader-logic.ts';
 import { Volume2, VolumeX, Loader2 } from 'lucide-react';
@@ -236,6 +242,10 @@ export const WebsiteLoader: React.FC<WebsiteLoaderProps> = ({
             <source
               src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4"
               type="video/mp4"
+            />
+            <source
+              src="/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.webm"
+              type="video/webm"
             />
             <source
               src="/assets/aistudio/nirvaana_stays_logo_reveal_muted.mp4"

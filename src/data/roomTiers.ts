@@ -1,3 +1,10 @@
+/**
+ * Official Co-Living Room Tiers & Pricing Data (`src/data/roomTiers.ts`)
+ * - Single source of truth for:
+ *   1. Section 5 ("Rooms & Pricing" cards in `src/views/SinglePageView.tsx`)
+ *   2. Room Tier dropdown selector (`ROOM_TIER_SELECT_OPTIONS` in `src/components/BookingVisitForm.tsx`)
+ */
+
 export interface RoomTier {
   id: string;
   name: string;
@@ -21,7 +28,6 @@ export const ROOM_TIERS: RoomTier[] = [
     priceFormatted: '₹18,999',
     pricePeriod: '/ bed / month',
     features: [
-
       'Double sharing',
       'Fully furnished room',
       'Air conditioning',
@@ -39,7 +45,6 @@ export const ROOM_TIERS: RoomTier[] = [
     priceFormatted: '₹22,999',
     pricePeriod: '/ bed / month',
     features: [
-
       'Double sharing',
       'Fully furnished room',
       'Attached private balcony',
@@ -94,6 +99,9 @@ export interface RoomSelectOption {
   badge?: string;
 }
 
+/**
+ * Formatted options consumed by `CustomSelect` (with sideways marquee enabled) in `BookingVisitForm`.
+ */
 export const ROOM_TIER_SELECT_OPTIONS: RoomSelectOption[] = ROOM_TIERS.map((tier) => ({
   value: `${tier.name} — ${tier.subtitle} - ${tier.priceFormatted}`,
   label: `${tier.name}: ${tier.subtitle} - ${tier.priceFormatted}`,

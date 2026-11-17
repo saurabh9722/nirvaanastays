@@ -1,6 +1,11 @@
+/**
+ * Site Footer (`src/components/Footer.tsx`)
+ * - Displays official brand identity, quick section links, and both Viman Nagar property addresses.
+ * - Includes the "Replay Logo Reveal" trigger (dispatches `replay-intro` event caught by `App.tsx`)
+ *   and a smooth "Back to top" button.
+ */
 import React from 'react';
 import { Phone, ArrowUp, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
-import { getAssetUrl } from '../utils/asset-helper.ts';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -22,9 +27,8 @@ export const Footer: React.FC = () => {
     <footer className="bg-[#071529] dark:bg-[#050E1A] text-[#E5D9C4] border-t border-[#E5D9C4]/15 pt-16 pb-12 transition-colors font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#E5D9C4]/15">
-          {/* Brand Column */}
+          {/* Column 1: Brand Identity & Direct CTAs */}
           <div className="md:col-span-5 space-y-6">
-            {/* Full-size uncropped brand logo card */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#0D1826] p-2.5 border border-[#E5D9C4]/20 shadow-xl flex items-center justify-center shrink-0">
                 <img
@@ -71,7 +75,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links Column */}
+          {/* Column 2: Quick Section Anchor Links */}
           <div className="md:col-span-3 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#C87D65]">
               Quick Navigation
@@ -90,12 +94,12 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Location & Details Column */}
+          {/* Column 3: Verified Viman Nagar Property Addresses */}
           <div className="md:col-span-4 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#C87D65]">
               Viman Nagar Addresses
             </h4>
-            
+
             <div className="space-y-4 text-xs text-[#E5D9C4]/80">
               <div className="space-y-1">
                 <span className="font-bold text-[#E5D9C4] block">1. Shubh Gateway (Campus HQ & Office)</span>
@@ -122,7 +126,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Copyright & Utility Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E5D9C4]/70">
           <p>© {new Date().getFullYear()} NIRVANA Urban Nest Pvt. Ltd. All rights reserved.</p>
 

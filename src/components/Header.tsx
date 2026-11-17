@@ -1,6 +1,11 @@
+/**
+ * Sticky Navigation Header (`src/components/Header.tsx`)
+ * - Renders theme-aware official brand SVGs (Navy in Light mode, Beige in Dark mode).
+ * - Smooth-scrolls to section anchors (`#properties`, `#rooms`, etc.) with a 96px offset.
+ * - Includes the Light/Dark theme toggle button and responsive mobile navigation drawer.
+ */
 import React, { useState } from 'react';
 import { Menu, X, ArrowRight, MessageCircle, Sun, Moon } from 'lucide-react';
-import { getAssetUrl } from '../utils/asset-helper.ts';
 import { useTheme } from '../context/ThemeContext.tsx';
 
 interface HeaderProps {
@@ -9,7 +14,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   const navLinks = [
     { label: 'Properties', href: '#properties' },
@@ -21,12 +26,12 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
     { label: 'FAQ', href: '#faq' },
   ];
 
-  // Exact scroll target calculation with header offset to guarantee headers are NEVER cut off
+  // Scroll to target section with 96px offset (80px sticky header + 16px breathing room)
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      const headerOffset = 96; // 80px header height + 16px buffer
+      const headerOffset = 96;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -40,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#FAF7F2]/90 dark:bg-[#0B213F]/90 border-b border-[#0B213F]/15 dark:border-[#E5D9C4]/15 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Brand Logo - Theme-aware official SVG logo and text */}
+        {/* Brand Identity (Logo Emblem + Wordmark SVG) */}
         <a
           href="#home"
           onClick={(e) => {
@@ -50,7 +55,6 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           className="flex items-center gap-3 shrink-0 group focus:outline-none"
           aria-label="NIRVAANA Stays Home"
         >
-          {/* Logo badge with logo-only SVG: Blue on Light mode, Beige on Dark mode */}
           <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-[#0B213F]/5 dark:bg-[#E5D9C4]/10 p-1.5 border border-[#0B213F]/10 dark:border-[#E5D9C4]/20 shadow-xs flex items-center justify-center shrink-0 group-hover:scale-105 transition-all">
             <img
               src={isDark ? '/assets/aistudio/Trans_biege_logo_only_a2d50d83.svg' : '/assets/aistudio/Trans_blue_logo_only_407c30d8.svg'}
@@ -60,7 +64,6 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           </div>
 
           <div className="flex flex-col justify-center">
-            {/* Header text replaced with official text-only SVG: Blue on Light mode, Beige on Dark mode */}
             <img
               src={isDark ? '/assets/aistudio/Trans_biege_text_only_e19768c1.svg' : '/assets/aistudio/Trans_blue_text_only_cf746784.svg'}
               alt="NIRVAANA STAYS"
@@ -72,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Section Links */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-sans font-medium" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
@@ -89,9 +92,8 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
           ))}
         </nav>
 
-        {/* Right CTA Button, Theme Toggle & Mobile Menu Toggle */}
+        {/* Right Controls: Theme Switcher, Book CTA & Mobile Drawer Trigger */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Theme Toggle Button (Light / Dark) */}
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
@@ -124,7 +126,6 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
             <ArrowRight className="w-4 h-4" />
           </a>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2.5 rounded-xl border border-[#0B213F]/15 dark:border-[#E5D9C4]/20 bg-[#FFFDF9] dark:bg-[#071930] text-[#0B213F] dark:text-[#E5D9C4] hover:text-[#C87D65] transition-colors focus:outline-none"
@@ -135,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ onBookVisitClick }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#FAF7F2] dark:bg-[#071930] border-b border-[#0B213F]/15 dark:border-[#E5D9C4]/15 px-6 py-6 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 font-sans">
           <div className="flex items-center justify-between pb-2 border-b border-[#0B213F]/10 dark:border-[#E5D9C4]/15">

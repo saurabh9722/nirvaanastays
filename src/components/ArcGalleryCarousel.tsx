@@ -1,3 +1,9 @@
+/**
+ * Interactive 3D Arched Gallery Carousel (`src/components/ArcGalleryCarousel.tsx`)
+ * - Used in Section 8 (`#gallery`) of `SinglePageView.tsx`.
+ * - Computes trigonometric arc card positions (`getCardStyle`) relative to `activeIndex`.
+ * - Supports arrow keys, touch swipes, direct card click, and full-screen Lightbox expansion.
+ */
 import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Maximize2, Sparkles, MessageCircle, Calendar } from 'lucide-react';
 import { getAssetUrl } from '../utils/asset-helper.ts';
@@ -106,7 +112,6 @@ export const ArcGalleryCarousel: React.FC<ArcGalleryCarouselProps> = React.memo(
   onBookVisit,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [themeMode, setThemeMode] = useState<'espresso' | 'ivory'>('espresso');
   const [isAnimating, setIsAnimating] = useState(false);
 
   const [windowWidth, setWindowWidth] = useState<number>(

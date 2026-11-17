@@ -1,3 +1,9 @@
+/**
+ * Property Walkthrough Inquiry Form (`src/components/BookingVisitForm.tsx`)
+ * - Rendered both inline in Section 11 (`#contact`) and inside `BookingPopupModal.tsx`.
+ * - Submits inquiry payloads to Web3Forms (`WEB3FORMS_ACCESS_KEY`) and opens a pre-populated
+ *   WhatsApp message to `+91 90961 66306` via `generateWhatsAppInquiryUrl`.
+ */
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
 import { CustomSelect } from './CustomSelect.tsx';
@@ -39,7 +45,6 @@ export const BookingVisitForm: React.FC<BookingVisitFormProps> = ({
     stayType: 'Girls’ Accommodation',
     roomType: defaultRoom,
     property: 'Shubh Gateway (Opp. Symbiosis Law School)',
-    moveInDate: '',
     message: '',
   });
 
@@ -143,7 +148,6 @@ export const BookingVisitForm: React.FC<BookingVisitFormProps> = ({
       stayType: 'Girls’ Accommodation',
       roomType: defaultRoom,
       property: 'Shubh Gateway (Opp. Symbiosis Law School)',
-      moveInDate: '',
       message: '',
     });
   };

@@ -1,3 +1,18 @@
+/**
+ * Root Application Shell — NIRVAANA Stays (`src/App.tsx`)
+ *
+ * Architecture Overview:
+ * 1. `ThemeProvider` (`src/context/ThemeContext.tsx`) — Manages Light/Dark mode state & `<html class="dark">`.
+ * 2. `WebsiteLoader` (`src/components/WebsiteLoader.tsx`) — Fullscreen intro video experience; dissolves 3s before video ends.
+ * 3. `NirvanaWatermark` (`src/components/NirvanaWatermark.tsx`) — Fixed background brand emblem (stops above footer).
+ * 4. `NirvanaCursorTrail` (`src/components/NirvanaCursorTrail.tsx`) — Desktop ambient terracotta cursor glow.
+ * 5. `Header` (`src/components/Header.tsx`) — Sticky navigation bar with section smooth-scroll and theme switcher.
+ * 6. `SinglePageView` (`src/views/SinglePageView.tsx`) — All 12 core sections of the single-page website.
+ * 7. `Footer` (`src/components/Footer.tsx`) — Brand details, quick links, addresses, and "Replay Logo Reveal" trigger.
+ * 8. `FloatingActions` (`src/components/FloatingActions.tsx`) — Bottom-right Call & WhatsApp floating buttons.
+ * 9. `BookingPopupModal` (`src/components/BookingPopupModal.tsx`) — Auto-opens 5s after the intro loader completes.
+ * 10. Lightbox Viewer — Fullscreen modal for inspecting gallery photos from `ArcGalleryCarousel`.
+ */
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header.tsx';
 import { Footer } from './components/Footer.tsx';
@@ -11,15 +26,15 @@ import { WebsiteLoader } from './components/WebsiteLoader.tsx';
 import { X } from 'lucide-react';
 
 function AppContent() {
-  // Website Loader Animation state
+  // Intro Loader & Post-Intro Popup synchronization
   const [showLoader, setShowLoader] = useState(true);
   const [isIntroComplete, setIsIntroComplete] = useState(false);
 
-  // Lightbox Modal state
+  // Fullscreen Image Lightbox state (triggered from ArcGalleryCarousel in SinglePageView)
   const [lightboxData, setLightboxData] = useState<{ src: string; alt: string } | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  // Listen for replay-intro event from footer or anywhere
+  // Listen for `replay-intro` custom event dispatched by the Footer button
   useEffect(() => {
     const handleReplay = () => {
       setIsIntroComplete(false);
@@ -29,13 +44,11 @@ function AppContent() {
     return () => window.removeEventListener('replay-intro', handleReplay);
   }, []);
 
-  // Google Maps Platform Demo Key Quota Defense
+  // Google Maps Platform Quota Fallback Notification state (triggered by `src/main.tsx`)
   const [isQuotaExceeded, setIsQuotaExceeded] = useState(false);
 
   useEffect(() => {
-    const handleQuotaExceeded = () => {
-      setIsQuotaExceeded(true);
-    };
+    const handleQuotaExceeded = () => setIsQuotaExceeded(true);
     window.addEventListener('gmp-quota-exceeded', handleQuotaExceeded);
     return () => window.removeEventListener('gmp-quota-exceeded', handleQuotaExceeded);
   }, []);
@@ -52,7 +65,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#0B213F] text-[#0B213F] dark:text-[#E5D9C4] font-sans antialiased selection:bg-[#C87D65]/20 selection:text-[#C87D65] relative transition-colors duration-300">
-      {/* Official Website Reveal Video Loader Animation (Strictly Muted, Dissolves 3s Before Video Ends) */}
+      {/* 1. Brand Intro Reveal Video Loader (Dissolves 3s before video ends) */}
       {showLoader && (
         <WebsiteLoader
           leadTimeSeconds={3.0}
@@ -63,13 +76,13 @@ function AppContent() {
         />
       )}
 
-      {/* Fixed Capital "N" Watermark in Signature Terracotta Orange */}
+      {/* 2. Fixed Background Logo Watermark */}
       <NirvanaWatermark />
 
-      {/* NIRVANA Themed Orange Cursor & Radiant Light Trail */}
+      {/* 3. Desktop Ambient Terracotta Cursor Light */}
       <NirvanaCursorTrail />
 
-      {/* Google Maps Platform Demo Quota Notification Bar */}
+      {/* 4. Google Maps Quota Fallback Notice (only shown if Maps API quota is exceeded) */}
       {isQuotaExceeded && (
         <div className="bg-amber-50 dark:bg-amber-950/60 border-b border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200 px-4 py-2.5 text-xs text-center sticky top-0 z-50 shadow-sm">
           <span>
@@ -87,24 +100,24 @@ function AppContent() {
         </div>
       )}
 
-      {/* Sticky Translucent Header with Light/Dark Theme Switcher */}
+      {/* 5. Sticky Header with Smooth-Scroll Nav & Light/Dark Theme Toggle */}
       <Header />
 
-      {/* Main Single-Page Website with 12 Minimal Sections */}
+      {/* 6. Main Single-Page Content (12 Sections + Scroll Journey Wave) */}
       <main>
         <SinglePageView onOpenLightbox={handleOpenLightbox} />
       </main>
 
-      {/* Brand Footer */}
+      {/* 7. Brand Footer */}
       <Footer />
 
-      {/* Floating Action Strip (WhatsApp + Phone) */}
+      {/* 8. Floating Quick-Action Strip (Call + WhatsApp) */}
       <FloatingActions />
 
-      {/* Automatic 5-Second Visit Inquiry Pop Up (Initiates only after intro loader finishes) */}
+      {/* 9. Timed 5-Second Visit Inquiry Modal (starts counting only after intro loader finishes) */}
       {isIntroComplete && <BookingPopupModal delayMs={5000} />}
 
-      {/* Lightbox Modal for Gallery */}
+      {/* 10. Fullscreen Gallery Lightbox Modal */}
       {isLightboxOpen && lightboxData && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity"

@@ -1,8 +1,13 @@
-import {createRoot} from 'react-dom/client';
+/**
+ * Application Entry Point — NIRVAANA Stays
+ * - Mounts the React root into `#root` (defined in `index.html`).
+ * - Configures Tier-1 Google Maps Platform quota/auth failure interception,
+ *   dispatching `gmp-quota-exceeded` so `App.tsx` can surface a fallback banner.
+ */
+import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Google Maps Platform Demo Key Two-Tier Quota Defense (Tier 1)
 if (typeof window !== 'undefined') {
   (window as unknown as { gm_authFailure?: () => void }).gm_authFailure = () => {
     window.dispatchEvent(new CustomEvent('gmp-quota-exceeded'));
