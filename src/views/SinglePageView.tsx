@@ -133,7 +133,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
     },
     {
       q: 'Are there separate, dedicated accommodations for girls and boys?',
-      a: 'Yes. We provide dedicated, separate properties and wings for Girls’ Accommodation (Navy blue bedding rooms) and Boys’ Accommodation (Grey bedding rooms), plus unisex co-living options with complete privacy, biometric entry, and round-the-clock CCTV.',
+      a: 'Yes. We provide dedicated, separate properties and wings for Girls’ Accommodation and Boys’ Accommodation featuring thoughtfully furnished twin-sharing rooms with fresh, comfortable bedding, complete privacy, biometric entry, and round-the-clock CCTV.',
     },
     {
       q: 'How does food, dining, and the communal kitchen work?',

@@ -23,11 +23,11 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'girls-room',
     category: 'GIRLS’ ACCOMMODATION',
-    title: 'Navy Blue Bedding Bedroom',
+    title: 'Twin-Sharing Girls’ Bedroom',
     image: 'assets/girls-room.jpeg',
     description:
-      'Spacious, naturally lit bedroom featuring signature navy blue bedding, dedicated wardrobe storage, whisper-quiet air conditioning, and ergonomic study workspace.',
-    features: ['Navy Blue Linens', 'AC Equipped', 'Personal Wardrobe', 'Study Desk', 'Daily Housekeeping'],
+      'Spacious, naturally lit bedroom featuring plush comfort bedding, dedicated wardrobe storage, whisper-quiet air conditioning, and ergonomic study workspace.',
+    features: ['Fresh Premium Linens', 'AC Equipped', 'Personal Wardrobe', 'Study Desk', 'Daily Housekeeping'],
     ctaLabel: 'Check Girls’ Room Availability',
   },
   {
@@ -53,11 +53,11 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'boys-room',
     category: 'BOYS’ ACCOMMODATION',
-    title: 'Grey Bedding Executive Room',
+    title: 'Twin-Sharing Executive Room',
     image: 'assets/boys-room.jpeg',
     description:
-      'Contemporary bedroom designed with modern grey bedding, illuminated vanity mirror, study corner, ample storage, and high-speed fiber internet.',
-    features: ['Grey Palette Bedding', 'Illuminated Mirror', 'Executive Study Desk', 'Split AC', 'Regular Linens'],
+      'Contemporary bedroom designed with plush comfort bedding, illuminated vanity mirror, study corner, ample storage, and high-speed fiber internet.',
+    features: ['Fresh Premium Bedding', 'Illuminated Mirror', 'Executive Study Desk', 'Split AC', 'Regular Linens'],
     ctaLabel: 'Check Boys’ Room Availability',
   },
   {
