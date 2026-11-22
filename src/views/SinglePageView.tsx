@@ -882,7 +882,7 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
-                  <span><strong>Pune International Airport & Aero Mall</strong> (2.1 km / 6 min)</span>
+                  <span><strong>Pune International Airport & Aero Mall</strong> (450m / 2 min)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#C87D65] shrink-0 mt-0.5" />
