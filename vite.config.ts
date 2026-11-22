@@ -20,6 +20,9 @@ export default defineConfig({
     },
   },
   server: {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate',
+    },
     // HMR can be toggled via DISABLE_HMR env var to prevent flickering during automated edits.
     hmr: process.env.DISABLE_HMR !== 'true',
     watch: process.env.DISABLE_HMR === 'true' ? null : {},
