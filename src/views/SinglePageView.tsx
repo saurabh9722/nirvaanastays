@@ -260,9 +260,9 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       </section>
 
       {/* ============================================================== */}
-      {/* SECTION 3: STAY TYPES (2-Column Visual Split) */}
+      {/* SECTION 3: STAY TYPES (2-Column Visual Split) (#stay-types) */}
       {/* ============================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
+      <section id="stay-types" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
         <div className="text-center max-w-2xl mx-auto space-y-2 zen-text-shield px-6 py-4">
           <span className="text-xs font-bold tracking-widest uppercase text-[#C87D65]">
             CURATED LIVING EXPERIENCES
@@ -639,9 +639,9 @@ export const SinglePageView: React.FC<SinglePageAppProps> = ({ onOpenLightbox })
       </section>
 
       {/* ============================================================== */}
-      {/* SECTION 6: REFERRAL REWARDS BANNER */}
+      {/* SECTION 6: REFERRAL REWARDS BANNER (#referrals) */}
       {/* ============================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
+      <section id="referrals" className="scroll-mt-24 sm:scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
         <PerspectiveCard
           maxTilt={6}
           scale={1.01}

@@ -1,6 +1,96 @@
-# Robots.txt for Nirvaana Stays (https://nirvaanastays.com)
+# ============================================================================
+# robots.txt — NIRVAANA STAYS (https://nirvaanastays.com)
+# Luxury PG, Student Housing & Co-Living in Viman Nagar, Kharadi & Kalyani Nagar, Pune
+# Optimized for Peak Student Admission, Internship & Corporate Hiring Season (Nov - Mar)
+# ============================================================================
+
+# Default Rule: Allow all standard web crawlers full access
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /site.webmanifest
+Allow: /sitemap.xml
 
-# Canonical XML Sitemap
+# Google Search (Desktop & Mobile-First Indexing)
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+
+# Google Images (Room photos, Girls/Boys PG suites, Kitchen, Pool & Society visuals)
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+Allow: /*.jpeg$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Google Video (Brand & Property walkthrough video indexing)
+User-agent: Googlebot-Video
+Allow: /
+Allow: /assets/aistudio/
+Allow: /*.mp4$
+Allow: /*.webm$
+
+# Google Rich Results, Local Business & Page Experience Inspection
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+# Bing, Yahoo & DuckDuckGo Search Crawlers
+User-agent: Bingbot
+Allow: /
+Allow: /assets/
+
+User-agent: msnbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI Search & Answer Engine Crawlers (ChatGPT Search, Perplexity, Gemini, Claude, Apple)
+# Enables high-intent discovery for queries like "Best PG near Symbiosis Viman Nagar"
+# and "Luxury Co-living near EON IT Park Kharadi & Kalyani Nagar Pune"
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Social Media Rich Preview Crawlers (WhatsApp, Instagram, LinkedIn, Facebook, X/Twitter)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Preferred Canonical Host & XML Sitemap
+Host: https://nirvaanastays.com
 Sitemap: https://nirvaanastays.com/sitemap.xml

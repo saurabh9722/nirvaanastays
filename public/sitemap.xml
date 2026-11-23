@@ -1,63 +1,261 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ====================================================================== -->
+  <!-- 1. CANONICAL HOME & MASTER EAST PUNE CO-LIVING LANDING PAGE            -->
+  <!-- Target: Peak Student Shifting & Corporate Hiring Intake (Nov – March)  -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://nirvaanastays.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nirvaanastays.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nirvaanastays.com/" />
+
+    <!-- Hero Master Suite Image -->
     <image:image>
       <image:loc>https://nirvaanastays.com/assets/hero-room.jpeg</image:loc>
       <image:title>NIRVAANA Stays Luxury Co-Living &amp; Student Housing in Viman Nagar, Pune</image:title>
-      <image:caption>Premier student housing and executive stays opposite Symbiosis Law School, Viman Nagar, Pune</image:caption>
+      <image:caption>Premier student housing and executive PG stays opposite Symbiosis Law School, Shubh Gateway, Viman Nagar, Pune 411032 — Starting from ₹18,999/bed with Zero Brokerage</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+
+    <!-- Girls' Accommodation Image -->
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/girls-room.jpeg</image:loc>
+      <image:title>Girls PG &amp; Women's Co-Living Accommodation in Viman Nagar, Pune — NIRVAANA Stays</image:title>
+      <image:caption>Safe, fully furnished AC twin-sharing girls PG room opposite Symbiosis Law School (SLS) and near Kalyani Nagar &amp; Kharadi IT Parks</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+
+    <!-- Boys' Accommodation Image -->
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/boys-room.jpeg</image:loc>
+      <image:title>Boys PG &amp; Men's Executive Co-Living in Viman Nagar, Pune — NIRVAANA Stays</image:title>
+      <image:caption>Professionally managed AC twin-sharing boys accommodation with ergonomic study desk, high-speed Wi-Fi 6, and daily housekeeping in Viman Nagar, Pune</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+
+    <!-- Communal Lounge & Living Area Image -->
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/living.jpeg</image:loc>
+      <image:title>Open-Concept Co-Living Lounge &amp; Smart TV Dining Area — NIRVAANA Stays Pune</image:title>
+      <image:caption>Designer communal living room and dining space for students and working professionals in Viman Nagar, Pune</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+
+    <!-- Official Brand Emblem -->
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/logo-dark.png</image:loc>
+      <image:title>NIRVAANA Stays Official Brand Emblem — NIRVAANA Urban Nest Pvt. Ltd.</image:title>
+      <image:caption>Verified zero-brokerage luxury PG and co-living operator in Viman Nagar, Pune</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+
+    <!-- Brand & Property Video Metadata -->
+    <video:video>
+      <video:thumbnail_loc>https://nirvaanastays.com/assets/hero-room.jpeg</video:thumbnail_loc>
+      <video:title>NIRVAANA Stays — Luxury PG &amp; Co-Living in Viman Nagar, Kharadi &amp; Kalyani Nagar, Pune</video:title>
+      <video:description>Explore NIRVAANA Stays opposite Symbiosis Law School in Viman Nagar, Pune. Zero brokerage, fully furnished AC rooms, chef-ready kitchen, swimming pool, gym, and 15-minute connectivity to EON IT Park Kharadi &amp; Kalyani Nagar.</video:description>
+      <video:content_loc>https://nirvaanastays.com/assets/aistudio/nirvaana_stays_logo_reveal_17df2817.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+
+    <video:video>
+      <video:thumbnail_loc>https://nirvaanastays.com/assets/living.jpeg</video:thumbnail_loc>
+      <video:title>NIRVAANA Stays Viman Nagar — Co-Living Property Walkthrough &amp; Interiors</video:title>
+      <video:description>Inside look at NIRVAANA Stays fully furnished student housing and working professional co-living flats at Shubh Gateway and Shubh Nirvaana in Viman Nagar, Pune.</video:description>
+      <video:content_loc>https://nirvaanastays.com/assets/aistudio/WhatsApp_Video_2026-10-26_at_18.51.48_5ab565e9.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+
+  <!-- ====================================================================== -->
+  <!-- 2. HERO & OVERVIEW SECTION (#home)                                     -->
+  <!-- ====================================================================== -->
+  <url>
+    <loc>https://nirvaanastays.com/#home</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/hero-room.jpeg</image:loc>
+      <image:title>Premium Co-Living &amp; PG Rooms in Viman Nagar Starting from ₹18,999/bed</image:title>
+      <image:caption>Move-in ready AC rooms for Symbiosis students and Pune IT professionals with Wi-Fi and housekeeping</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
     </image:image>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 3. SEGREGATED STAY TYPES: GIRLS PG & BOYS PG (#stay-types)             -->
+  <!-- ====================================================================== -->
+  <url>
+    <loc>https://nirvaanastays.com/#stay-types</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/girls-room.jpeg</image:loc>
+      <image:title>Dedicated Girls’ Accommodation &amp; Ladies PG in Viman Nagar, Pune</image:title>
+      <image:caption>Secure women's co-living wing with biometric access, AC bedrooms, study desks, and daily housekeeping opposite Symbiosis Law School</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/boys-room.jpeg</image:loc>
+      <image:title>Dedicated Boys’ Accommodation &amp; Gents PG in Viman Nagar, Pune</image:title>
+      <image:caption>Fully managed men's co-living bedrooms with split AC, study setup, fiber Wi-Fi, and gym/pool access in Viman Nagar</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- ====================================================================== -->
+  <!-- 4. OUR PROPERTIES: SHUBH GATEWAY & SHUBH NIRVAANA (#properties)        -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#properties</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/amenities2.jpeg</image:loc>
+      <image:title>Shubh Gateway — NIRVAANA Stays Opposite Symbiosis Law School, Viman Nagar Pune 411032</image:title>
+      <image:caption>First floor, Shubh Gateway, Shop number 116, opp. Symbiosis Law School, Survey Number 235, Mhada Colony, Viman Nagar, Pune 411032</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/amenities.jpg</image:loc>
+      <image:title>Shubh Nirvaana — NIRVAANA Stays Opposite 10Biz Park, Viman Nagar Pune 411014</image:title>
+      <image:caption>Premium student and corporate executive co-living residences opposite 10Biz Park, Viman Nagar, Pune 411014</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 5. ROOMS, PRICING TIERS & 12-MONTH LOCK-IN BONUS (#rooms)              -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#rooms</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/hero-room.jpeg</image:loc>
+      <image:title>Nirvaana Lite (₹18,999), Plus (₹22,999), Prime (₹25,999) &amp; Elite (₹25,999) Co-Living Room Tiers</image:title>
+      <image:caption>Transparent double-sharing PG and co-living plans in Viman Nagar with zero brokerage and 1-month complimentary stay on 12-month lock-in</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 6. REFERRAL REWARDS PROGRAM (#referrals)                               -->
+  <!-- ====================================================================== -->
+  <url>
+    <loc>https://nirvaanastays.com/#referrals</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ====================================================================== -->
+  <!-- 7. AMENITIES & CHEF-READY KITCHEN SHOWCASE (#amenities)                -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#amenities</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/kitchen-premium.jpeg</image:loc>
+      <image:title>Chef-Ready Fully Equipped Modular Kitchen at NIRVAANA Stays Viman Nagar</image:title>
+      <image:caption>Loaded communal kitchen with multi-burner gas hob, microwave, refrigerator, RO water purifier, and cookware included in monthly rent</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/amenities.jpeg</image:loc>
+      <image:title>Swimming Pool, Gym &amp; 24x7 Gated Security at NIRVAANA Stays Viman Nagar</image:title>
+      <image:caption>Resort-inspired society amenities including courtyard swimming pool, fitness center, Wi-Fi 6, and daily professional housekeeping</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 8. EAST PUNE CONNECTIVITY HUB: VIMAN NAGAR, KHARADI & KALYANI NAGAR    -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#connectivity</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 9. CURATED PHOTO GALLERY & ROOM SPECIFICATIONS (#gallery)              -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#gallery</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/bathroom.jpeg</image:loc>
+      <image:title>Pristine Attached En-Suite Designer Bathrooms — NIRVAANA Stays Pune</image:title>
+      <image:caption>Modern washrooms with glass shower partitions, hot water geyser, premium porcelain tiles, and regular sanitization</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://nirvaanastays.com/assets/kitchen-wide.jpeg</image:loc>
+      <image:title>Spacious Open Kitchen &amp; Double-Door Refrigerator — NIRVAANA Stays Viman Nagar</image:title>
+      <image:caption>Generous refrigerator storage, marble backsplash, and dedicated cabinets for residents</image:caption>
+      <image:geo_location>Viman Nagar, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 10. WHY NIRVAANA STAYS (#why)                                          -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#why</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 11. FREQUENTLY ASKED QUESTIONS (#faq)                                  -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#faq</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 12. BOOK A VISIT & WALKTHROUGH INQUIRY (#contact)                      -->
+  <!-- ====================================================================== -->
   <url>
     <loc>https://nirvaanastays.com/#contact</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
+
+  <!-- ====================================================================== -->
+  <!-- 13. VERIFIED GOOGLE MAPS PIN & DIRECTIONS (#location-map)              -->
+  <!-- ====================================================================== -->
+  <url>
+    <loc>https://nirvaanastays.com/#location-map</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
 </urlset>
